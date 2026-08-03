@@ -261,6 +261,38 @@ def diagram():
 DEMO = "/contact/"
 PAGES = {}
 
+# The three offerings. Intelligence and Forge are separate products, each built for its
+# own job — they are deliberately not described as sharing an architecture.
+OFFERINGS_GRID = (
+    '<div class="ale-grid is-3">'
+    '<div class="ale-card is-platform">'
+    '<span class="ale-card-num">Product</span>'
+    '<h3 class="ale-h3">Aletheon Intelligence</h3>'
+    "<p>A personalized and governed AI business intelligence platform. It helps organizations "
+    "understand what is happening, why it is happening, and what actions should be considered — "
+    "adding business context, organizational memory, AI reasoning, and governed recommendations "
+    "to the data they already have.</p>"
+    '<p style="margin-top:1.1rem"><a class="ale-btn" href="/aletheon-intelligence/">Explore Intelligence</a></p>'
+    "</div>"
+    '<div class="ale-card is-platform">'
+    '<span class="ale-card-num">Product</span>'
+    '<h3 class="ale-h3">Aletheon Forge</h3>'
+    "<p>A governed AI software development and engineering platform. It coordinates AI agents, "
+    "repositories, technical knowledge, engineering memory, and human leadership so engineering "
+    "organizations can apply AI to their own software work consistently and under oversight.</p>"
+    '<p style="margin-top:1.1rem"><a class="ale-btn" href="/aletheon-forge/">Explore Forge</a></p>'
+    "</div>"
+    '<div class="ale-card is-platform">'
+    '<span class="ale-card-num">Services</span>'
+    '<h3 class="ale-h3">Software Development</h3>'
+    "<p>Custom software engineering for organizations that need systems built, integrated, or "
+    "modernized — spanning enterprise architecture, business applications, data platforms, "
+    "integrations, and applied AI.</p>"
+    '<p style="margin-top:1.1rem"><a class="ale-btn" href="/software-development/">Explore Software Development</a></p>'
+    "</div>"
+    "</div>"
+)
+
 # ------------------------------ HOME --------------------------------------
 
 PAGES["home"] = "\n\n".join(
@@ -346,35 +378,18 @@ PAGES["home"] = "\n\n".join(
                 ]
             )
         ),
-        # 5. the two platforms
+        # 5. the offerings
         section(
             "\n\n".join(
                 [
-                    eyebrow("Two Platforms, One Governed Foundation"),
-                    heading("Built on the same architecture"),
-                    spacer(28),
-                    raw(
-                        '<div class="ale-grid is-2">'
-                        '<div class="ale-card is-platform">'
-                        '<span class="ale-card-num">Platform 01</span>'
-                        '<h3 class="ale-h3">Aletheon Intelligence</h3>'
-                        "<p>A personalized and governed AI business intelligence platform. It helps "
-                        "organizations understand what is happening, why it is happening, and what actions "
-                        "should be considered — adding business context, organizational memory, AI reasoning, "
-                        "and governed recommendations to the data they already have.</p>"
-                        '<p style="margin-top:1.1rem"><a class="ale-btn" href="/aletheon-intelligence/">Explore Intelligence</a></p>'
-                        "</div>"
-                        '<div class="ale-card is-platform">'
-                        '<span class="ale-card-num">Platform 02</span>'
-                        '<h3 class="ale-h3">Aletheon Forge</h3>'
-                        "<p>A governed AI software development and engineering platform. It coordinates AI "
-                        "agents, repositories, technical knowledge, engineering memory, and human leadership "
-                        "so organizations can use AI coding tools consistently and securely rather than "
-                        "agent by agent.</p>"
-                        '<p style="margin-top:1.1rem"><a class="ale-btn" href="/aletheon-forge/">Explore Forge</a></p>'
-                        "</div>"
-                        "</div>"
+                    eyebrow("What We Offer"),
+                    heading("Three ways we help organizations apply AI"),
+                    lede(
+                        "Two products, each purpose-built for what it does, and an engineering team that "
+                        "builds alongside you."
                     ),
+                    spacer(28),
+                    raw(OFFERINGS_GRID),
                 ]
             )
         ),
@@ -1025,21 +1040,14 @@ PAGES["about"] = "\n\n".join(
             "\n\n".join(
                 [
                     eyebrow("What We Build"),
-                    heading("Two platforms on a shared architecture"),
+                    heading("Two products and an engineering team"),
                     lede(
-                        "Aletheon Labs develops AI software platforms that connect people, business context, "
-                        "organizational memory, enterprise data, and AI models. The governed AI layer is the "
-                        "foundation both platforms share — one place where identity, context, memory, "
-                        "knowledge, policy, and audit are held for the whole enterprise."
+                        "Aletheon Labs develops AI software that connects people, business context, "
+                        "organizational memory, enterprise data, and AI models — and builds custom systems "
+                        "for organizations that need engineering alongside the products."
                     ),
                     spacer(28),
-                    cards(
-                        [
-                            ("Platform 01", "Aletheon Intelligence", "An AI business intelligence platform that helps organizations understand what is happening, why, and what to consider doing about it."),
-                            ("Platform 02", "Aletheon Forge", "An AI software development and engineering platform that coordinates agents, repositories, knowledge, and human oversight."),
-                        ],
-                        cols=2,
-                    ),
+                    raw(OFFERINGS_GRID),
                 ]
             )
         ),
@@ -1090,6 +1098,92 @@ PAGES["about"] = "\n\n".join(
                     heading("Build AI Your Organization Can Trust", centered=True),
                     spacer(12),
                     buttons([("Request a Demo", DEMO, "solid"), ("Discuss a Partnership", DEMO, "ghost")]),
+                ]
+            ),
+            "is-hero",
+        ),
+    ]
+)
+
+# ------------------------ SOFTWARE DEVELOPMENT ----------------------------
+# NOTE: WebsiteImprovements contains no material on this offering. Copy below is
+# grounded only in the founder's stated experience areas (enterprise architecture,
+# software engineering, business applications, data platforms, integrations, AI).
+# It claims no clients, no metrics, and no capabilities beyond those. Review and replace.
+
+PAGES["software-development"] = "\n\n".join(
+    [
+        section(
+            "\n\n".join(
+                [
+                    eyebrow("Services", centered=True),
+                    h1("Software Development"),
+                    lede(
+                        "Custom software engineering for organizations that need systems built, "
+                        "integrated, or modernized — delivered by the team that builds our platforms.",
+                        centered=True,
+                    ),
+                    spacer(12),
+                    buttons([("Discuss a Project", DEMO, "solid"), ("See Our Products", "/governed-ai/", "ghost")]),
+                ]
+            ),
+            "is-hero",
+        ),
+        section(
+            "\n\n".join(
+                [
+                    eyebrow("What We Build"),
+                    heading("Engineering across the enterprise stack"),
+                    spacer(28),
+                    cards(
+                        [
+                            ("01", "Enterprise architecture", "System design, integration strategy, and technical direction for organizations modernizing how their software fits together."),
+                            ("02", "Business applications", "Applications built around how the organization actually operates, rather than around what a package assumes."),
+                            ("03", "Data platforms", "Data foundations, pipelines, and models that make enterprise information usable and trustworthy."),
+                            ("04", "Integrations", "Connecting systems, services, and data so information moves reliably between them."),
+                            ("05", "Applied AI", "AI capability built into software with the same governance, traceability, and oversight our platforms are designed around."),
+                            ("06", "Modernization", "Bringing existing systems forward without discarding the business logic already proven in them."),
+                        ],
+                        cols=3,
+                    ),
+                ]
+            )
+        ),
+        section(
+            "\n\n".join(
+                [
+                    eyebrow("How We Work"),
+                    heading("Governance is not bolted on afterwards"),
+                    lede(
+                        "The same principles behind our products shape the software we build for others: "
+                        "decisions are traceable, context is retained, AI operates inside defined boundaries, "
+                        "and a person remains accountable for what ships."
+                    ),
+                    spacer(24),
+                    checklist(
+                        [
+                            "Architecture decisions captured and retained",
+                            "AI-assisted engineering under human oversight",
+                            "Standards applied consistently across the codebase",
+                            "Traceability from requirement to implementation",
+                            "Security and access considered from the start",
+                            "Knowledge that stays with your organization",
+                        ]
+                    ),
+                ]
+            )
+        ),
+        section(
+            "\n\n".join(
+                [
+                    heading("Tell us what you need built", centered=True),
+                    lede(
+                        "Share the problem, the systems involved, and the outcome you need. We will tell you "
+                        "honestly whether we are the right team for it.",
+                        centered=True,
+                    ),
+                    spacer(12),
+                    buttons([("Discuss a Project", DEMO, "solid")]),
                 ]
             ),
             "is-hero",

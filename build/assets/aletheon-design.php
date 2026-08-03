@@ -18,19 +18,30 @@ if ( ! defined( 'ABSPATH' ) ) {
 add_action(
 	'wp_enqueue_scripts',
 	function () {
-		$rel  = '/aletheon/aletheon.css';
-		$path = WPMU_PLUGIN_DIR . $rel;
+		$path = WPMU_PLUGIN_DIR . '/aletheon/aletheon.css';
 
 		if ( ! file_exists( $path ) ) {
 			return;
 		}
 
-		wp_enqueue_style(
-			'aletheon-design',
-			WPMU_PLUGIN_URL . $rel,
-			array(),
-			(string) filemtime( $path )
-		);
+		$css = file_get_contents( $path ); // phpcs:ignore WordPress.WP.AlternativeFunctions
+
+		if ( false === $css ) {
+			return;
+		}
+
+		/*
+		 * Printed inline rather than linked as a separate file.
+		 *
+		 * A linked stylesheet is cached independently of the HTML, so a visitor can end up
+		 * holding new markup with a stale stylesheet (or the reverse) and see the previous
+		 * design. Inlining makes that skew impossible — the styles always travel with the
+		 * page that needs them. ~16KB uncompressed, a few KB gzipped, and it removes a
+		 * render-blocking request.
+		 */
+		wp_register_style( 'aletheon-design', false, array(), null );
+		wp_enqueue_style( 'aletheon-design' );
+		wp_add_inline_style( 'aletheon-design', $css );
 	},
 	// Late priority so this wins over the theme's own stylesheets.
 	99
