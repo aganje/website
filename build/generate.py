@@ -336,8 +336,10 @@ def founder_dossier():
     return raw(
         '<div class="ale-founder-dossier">'
         '<div class="ale-founder-profile">'
-        '<div class="ale-founder-profile__top"><div class="ale-founder-mark" aria-hidden="true">'
-        '<span>AG</span></div><div><p class="ale-eyebrow">Founder / Research lead</p>'
+        '<div class="ale-founder-profile__top"><div class="ale-founder-portrait">'
+        '<img src="/wp-content/uploads/2026/08/andrew-ganje-portrait.jpg" '
+        'width="200" height="200" alt="Portrait of Dr. Andrew Ganje" loading="lazy" decoding="async">'
+        '<span aria-hidden="true">AG</span></div><div><p class="ale-eyebrow">Founder / Research lead</p>'
         '<p class="ale-founder-index">Dossier &middot; 001</p></div></div>'
         '<h2 class="ale-h2">Dr. Andrew Ganje</h2>'
         '<p class="ale-founder-intro">Aletheon Labs was founded by Dr. Andrew Ganje&mdash;a '
