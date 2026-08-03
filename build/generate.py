@@ -495,10 +495,15 @@ PAGES["home"] = "\n\n".join(
                     eyebrow("Research and Founder Credibility"),
                     heading("Grounded in research, built from practice"),
                     lede(
-                        "Aletheon Labs was founded by Dr. Andrew Ganje, combining doctoral research "
-                        "initiated at Purdue with extensive experience in enterprise architecture, software "
-                        "engineering, business applications, data platforms, integrations, and artificial "
-                        "intelligence."
+                        "Aletheon Labs was founded by Dr. Andrew Ganje — a former Microsoft engineer, "
+                        "software architect, microservice specialist, and published author, whose doctoral "
+                        "research was initiated at Purdue."
+                    ),
+                    para(
+                        "That work spans business transformations from $100 billion organizations to "
+                        "mid-cap companies, across enterprise architecture, business applications, data "
+                        "platforms, integrations, and artificial intelligence.",
+                        cls="ale-muted",
                     ),
                     para(
                         "The company's research and platform design are grounded in the belief that "
@@ -887,10 +892,42 @@ PAGES["research"] = "\n\n".join(
                     eyebrow("Founder"),
                     heading("Dr. Andrew Ganje"),
                     lede(
-                        "Aletheon Labs was founded by Dr. Andrew Ganje, combining doctoral research "
-                        "initiated at Purdue with extensive experience in enterprise architecture, software "
-                        "engineering, business applications, data platforms, integrations, and artificial "
-                        "intelligence."
+                        "Aletheon Labs was founded by Dr. Andrew Ganje — a former Microsoft engineer, "
+                        "software architect, and published author, whose doctoral research, initiated at "
+                        "Purdue, underpins the platform's design."
+                    ),
+                    para(
+                        "The work behind Aletheon draws on business transformations delivered across the "
+                        "full range of enterprise scale, from $100 billion organizations to mid-cap "
+                        "companies, alongside deep practice in enterprise architecture, microservice design, "
+                        "business applications, data platforms, integrations, and artificial intelligence.",
+                        cls="ale-muted",
+                    ),
+                    spacer(32),
+                    cards(
+                        [
+                            ("Engineering", "Former Microsoft engineer", "Software built and operated at platform scale, where correctness, security, and operational discipline are not optional."),
+                            ("Architecture", "Software architecture", "Designing systems that stay coherent as they grow — the same problem governed AI faces once it spreads across an enterprise."),
+                            ("Distributed systems", "Microservice expertise", "Decomposing systems so each part remains independently deployable, observable, and governable at scale."),
+                            ("Transformation", "$100B to mid-cap", "Business transformation delivered across the full range of enterprise scale, where the constraints differ sharply at each end."),
+                            ("Publication", "Published author", "Written work in the field, predating and informing the architecture Aletheon is built on."),
+                            ("Research", "Doctoral research, Purdue", "Doctoral research initiated at Purdue, from which the governed AI layer's design principles are drawn."),
+                        ],
+                        cols=3,
+                    ),
+                ]
+            )
+        ),
+        section(
+            "\n\n".join(
+                [
+                    eyebrow("Why It Matters Here"),
+                    heading("Enterprise AI is an architecture problem"),
+                    lede(
+                        "Governance, traceability, memory, and role-relevance are not features a model "
+                        "provides. They are properties a system has to be designed to hold. That is why "
+                        "Aletheon is built by people whose background is distributed systems and enterprise "
+                        "architecture, and why the research came before the product."
                     ),
                 ]
             )
@@ -1082,10 +1119,14 @@ PAGES["about"] = "\n\n".join(
                     eyebrow("Founder"),
                     heading("Founded on research and enterprise practice"),
                     lede(
-                        "Aletheon Labs was founded by Dr. Andrew Ganje, combining doctoral research "
-                        "initiated at Purdue with extensive experience in enterprise architecture, software "
-                        "engineering, business applications, data platforms, integrations, and artificial "
-                        "intelligence."
+                        "Aletheon Labs was founded by Dr. Andrew Ganje — a former Microsoft engineer, "
+                        "software architect, microservice specialist, and published author, whose doctoral "
+                        "research was initiated at Purdue."
+                    ),
+                    para(
+                        "That background spans business transformations from $100 billion organizations to "
+                        "mid-cap companies, and the architectural practice the platforms are built on.",
+                        cls="ale-muted",
                     ),
                     spacer(20),
                     buttons([("Read the Research", "/research/", "ghost")], centered=False),
