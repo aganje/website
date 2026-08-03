@@ -8,6 +8,16 @@
 
 ## Deployment record
 
+### Logo refresh — 2026-08-02
+
+- Replaced the opaque-background header icon with `build/assets/aletheon-mark-v2.png`,
+  a high-resolution transparent mark derived from the supplied Aletheon Labs artwork.
+  Production `site_logo` now points to attachment `94`.
+- Refined the header scale, depth treatment, hover motion, and keyboard focus state in
+  `build/assets/aletheon.css`.
+- Rollback: restore WordPress `site_logo` to attachment `34` and restore the prior CSS file
+  from `~/aletheon-backups/logo-refresh-20260802-214808/`.
+
 **Rollback — one command restores everything:**
 
 ```bash
@@ -23,7 +33,7 @@ Theme archive alongside it at `~/aletheon-backups/themes-20260802-215847.tar.gz`
 |---|---|
 | Design layer | `wp-content/mu-plugins/aletheon-design.php` + `aletheon/aletheon.css` — theme-independent, survives theme updates |
 | Palette | **Brand purple, black, white** (revised 2026-08-02 after the logo was supplied): black `#0A0810`, white `#FFFFFF`, brand purple `#6D28D9`, bright violet `#A855F7`, light violet `#C084FC` (7.2:1 on black), deep indigo `#3B1BC4`. An earlier cyan build was replaced — no cyan or amber remains on any page. |
-| Logo & favicon | `site_logo` → attachment 34 (mark only, 316×364, alpha) beside the site title; the full lockup (39) was illegible at header size. `site_icon` → attachment 63 (512×512), so the site now has a favicon for the first time. |
+| Logo & favicon | `site_logo` → attachment 94 (transparent mark v2, 1254×1254) beside the site title; attachment 34 remains available for rollback. `site_icon` → attachment 63 (512×512). |
 | Voice | Copy states what the company **is**, never what it isn't. "An AI software company, not a consulting firm" → "We build the software layer for enterprise AI"; same fix applied on Forge, Intelligence, About, and the consistency sections. The "not a consulting firm" line came from an internal positioning note in the brief and should never have been public-facing. |
 | Signature asset | Animated Governed AI Layer SVG on Home and Governed AI; Identity→Action flow on Home and Intelligence |
 | Pages rewritten | Home (18), About (11), Contact (12), Solutions (10), Aletheon Intelligence (13) |

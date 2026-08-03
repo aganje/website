@@ -425,17 +425,30 @@ a.ale-btn:hover { transform: translateY(-2px); box-shadow: 0 0 0 1px var(--ale-v
 
 /* ---------- logo sizing ---------- */
 
-/* The mark is portrait (316x364), so height drives perceived size. Scale it
-   with the viewport and let width follow, capped so it never crowds the nav. */
+/* The transparent square mark is intentionally scaled by height so it stays
+   crisp and balanced beside the wordmark without crowding the navigation. */
+.ale-header .wp-block-site-logo a {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 14px;
+}
 .ale-header .wp-block-site-logo img {
-  height: clamp(44px, 3.4vw, 64px) !important;
+  height: clamp(48px, 3.6vw, 68px) !important;
   width: auto !important;
   max-width: none !important;
   display: block;
-  transition: filter 0.25s ease;
+  background: transparent;
+  object-fit: contain;
+  filter: drop-shadow(0 7px 12px rgba(31, 18, 83, 0.32));
+  transition: filter 0.25s ease, transform 0.25s ease;
 }
 .ale-header .wp-block-site-logo a:hover img {
-  filter: drop-shadow(0 0 14px rgba(168, 85, 247, 0.55));
+  filter: drop-shadow(0 0 16px rgba(168, 85, 247, 0.58));
+  transform: translateY(-1px);
+}
+.ale-header .wp-block-site-logo a:focus-visible {
+  outline: 2px solid var(--ale-violet-lt);
+  outline-offset: 5px;
 }
 .ale-header .wp-block-site-logo { line-height: 0; }
 .ale-header .wp-block-site-title { font-size: clamp(1.05rem, 0.9rem + 0.6vw, 1.35rem); }
