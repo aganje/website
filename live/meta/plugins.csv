@@ -1,0 +1,13 @@
+name,status,version
+akismet,inactive,5.6
+creative-mail-by-constant-contact,active,1.6.9
+google-analytics-for-wordpress,active,10.1.2
+hello,inactive,1.7.2
+jetpack,active,15.6
+optinmonster,active,2.16.22
+bluehost-wordpress-plugin,active,4.17.1
+wpforms-lite,active,1.10.0.5
+wordpress-seo,active,27.3
+wordpress-seo-premium,active,27.6.1
+endurance-page-cache,must-use,2.2.2
+sso,must-use,0.5

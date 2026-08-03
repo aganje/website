@@ -1,0 +1,45 @@
+<!-- wp:group {"metadata":{"name":"Footer"},"align":"full","className":"nfd-container nfd-bg-surface nfd-theme-darker nfd-wb-footer__footer-8 is-style-nfd-theme-darker","style":{"spacing":{"blockGap":"0"}},"layout":{"type":"constrained"},"nfdGroupTheme":"","nfdGroupEffect":"grid-3"} -->
+<div class="nfd-container nfd-bg-surface nfd-theme-darker nfd-wb-footer__footer-8 is-style-nfd-theme-darker wp-block-group alignfull nfd-bg-effect-grid-3"><!-- wp:columns {"className":"nfd-gap-2xl nfd-gap-y-3xl nfd-text-base","style":{"spacing":{"padding":{"top":"var:preset|spacing|70","bottom":"var:preset|spacing|70"}},"border":{"bottom":{"width":"1px"}}}} -->
+<div class="nfd-gap-2xl nfd-gap-y-3xl nfd-text-base wp-block-columns" style="border-bottom-width:1px;padding-top:var(--wp--preset--spacing--70);padding-bottom:var(--wp--preset--spacing--70)"><!-- wp:column {"width":"50%","style":{"spacing":{"blockGap":"var:preset|spacing|40"}}} -->
+<div class="wp-block-column" style="flex-basis:50%"><!-- wp:paragraph {"className":"nfd-text-lg nfd-text-balance"} -->
+<p class="nfd-text-lg nfd-text-balance">Empowering businesses with AI-driven insights for a competitive edge.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:social-links {"customIconBackgroundColor":"#40404000","iconBackgroundColorValue":"#40404000","size":"has-normal-icon-size","className":"nfd-text-contrast is-style-default nfd-gap-sm","layout":{"type":"flex","justifyContent":"left"}} -->
+<ul class="nfd-text-contrast is-style-default nfd-gap-sm wp-block-social-links has-normal-icon-size has-icon-background-color"><!-- wp:social-link {"url":"#","service":"twitter"} /-->
+
+<!-- wp:social-link {"url":"#","service":"facebook"} /-->
+
+<!-- wp:social-link {"url":"#","service":"linkedin"} /-->
+
+<!-- wp:social-link {"url":"#","service":"youtube"} /--></ul>
+<!-- /wp:social-links -->
+
+<!-- wp:paragraph {"className":"nfd-text-opacity-80","style":{"spacing":{"padding":{"top":"12px"}}}} -->
+<p class="nfd-text-opacity-80" style="padding-top:12px">Copyright © 2025. <br><br>San Diego, CA</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:column -->
+
+<!-- wp:column -->
+<div class="wp-block-column"><!-- wp:group {"className":"nfd-gap-lg","layout":{"type":"flex","orientation":"vertical"}} -->
+<div class="nfd-gap-lg wp-block-group"><!-- wp:heading {"level":3,"className":"wp-block-heading nfd-text-md nfd-text-current","style":{"typography":{"fontStyle":"normal","fontWeight":"600"}}} -->
+<h3 class="wp-block-heading nfd-text-md nfd-text-current" id="h-company" style="font-style:normal;font-weight:600">Company</h3>
+<!-- /wp:heading -->
+
+<!-- wp:navigation {"ref":7,"overlayMenu":"never","style":{"spacing":{"blockGap":"8px"}},"layout":{"type":"flex","orientation":"vertical"}} /--></div>
+<!-- /wp:group -->
+
+<!-- wp:paragraph -->
+<p class=""><a href="https://aletheonlabs.com/about/" data-type="page" data-id="11">About</a></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p class=""><a href="https://aletheonlabs.com/experience/" data-type="page" data-id="13">AI Solutions</a></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p class=""><a href="https://aletheonlabs.com/contact/" data-type="page" data-id="12">Contact</a></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:column --></div>
+<!-- /wp:columns --></div>
+<!-- /wp:group -->

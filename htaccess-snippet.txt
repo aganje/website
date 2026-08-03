@@ -1,0 +1,26 @@
+Paste this into public_html/.htaccess on Bluehost.
+Put it ABOVE the "# BEGIN WordPress" line — WordPress overwrites anything
+between "# BEGIN WordPress" and "# END WordPress" when permalinks are saved.
+
+cPanel -> File Manager -> public_html -> Settings -> "Show Hidden Files (dotfiles)"
+-> right-click .htaccess -> Edit
+
+---------------- copy from here ----------------
+
+# Pass HTTP Basic Auth through to PHP (needed for WP Application Passwords)
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+</IfModule>
+<IfModule mod_setenvif.c>
+  SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1
+</IfModule>
+
+----------------- to here ----------------------
+
+Fallback, if the above does not work (Apache 2.4.13+):
+
+  CGIPassAuth On
+
+If the site 500s after saving, remove the block and the site returns to normal
+immediately — this change is fully reversible and touches nothing else.

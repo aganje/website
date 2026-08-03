@@ -1,0 +1,476 @@
+/*
+ * Aletheon Labs — design layer
+ * Dark-first, "instrumented" system. Loaded via mu-plugin so it survives theme updates.
+ * All custom classes are namespaced `ale-` to avoid collisions with Newfold's `nfd-` system.
+ */
+
+/* Brand: purple shades, black, white — taken from the Aletheon Labs mark. */
+:root {
+  --ale-void:        #0A0810;
+  --ale-surface:     #14101F;
+  --ale-surface-2:   #1C1630;
+  --ale-indigo:      #3B1BC4;
+  --ale-cyan:        #6D28D9;  /* brand purple (var name kept for stability) */
+  --ale-cyan-bright: #A855F7;  /* bright violet */
+  --ale-violet-lt:   #C084FC;  /* light violet — 7.2:1 on black, safe for text */
+  --ale-signal:      #C084FC;
+  --ale-ink:         #FFFFFF;
+  --ale-body:        #E8E4F2;
+  --ale-muted:       #A79FBF;
+  --ale-line:        rgba(168, 85, 247, 0.18);
+  --ale-line-strong: rgba(168, 85, 247, 0.42);
+
+  --ale-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+
+  --ale-r:  10px;
+  --ale-r-lg: 16px;
+}
+
+/* ---------- base ---------- */
+
+body {
+  background-color: var(--ale-void);
+  color: var(--ale-body);
+}
+
+/* Ambient depth: a fixed grid + two soft light sources. Purely decorative. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(ellipse 900px 620px at 12% -8%, rgba(109, 40, 217, 0.30), transparent 62%),
+    radial-gradient(ellipse 760px 540px at 92% 4%, rgba(59, 27, 196, 0.34), transparent 64%),
+    linear-gradient(rgba(168, 85, 247, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(168, 85, 247, 0.05) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 64px 64px, 64px 64px;
+}
+.wp-site-blocks { position: relative; z-index: 1; }
+
+/* ---------- typography ---------- */
+
+.ale-eyebrow {
+  font-family: var(--ale-mono);
+  font-size: clamp(0.68rem, 0.62rem + 0.2vw, 0.78rem);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ale-violet-lt);
+  display: flex;
+  align-items: center;
+  gap: 0.75em;
+  margin-bottom: 1rem;
+}
+.ale-eyebrow::before {
+  content: "";
+  width: 28px;
+  height: 1px;
+  background: var(--ale-cyan);
+  flex: none;
+}
+.ale-eyebrow.is-centered { justify-content: center; }
+
+.ale-display {
+  font-size: clamp(2.4rem, 1.5rem + 4.2vw, 5rem);
+  line-height: 1.04;
+  letter-spacing: -0.028em;
+  font-weight: 700;
+  text-wrap: balance;
+}
+.ale-h2 {
+  font-size: clamp(1.85rem, 1.3rem + 2.2vw, 3rem);
+  line-height: 1.12;
+  letter-spacing: -0.022em;
+  font-weight: 650;
+  text-wrap: balance;
+}
+.ale-h3 {
+  font-size: clamp(1.15rem, 1.02rem + 0.5vw, 1.4rem);
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  font-weight: 600;
+}
+.ale-lede {
+  font-size: clamp(1.05rem, 0.98rem + 0.42vw, 1.3rem);
+  line-height: 1.6;
+  color: var(--ale-muted);
+  max-width: 62ch;
+  text-wrap: pretty;
+}
+.ale-lede.is-centered { margin-inline: auto; text-align: center; }
+.ale-muted { color: var(--ale-muted); }
+.ale-mono  { font-family: var(--ale-mono); }
+
+.ale-grad {
+  background: linear-gradient(96deg, var(--ale-ink) 10%, var(--ale-violet-lt) 55%, var(--ale-cyan-bright) 92%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ---------- layout ---------- */
+
+.ale-section { padding-block: clamp(3.5rem, 2rem + 7vw, 7.5rem); position: relative; }
+.ale-section.is-tight { padding-block: clamp(2.5rem, 1.5rem + 4vw, 4.5rem); }
+.ale-rule {
+  border: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--ale-line-strong), transparent);
+  margin-block: 0;
+}
+
+/* ---------- cards ---------- */
+
+.ale-card {
+  background: linear-gradient(168deg, var(--ale-surface-2), var(--ale-surface));
+  border: 1px solid var(--ale-line);
+  border-radius: var(--ale-r-lg);
+  padding: clamp(1.4rem, 1.1rem + 0.9vw, 2rem);
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+  transition: border-color 0.28s ease, transform 0.28s ease, box-shadow 0.28s ease;
+}
+/* Top edge highlight — reads as a lit panel rather than a flat box. */
+.ale-card::after {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--ale-line-strong) 42%, transparent);
+  opacity: 0.9;
+}
+.ale-card:hover {
+  border-color: var(--ale-line-strong);
+  transform: translateY(-3px);
+  box-shadow: 0 18px 44px -22px rgba(168, 85, 247, 0.45);
+}
+.ale-card .ale-h3 { margin: 0 0 0.5rem; }
+.ale-card p { color: var(--ale-muted); margin: 0; line-height: 1.62; }
+
+.ale-card-num {
+  font-family: var(--ale-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  color: var(--ale-violet-lt);
+  display: block;
+  margin-bottom: 0.9rem;
+}
+
+/* Problem cards get a warm edge — visually separates "what's broken" from "what we build". */
+.ale-card.is-problem { border-color: rgba(59, 27, 196, 0.45); }
+.ale-card.is-problem::after { background: linear-gradient(90deg, transparent, rgba(59, 27, 196, 0.75) 42%, transparent); }
+.ale-card.is-problem:hover { border-color: rgba(59, 27, 196, 0.8); box-shadow: 0 18px 44px -22px rgba(59, 27, 196, 0.5); }
+.ale-card.is-problem .ale-card-num { color: var(--ale-muted); }
+
+/* Platform cards — the two products, given more presence. */
+.ale-card.is-platform { padding: clamp(1.7rem, 1.2rem + 1.4vw, 2.6rem); }
+.ale-card.is-platform .ale-h3 { font-size: clamp(1.45rem, 1.2rem + 1vw, 2rem); }
+
+.ale-grid { display: grid; gap: clamp(1rem, 0.8rem + 0.6vw, 1.5rem); }
+.ale-grid.is-2 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); }
+.ale-grid.is-3 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 270px), 1fr)); }
+.ale-grid.is-4 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 210px), 1fr)); }
+
+/* ---------- checklist ---------- */
+
+.ale-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.7rem; }
+.ale-list li {
+  position: relative;
+  padding-left: 1.75rem;
+  color: var(--ale-muted);
+  line-height: 1.55;
+}
+.ale-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.52em;
+  width: 9px;
+  height: 9px;
+  border: 1px solid var(--ale-cyan);
+  background: rgba(168, 85, 247, 0.22);
+  transform: rotate(45deg);
+}
+.ale-list.is-2col { grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); column-gap: 2rem; }
+
+/* ---------- buttons ---------- */
+
+.ale-btns { display: flex; flex-wrap: wrap; gap: 0.85rem; }
+.ale-btns.is-centered { justify-content: center; }
+
+.wp-block-button.ale-btn .wp-block-button__link,
+a.ale-btn {
+  background: linear-gradient(96deg, var(--ale-cyan), var(--ale-cyan-bright));
+  color: #FFFFFF;
+  font-weight: 640;
+  letter-spacing: 0.005em;
+  border-radius: 999px;
+  padding: 0.85em 1.9em;
+  border: 0;
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+  box-shadow: 0 0 0 1px rgba(168, 85, 247, 0.45), 0 12px 32px -16px rgba(109, 40, 217, 0.95);
+}
+.wp-block-button.ale-btn .wp-block-button__link:hover,
+a.ale-btn:hover { transform: translateY(-2px); box-shadow: 0 0 0 1px var(--ale-violet-lt), 0 18px 40px -16px rgba(168, 85, 247, 1); }
+
+.wp-block-button.ale-btn-ghost .wp-block-button__link {
+  background: transparent;
+  color: var(--ale-ink);
+  border: 1px solid var(--ale-line-strong);
+  border-radius: 999px;
+  padding: 0.85em 1.9em;
+  font-weight: 560;
+  transition: border-color 0.25s ease, background 0.25s ease, transform 0.25s ease;
+}
+.wp-block-button.ale-btn-ghost .wp-block-button__link:hover {
+  border-color: var(--ale-violet-lt);
+  background: rgba(168, 85, 247, 0.12);
+  transform: translateY(-2px);
+}
+
+/* ---------- the governed AI layer diagram ---------- */
+
+.ale-diagram { width: 100%; margin-inline: auto; max-width: 940px; display: block; }
+.ale-diagram text { font-family: var(--ale-mono); fill: var(--ale-muted); }
+.ale-diagram .d-title { fill: var(--ale-ink); font-weight: 600; }
+.ale-diagram .d-accent { fill: var(--ale-violet-lt); }
+.ale-diagram .d-node {
+  fill: var(--ale-surface-2);
+  stroke: var(--ale-line);
+  stroke-width: 1;
+}
+.ale-diagram .d-layer {
+  fill: rgba(168, 85, 247, 0.10);
+  stroke: var(--ale-cyan);
+  stroke-width: 1.25;
+}
+.ale-diagram .d-flow {
+  stroke: var(--ale-cyan);
+  stroke-width: 1.25;
+  fill: none;
+  opacity: 0.42;
+  stroke-dasharray: 5 7;
+  animation: ale-dash 2.6s linear infinite;
+}
+.ale-diagram .d-pulse {
+  fill: var(--ale-violet-lt);
+  animation: ale-pulse 3.4s ease-in-out infinite;
+}
+@keyframes ale-dash { to { stroke-dashoffset: -48; } }
+@keyframes ale-pulse {
+  0%, 100% { opacity: 0.25; r: 3; }
+  50%      { opacity: 1;    r: 4.4; }
+}
+
+/* ---------- identity -> action flow ---------- */
+
+.ale-flow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: 0.5rem;
+  counter-reset: flowstep;
+}
+.ale-flow-step {
+  flex: 1 1 132px;
+  border: 1px solid var(--ale-line);
+  border-radius: var(--ale-r);
+  background: var(--ale-surface);
+  padding: 1rem 0.85rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.ale-flow-step span {
+  font-family: var(--ale-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ale-ink);
+}
+/* A light sweep travelling left→right across the seven steps. */
+.ale-flow-step::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--ale-violet-lt), transparent);
+  transform: translateX(-100%);
+  animation: ale-sweep 5.2s ease-in-out infinite;
+  animation-delay: calc(var(--i, 0) * 0.32s);
+}
+@keyframes ale-sweep {
+  0%        { transform: translateX(-100%); opacity: 0; }
+  12%, 24%  { opacity: 1; }
+  46%, 100% { transform: translateX(100%); opacity: 0; }
+}
+
+/* ---------- role matrix ---------- */
+
+.ale-roles { display: grid; gap: 0.6rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 168px), 1fr)); }
+.ale-role {
+  border: 1px solid var(--ale-line);
+  border-left: 2px solid var(--ale-cyan-bright);
+  border-radius: 0 var(--ale-r) var(--ale-r) 0;
+  background: var(--ale-surface);
+  padding: 0.9rem 1rem;
+}
+.ale-role strong { display: block; font-size: 0.95rem; color: var(--ale-ink); margin-bottom: 0.2rem; }
+.ale-role em { font-style: normal; font-size: 0.83rem; color: var(--ale-muted); line-height: 1.45; display: block; }
+
+/* ---------- outcome stats ---------- */
+
+.ale-stat {
+  border: 1px solid var(--ale-line);
+  border-radius: var(--ale-r);
+  background: var(--ale-surface);
+  padding: 1.15rem 1.25rem;
+}
+.ale-stat b {
+  display: block;
+  font-family: var(--ale-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ale-violet-lt);
+  margin-bottom: 0.45rem;
+}
+.ale-stat span { color: var(--ale-ink); line-height: 1.5; font-size: 0.97rem; }
+
+/* ---------- mission ---------- */
+
+.ale-mission {
+  border: 1px solid var(--ale-line-strong);
+  border-radius: var(--ale-r-lg);
+  background:
+    radial-gradient(ellipse 620px 300px at 50% 0%, rgba(168, 85, 247, 0.18), transparent 70%),
+    linear-gradient(168deg, var(--ale-surface-2), var(--ale-surface));
+  padding: clamp(2rem, 1.4rem + 2.4vw, 3.6rem);
+  text-align: center;
+}
+.ale-mission blockquote {
+  margin: 0;
+  border: 0;
+  padding: 0;
+  font-size: clamp(1.2rem, 1rem + 1.15vw, 1.9rem);
+  line-height: 1.45;
+  font-weight: 560;
+  letter-spacing: -0.012em;
+  color: var(--ale-ink);
+  text-wrap: balance;
+  max-width: 30ch;
+  margin-inline: auto;
+}
+
+/* ---------- header ---------- */
+
+.ale-header {
+  background: rgba(10, 8, 16, 0.86);
+  backdrop-filter: saturate(150%) blur(14px);
+  -webkit-backdrop-filter: saturate(150%) blur(14px);
+  border-bottom: 1px solid var(--ale-line);
+  position: sticky;
+  top: 0;
+  z-index: 40;
+}
+.ale-header-right { gap: clamp(0.75rem, 0.4rem + 1.4vw, 2rem); align-items: center; }
+
+.wp-block-navigation a { transition: color 0.2s ease; font-size: 0.95rem; }
+.wp-block-navigation a:hover { color: var(--ale-violet-lt); }
+.wp-block-navigation .wp-block-navigation-submenu__toggle { font-size: 0.95rem; }
+.wp-block-navigation__submenu-container {
+  background: var(--ale-surface-2) !important;
+  border: 1px solid var(--ale-line) !important;
+  border-radius: var(--ale-r);
+  padding: 0.35rem;
+  box-shadow: 0 24px 48px -24px rgba(0, 0, 0, 0.9);
+}
+.wp-block-navigation__submenu-container a:hover { background: rgba(168, 85, 247, 0.14); border-radius: 6px; }
+
+.wp-block-site-title a { font-weight: 680; letter-spacing: -0.015em; text-decoration: none; }
+
+/* Compact variant for the persistent header CTA. */
+.wp-block-button.ale-btn-sm .wp-block-button__link { padding: 0.6em 1.3em; font-size: 0.9rem; }
+
+/* ---------- footer ---------- */
+
+.ale-footer {
+  border-top: 1px solid var(--ale-line);
+  background: linear-gradient(180deg, transparent, rgba(20, 16, 31, 0.75));
+  margin-top: clamp(2rem, 1rem + 4vw, 5rem);
+}
+.ale-footer-brand {
+  font-weight: 700;
+  font-size: 1.15rem;
+  letter-spacing: -0.015em;
+  margin-bottom: 0.5rem;
+}
+.ale-footer-head {
+  font-family: var(--ale-mono);
+  font-size: 0.72rem !important;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ale-violet-lt) !important;
+  margin-bottom: 0.9rem;
+}
+.ale-footer p { margin: 0 0 0.5rem; font-size: 0.95rem; }
+.ale-footer a { text-decoration: none; color: var(--ale-muted); }
+.ale-footer a:hover { color: var(--ale-violet-lt); }
+.ale-footer-rule { border-color: var(--ale-line); opacity: 1; margin-block: 2.5rem 1.5rem; }
+.ale-footer-legal { gap: 1rem; align-items: center; }
+.ale-footer-legal p { font-size: 0.88rem; margin: 0; }
+
+
+/* ---------- logo sizing ---------- */
+
+/* The mark is portrait (316x364), so height drives perceived size. Scale it
+   with the viewport and let width follow, capped so it never crowds the nav. */
+.ale-header .wp-block-site-logo img {
+  height: clamp(44px, 3.4vw, 64px) !important;
+  width: auto !important;
+  max-width: none !important;
+  display: block;
+  transition: filter 0.25s ease;
+}
+.ale-header .wp-block-site-logo a:hover img {
+  filter: drop-shadow(0 0 14px rgba(168, 85, 247, 0.55));
+}
+.ale-header .wp-block-site-logo { line-height: 0; }
+.ale-header .wp-block-site-title { font-size: clamp(1.05rem, 0.9rem + 0.6vw, 1.35rem); }
+
+/* ---------- neutralise WordPress core's default blue presets ----------
+   Core ships vivid-cyan-blue / pale-cyan-blue etc. in every page's inline CSS.
+   Nothing on this site should ever render in them; remap to brand purple so a
+   stray preset class can never surface as blue. */
+:root {
+  --wp--preset--color--vivid-cyan-blue: #A855F7;
+  --wp--preset--color--pale-cyan-blue: #C084FC;
+  --wp--preset--color--vivid-purple: #6D28D9;
+  --wp--preset--color--cyan-bluish-gray: #A79FBF;
+  --wp--preset--color--luminous-vivid-amber: #C084FC;
+  --wp--preset--color--luminous-vivid-orange: #A855F7;
+}
+.has-vivid-cyan-blue-color { color: var(--ale-cyan-bright) !important; }
+.has-vivid-cyan-blue-background-color { background-color: var(--ale-cyan) !important; }
+.has-pale-cyan-blue-color { color: var(--ale-violet-lt) !important; }
+.has-pale-cyan-blue-background-color { background-color: var(--ale-surface-2) !important; }
+
+/* ---------- motion + responsive guards ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .ale-diagram .d-flow,
+  .ale-diagram .d-pulse,
+  .ale-flow-step::before { animation: none; }
+  .ale-diagram .d-flow { opacity: 0.5; stroke-dasharray: none; }
+  .ale-diagram .d-pulse { opacity: 0.85; }
+  .ale-card, .wp-block-button .wp-block-button__link, a.ale-btn { transition: none; }
+  .ale-card:hover, a.ale-btn:hover { transform: none; }
+  * { scroll-behavior: auto !important; }
+}
+
+@media (max-width: 600px) {
+  body::before { background-size: 100% 100%, 100% 100%, 44px 44px, 44px 44px; }
+  .ale-flow-step { flex-basis: calc(50% - 0.5rem); }
+}

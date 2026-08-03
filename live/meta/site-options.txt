@@ -1,0 +1,8 @@
+blogname=Aletheon Labs: AI-Powered Software Solutions
+blogdescription=Unlock the power of your data with Aletheon Labs. Our AI-driven software enhances visibility, clarity, and actionable insights across Marketing, SCM, and ERP.
+siteurl=https://aletheonlabs.com
+show_on_front=page
+page_on_front=18
+permalink_structure=/%postname%/
+template=bluehost-blueprint
+stylesheet=bluehost-blueprint

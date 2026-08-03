@@ -1,0 +1,11 @@
+# Live Bluehost/WordPress credentials — never commit
+bluehostappcredentials
+sshbluehost
+*.env
+
+# SSH private keys — never commit (.pub files are safe but excluded for simplicity)
+bluehost_ed25519*
+bluehost_rsa*
+
+# scratch / image generation working dir
+tmp/
