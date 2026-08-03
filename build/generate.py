@@ -158,6 +158,83 @@ def flow():
     return raw("".join(out))
 
 
+def home_hero():
+    """Cinematic, code-native homepage hero. Decorative motion is CSS-only."""
+    return raw(
+        '<div class="ale-home-hero">'
+        '<div class="ale-home-hero__copy">'
+        '<div class="ale-system-state"><span aria-hidden="true"></span>'
+        'Governed intelligence layer online</div>'
+        '<p class="ale-eyebrow">Aletheon Labs &middot; Enterprise AI Systems</p>'
+        '<h1 class="ale-display">Build a Trusted and '
+        '<span class="ale-grad">Governed AI Enterprise</span></h1>'
+        '<p class="ale-lede">Aletheon Labs develops AI software for business intelligence and '
+        'software engineering&mdash;connecting people, context, memory, knowledge, and models '
+        'through one secure, explainable layer.</p>'
+        '<div class="ale-hero-actions">'
+        '<a class="ale-hero-btn is-primary" href="/contact/">Request a Demo '
+        '<span aria-hidden="true">&rarr;</span></a>'
+        '<a class="ale-hero-btn is-secondary" href="/governed-ai/">Explore the Architecture</a>'
+        '</div>'
+        '<div class="ale-hero-proof" aria-label="Platform qualities">'
+        '<span>Identity-aware</span><span>Policy-enforced</span><span>Fully traceable</span>'
+        '</div>'
+        '</div>'
+        '<div class="ale-core-visual" role="img" '
+        'aria-label="A governed AI core routes identity, context, memory, and policy between users and approved AI models.">'
+        '<div class="ale-core-visual__frame" aria-hidden="true"></div>'
+        '<svg class="ale-core-orbits" viewBox="0 0 620 620" aria-hidden="true" focusable="false" '
+        'xmlns="http://www.w3.org/2000/svg">'
+        '<defs>'
+        '<linearGradient id="ale-orbit-gradient" x1="0" y1="0" x2="1" y2="1">'
+        '<stop offset="0" stop-color="#C084FC"/><stop offset="0.52" stop-color="#A855F7"/>'
+        '<stop offset="1" stop-color="#3B1BC4"/></linearGradient>'
+        '<radialGradient id="ale-core-gradient"><stop offset="0" stop-color="#A855F7" stop-opacity=".8"/>'
+        '<stop offset=".55" stop-color="#6D28D9" stop-opacity=".34"/>'
+        '<stop offset="1" stop-color="#0A0810" stop-opacity="0"/></radialGradient>'
+        '<filter id="ale-soft-glow" x="-80%" y="-80%" width="260%" height="260%">'
+        '<feGaussianBlur stdDeviation="7" result="blur"/><feMerge><feMergeNode in="blur"/>'
+        '<feMergeNode in="SourceGraphic"/></feMerge></filter>'
+        '</defs>'
+        '<circle class="hv-halo" cx="310" cy="310" r="178" fill="url(#ale-core-gradient)"/>'
+        '<g class="hv-grid">'
+        '<path d="M74 310H546M310 74V546"/><path d="M144 144L476 476M476 144L144 476"/>'
+        '<circle cx="310" cy="310" r="92"/><circle cx="310" cy="310" r="156"/>'
+        '<circle cx="310" cy="310" r="224"/>'
+        '</g>'
+        '<g class="hv-orbit is-outer"><ellipse cx="310" cy="310" rx="246" ry="106"/>'
+        '<circle class="hv-node" cx="64" cy="310" r="5"/><circle class="hv-node" cx="556" cy="310" r="5"/></g>'
+        '<g class="hv-orbit is-mid"><ellipse cx="310" cy="310" rx="206" ry="92" '
+        'transform="rotate(58 310 310)"/><circle class="hv-node" cx="188" cy="144" r="5"/></g>'
+        '<g class="hv-orbit is-inner"><ellipse cx="310" cy="310" rx="170" ry="74" '
+        'transform="rotate(-54 310 310)"/><circle class="hv-node" cx="410" cy="172" r="4"/></g>'
+        '<g class="hv-core" filter="url(#ale-soft-glow)">'
+        '<path d="M310 207L398 258V360L310 411L222 360V258Z"/>'
+        '<path class="hv-core-inner" d="M310 235L374 272V346L310 383L246 346V272Z"/>'
+        '</g>'
+        '<path class="hv-signal" d="M115 310C168 310 202 275 244 268"/>'
+        '<path class="hv-signal is-reverse" d="M376 350C430 362 468 338 514 310"/>'
+        '</svg>'
+        '<div class="ale-core-center" aria-hidden="true">'
+        '<small>Governed AI</small><strong>ALETHEON</strong><span>Trust layer</span>'
+        '</div>'
+        '<span class="ale-orbit-label is-identity" aria-hidden="true">Identity</span>'
+        '<span class="ale-orbit-label is-context" aria-hidden="true">Context</span>'
+        '<span class="ale-orbit-label is-memory" aria-hidden="true">Memory</span>'
+        '<span class="ale-orbit-label is-policy" aria-hidden="true">Policy</span>'
+        '<div class="ale-telemetry is-top" aria-hidden="true"><b>01</b><span>Request authenticated</span></div>'
+        '<div class="ale-telemetry is-bottom" aria-hidden="true"><b>07</b><span>Action trace recorded</span></div>'
+        '</div>'
+        '<div class="ale-signal-rail" role="list" aria-label="Governance system status">'
+        '<div role="listitem"><span class="ale-status-dot" aria-hidden="true"></span><b>Identity</b><small>Authenticated</small></div>'
+        '<div role="listitem"><span class="ale-status-dot" aria-hidden="true"></span><b>Context</b><small>Role-routed</small></div>'
+        '<div role="listitem"><span class="ale-status-dot" aria-hidden="true"></span><b>Policy</b><small>Enforced</small></div>'
+        '<div role="listitem"><span class="ale-status-dot" aria-hidden="true"></span><b>Audit</b><small>Recording</small></div>'
+        '</div>'
+        '</div>'
+    )
+
+
 def mission_block():
     return raw(
         '<div class="ale-mission">'
@@ -298,25 +375,7 @@ OFFERINGS_GRID = (
 PAGES["home"] = "\n\n".join(
     [
         # 1. hero
-        section(
-            "\n\n".join(
-                [
-                    eyebrow("Aletheon Labs — Governed AI for the Enterprise", centered=True),
-                    h1("Build a Trusted and Governed AI Enterprise"),
-                    lede(
-                        "Aletheon Labs develops AI software platforms for business intelligence and "
-                        "software engineering, providing secure, personalized, and consistent AI "
-                        "experiences across the enterprise.",
-                        centered=True,
-                    ),
-                    spacer(12),
-                    buttons([("Request a Demo", DEMO, "solid"), ("Explore Our Platforms", "/governed-ai/", "ghost")]),
-                    spacer(48),
-                    flow(),
-                ]
-            ),
-            "is-hero",
-        ),
+        section(home_hero(), "is-home-hero"),
         # 2. company introduction
         section(
             "\n\n".join(
@@ -330,7 +389,8 @@ PAGES["home"] = "\n\n".join(
                         "data, and AI models to deliver secure, explainable, and role-relevant intelligence."
                     ),
                 ]
-            )
+            ),
+            "is-home-intro",
         ),
         # 3. the problem
         section(
@@ -359,7 +419,8 @@ PAGES["home"] = "\n\n".join(
                         cols=3,
                     ),
                 ]
-            )
+            ),
+            "is-home-problem",
         ),
         # 4. the solution + diagram
         section(
@@ -376,7 +437,8 @@ PAGES["home"] = "\n\n".join(
                     spacer(40),
                     diagram(),
                 ]
-            )
+            ),
+            "is-home-layer",
         ),
         # 5. the offerings
         section(
@@ -391,7 +453,8 @@ PAGES["home"] = "\n\n".join(
                     spacer(28),
                     raw(OFFERINGS_GRID),
                 ]
-            )
+            ),
+            "is-home-platforms",
         ),
         # 6. personalized by role
         section(
@@ -422,7 +485,8 @@ PAGES["home"] = "\n\n".join(
                         cls="ale-muted",
                     ),
                 ]
-            )
+            ),
+            "is-home-roles",
         ),
         # 7. governed across the enterprise
         section(
@@ -446,7 +510,8 @@ PAGES["home"] = "\n\n".join(
                         ]
                     ),
                 ]
-            )
+            ),
+            "is-home-governance",
         ),
         # 8. consistent AI experiences
         section(
@@ -461,7 +526,8 @@ PAGES["home"] = "\n\n".join(
                         "change or combine while governance, memory, and user experience stay intact."
                     ),
                 ]
-            )
+            ),
+            "is-home-consistency",
         ),
         # 9. business outcomes
         section(
@@ -484,10 +550,11 @@ PAGES["home"] = "\n\n".join(
                         ]
                     ),
                 ]
-            )
+            ),
+            "is-home-outcomes",
         ),
         # 9.5 mission
-        section(mission_block(), "is-tight"),
+        section(mission_block(), "is-tight is-home-mission"),
         # 10. research and founder credibility
         section(
             "\n\n".join(
@@ -515,7 +582,8 @@ PAGES["home"] = "\n\n".join(
                     spacer(20),
                     buttons([("Read the Research", "/research/", "ghost")], centered=False),
                 ]
-            )
+            ),
+            "is-home-research",
         ),
         # 11. final CTA
         section(
@@ -533,7 +601,7 @@ PAGES["home"] = "\n\n".join(
                     buttons([("Request a Demonstration", DEMO, "solid"), ("Discuss a Partnership", DEMO, "ghost")]),
                 ]
             ),
-            "is-hero",
+            "is-hero is-home-cta",
         ),
     ]
 )
