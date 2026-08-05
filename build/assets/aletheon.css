@@ -1268,6 +1268,238 @@ a.ale-btn:hover { transform: translateY(-2px); box-shadow: 0 0 0 1px var(--ale-v
 }
 .wp-block-navigation__submenu-container a:hover { background: rgba(168, 85, 247, 0.14); border-radius: 6px; }
 
+/* Mobile navigation is a full-screen product surface, not the theme's default
+   white modal. These selectors intentionally key off WordPress' live menu
+   state so desktop navigation is unaffected. */
+.ale-header .wp-block-navigation__responsive-container-open,
+.ale-header .wp-block-navigation__responsive-container-close {
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid var(--ale-line);
+  border-radius: 10px;
+  background: rgba(28, 22, 48, 0.62);
+  color: var(--ale-ink);
+  transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+  -webkit-tap-highlight-color: rgba(168, 85, 247, 0.18);
+}
+.ale-header .wp-block-navigation__responsive-container-open:hover,
+.ale-header .wp-block-navigation__responsive-container-close:hover {
+  color: var(--ale-violet-lt);
+  border-color: var(--ale-line-strong);
+  background: rgba(59, 27, 196, 0.2);
+  box-shadow: 0 0 24px -12px rgba(168, 85, 247, 0.9);
+}
+.ale-header .wp-block-navigation__responsive-container-open:focus-visible,
+.ale-header .wp-block-navigation__responsive-container-close:focus-visible,
+.ale-header .wp-block-navigation-submenu__toggle:focus-visible,
+.ale-header .wp-block-navigation-item__content:focus-visible {
+  outline: 2px solid var(--ale-violet-lt);
+  outline-offset: 3px;
+}
+.ale-header .wp-block-navigation__responsive-container-open svg,
+.ale-header .wp-block-navigation__responsive-container-close svg { display: block; margin: auto; fill: currentColor; }
+
+@media (max-width: 781px) {
+  .ale-header { isolation: isolate; }
+  .ale-header .wp-block-navigation__responsive-container.is-menu-open {
+    inset: 0;
+    z-index: 100000;
+    min-height: 100vh;
+    min-height: 100dvh;
+    padding: 0 !important;
+    color: var(--ale-body) !important;
+    background-color: var(--ale-void) !important;
+    background-image:
+      radial-gradient(ellipse 620px 460px at 86% -8%, rgba(109, 40, 217, 0.34), transparent 66%),
+      radial-gradient(ellipse 520px 420px at -8% 92%, rgba(59, 27, 196, 0.2), transparent 68%),
+      linear-gradient(rgba(168, 85, 247, 0.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(168, 85, 247, 0.045) 1px, transparent 1px) !important;
+    background-size: 100% 100%, 100% 100%, 44px 44px, 44px 44px !important;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+  .ale-header .wp-block-navigation__responsive-container.is-menu-open::before {
+    content: "";
+    position: fixed;
+    inset: 0 0 auto;
+    height: max(4px, env(safe-area-inset-top));
+    background: linear-gradient(90deg, var(--ale-indigo), var(--ale-cyan-bright), var(--ale-violet-lt));
+    z-index: 2;
+  }
+  .ale-header .is-menu-open .wp-block-navigation__responsive-close {
+    width: min(calc(100% - 2rem), 680px);
+    min-height: 100%;
+    margin-inline: auto;
+    padding: calc(env(safe-area-inset-top) + 1.15rem) 0 calc(env(safe-area-inset-bottom) + 2rem);
+  }
+  .ale-header .is-menu-open .wp-block-navigation__responsive-dialog {
+    min-height: calc(100dvh - env(safe-area-inset-top) - env(safe-area-inset-bottom) - 3.15rem);
+    display: flex;
+    flex-direction: column;
+  }
+  .ale-header .is-menu-open .wp-block-navigation__responsive-container-close {
+    position: absolute;
+    display: grid;
+    place-items: center;
+    top: calc(env(safe-area-inset-top) + 1.1rem);
+    right: 0;
+    z-index: 3;
+  }
+  .ale-header .is-menu-open .wp-block-navigation__responsive-container-content {
+    width: 100%;
+    flex: 1;
+    display: flex !important;
+    flex-direction: column;
+    align-items: stretch !important;
+    justify-content: flex-start !important;
+    padding-top: clamp(5.4rem, 13vh, 7.4rem) !important;
+  }
+  .ale-header .is-menu-open .wp-block-navigation__responsive-container-content::before {
+    content: "ALETHEON LABS  /  NAVIGATION";
+    display: block;
+    padding: 0 0 1rem;
+    border-bottom: 1px solid var(--ale-line);
+    color: var(--ale-violet-lt);
+    font: 0.62rem/1 var(--ale-mono);
+    letter-spacing: 0.16em;
+  }
+  .ale-header .is-menu-open .wp-block-navigation__responsive-container-content::after {
+    content: "GOVERNED INTELLIGENCE SYSTEMS";
+    display: block;
+    margin-top: auto;
+    padding-top: 2rem;
+    color: rgba(192, 132, 252, 0.42);
+    font: 0.56rem/1 var(--ale-mono);
+    letter-spacing: 0.16em;
+  }
+  .ale-header .is-menu-open .wp-block-navigation__container.wp-block-navigation {
+    width: 100%;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 0 !important;
+  }
+  .ale-header .is-menu-open .wp-block-navigation__container.wp-block-navigation > .wp-block-navigation-item {
+    width: 100%;
+    margin: 0;
+    border-bottom: 1px solid var(--ale-line);
+  }
+  .ale-header .is-menu-open .wp-block-navigation__container.wp-block-navigation > .wp-block-navigation-item > .wp-block-navigation-item__content {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    min-height: 58px;
+    padding: 0.8rem 0.2rem;
+    color: var(--ale-ink) !important;
+    font-size: clamp(1.1rem, 5vw, 1.38rem);
+    font-weight: 610;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    text-decoration: none;
+  }
+  .ale-header .is-menu-open .wp-block-navigation__container.wp-block-navigation > .wp-block-navigation-item > .wp-block-navigation-item__content::before {
+    content: "";
+    width: 0;
+    height: 1px;
+    margin-right: 0;
+    background: var(--ale-cyan-bright);
+    transition: width 0.2s ease, margin-right 0.2s ease;
+  }
+  .ale-header .is-menu-open .wp-block-navigation__container.wp-block-navigation > .wp-block-navigation-item > .wp-block-navigation-item__content:hover,
+  .ale-header .is-menu-open .wp-block-navigation__container.wp-block-navigation > .wp-block-navigation-item > .wp-block-navigation-item__content[aria-current="page"] {
+    color: var(--ale-violet-lt) !important;
+  }
+  .ale-header .is-menu-open .wp-block-navigation__container.wp-block-navigation > .wp-block-navigation-item > .wp-block-navigation-item__content:hover::before,
+  .ale-header .is-menu-open .wp-block-navigation__container.wp-block-navigation > .wp-block-navigation-item > .wp-block-navigation-item__content[aria-current="page"]::before {
+    width: 22px;
+    margin-right: 0.6rem;
+  }
+  .ale-header .is-menu-open .wp-block-navigation__container.wp-block-navigation > .wp-block-navigation-submenu {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) 48px;
+    align-items: center;
+  }
+  .ale-header .is-menu-open .wp-block-navigation-submenu > .wp-block-navigation-item__content { grid-column: 1; }
+  .ale-header .is-menu-open .wp-block-navigation-submenu > .wp-block-navigation-submenu__toggle {
+    grid-column: 2;
+    grid-row: 1;
+    width: 44px;
+    height: 44px;
+    display: grid;
+    place-items: center;
+    margin: 0 0 0 auto;
+    padding: 0;
+    border: 1px solid var(--ale-line);
+    border-radius: 9px;
+    background: rgba(28, 22, 48, 0.72);
+    color: var(--ale-violet-lt);
+    cursor: pointer;
+    -webkit-tap-highlight-color: rgba(168, 85, 247, 0.18);
+  }
+  .ale-header .is-menu-open .wp-block-navigation-submenu > .wp-block-navigation-submenu__toggle svg {
+    width: 15px;
+    height: 15px;
+    stroke: currentColor;
+    transition: transform 0.22s ease;
+  }
+  .ale-header .is-menu-open .wp-block-navigation-submenu > .wp-block-navigation-submenu__toggle[aria-expanded="true"] {
+    background: rgba(109, 40, 217, 0.28);
+    border-color: var(--ale-line-strong);
+    box-shadow: 0 0 22px -12px rgba(168, 85, 247, 0.9);
+  }
+  .ale-header .is-menu-open .wp-block-navigation-submenu > .wp-block-navigation-submenu__toggle[aria-expanded="true"] svg { transform: rotate(180deg); }
+  .ale-header .is-menu-open .wp-block-navigation-submenu > .wp-block-navigation__submenu-container {
+    grid-column: 1 / -1;
+    width: 100% !important;
+    min-width: 0 !important;
+    height: auto !important;
+    margin: 0 0 0.8rem !important;
+    padding: 0.4rem 0 0.4rem 1rem !important;
+    border: 0 !important;
+    border-left: 1px solid var(--ale-line-strong) !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    color: var(--ale-body) !important;
+    box-shadow: none !important;
+    position: relative !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 0 !important;
+  }
+  .ale-header .is-menu-open .wp-block-navigation__submenu-container .wp-block-navigation-item { width: 100%; }
+  .ale-header .is-menu-open .wp-block-navigation__submenu-container .wp-block-navigation-item__content {
+    width: 100%;
+    display: block;
+    padding: 0.7rem 0.8rem !important;
+    border-radius: 7px;
+    color: var(--ale-muted) !important;
+    font-size: 0.94rem;
+    line-height: 1.35;
+    text-decoration: none;
+  }
+  .ale-header .is-menu-open .wp-block-navigation__submenu-container .wp-block-navigation-item__content:hover,
+  .ale-header .is-menu-open .wp-block-navigation__submenu-container .wp-block-navigation-item__content:focus-visible {
+    color: var(--ale-ink) !important;
+    background: rgba(168, 85, 247, 0.12) !important;
+  }
+
+  /* Modern mobile browsers get a true accordion. Older browsers retain
+     WordPress' expanded submenu fallback, so every destination stays usable. */
+  @supports selector(.wp-block-navigation-submenu:has(> button[aria-expanded="true"])) {
+    .ale-header .is-menu-open .wp-block-navigation-submenu > .wp-block-navigation__submenu-container {
+      display: none !important;
+      visibility: hidden !important;
+      opacity: 0 !important;
+    }
+    .ale-header .is-menu-open .wp-block-navigation-submenu:has(> .wp-block-navigation-submenu__toggle[aria-expanded="true"]) > .wp-block-navigation__submenu-container {
+      display: flex !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+    }
+  }
+}
+
 .wp-block-site-title a { font-weight: 680; letter-spacing: -0.015em; text-decoration: none; }
 
 /* Compact variant for the persistent header CTA. */
