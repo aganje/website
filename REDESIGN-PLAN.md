@@ -8,6 +8,16 @@
 
 ## Deployment record
 
+### Logo refresh — 2026-08-02
+
+- Replaced the opaque-background header icon with `build/assets/aletheon-mark-v2.png`,
+  a high-resolution transparent mark derived from the supplied Aletheon Labs artwork.
+  Production `site_logo` now points to attachment `94`.
+- Refined the header scale, depth treatment, hover motion, and keyboard focus state in
+  `build/assets/aletheon.css`.
+- Rollback: restore WordPress `site_logo` to attachment `34` and restore the prior CSS file
+  from `~/aletheon-backups/logo-refresh-20260802-214808/`.
+
 **Rollback — one command restores everything:**
 
 ```bash
@@ -21,14 +31,14 @@ Theme archive alongside it at `~/aletheon-backups/themes-20260802-215847.tar.gz`
 
 | Item | Detail |
 |---|---|
-| Design layer | `wp-content/mu-plugins/aletheon-design.php` + `aletheon/aletheon.css` — theme-independent, survives theme updates |
+| Design layer | `wp-content/mu-plugins/aletheon-design.php` + `aletheon/aletheon.css` — theme-independent, survives theme updates. CSS is **printed inline**, not linked: a separately-cached stylesheet let visitors hold new markup with the old design, which is exactly how the cyan build kept reappearing. |
 | Palette | **Brand purple, black, white** (revised 2026-08-02 after the logo was supplied): black `#0A0810`, white `#FFFFFF`, brand purple `#6D28D9`, bright violet `#A855F7`, light violet `#C084FC` (7.2:1 on black), deep indigo `#3B1BC4`. An earlier cyan build was replaced — no cyan or amber remains on any page. |
-| Logo & favicon | `site_logo` → attachment 34 (mark only, 316×364, alpha) beside the site title; the full lockup (39) was illegible at header size. `site_icon` → attachment 63 (512×512), so the site now has a favicon for the first time. |
+| Logo & favicon | `site_logo` → attachment 94 (transparent mark v2, 1254×1254) beside the site title; attachment 34 remains available for rollback. `site_icon` → attachment 63 (512×512). |
 | Voice | Copy states what the company **is**, never what it isn't. "An AI software company, not a consulting firm" → "We build the software layer for enterprise AI"; same fix applied on Forge, Intelligence, About, and the consistency sections. The "not a consulting firm" line came from an internal positioning note in the brief and should never have been public-facing. |
 | Signature asset | Animated Governed AI Layer SVG on Home and Governed AI; Identity→Action flow on Home and Intelligence |
 | Pages rewritten | Home (18), About (11), Contact (12), Solutions (10), Aletheon Intelligence (13) |
-| Pages created | Aletheon Forge (77), Governed AI (78), Research (79) |
-| Navigation | Rebuilt with Platforms dropdown + persistent Request a Demo |
+| Pages created | Aletheon Forge (77), Governed AI (78), Research (79), Software Development (97) |
+| Navigation | "Offerings" dropdown (Intelligence, Forge, Software Development) + persistent Request a Demo |
 | Header/footer | Sticky glass header; footer rebuilt — placeholder `#` social links removed, copyright now rendered dynamically via `[ale_copyright]` so it cannot go stale again |
 | Site identity | Title → "Aletheon Labs"; description → the governed-layer one-liner |
 | Cleanup | "Hello world!" deleted; privacy policy published |
@@ -44,7 +54,16 @@ placeholder `href="#"` links.
 2. Cloudflare briefly served a cached self-redirecting 301 on the homepage, captured during the
    permalink flush. Origin was always 200. Purged; edge re-fetched clean.
 
+**Corrected 2026-08-03 — the two products do NOT share an architecture.** The brief claimed
+"both platforms are powered by a shared governed AI architecture"; the owner confirmed this is
+wrong. All shared-architecture / "built on the same architecture" copy was removed from Home and
+About, and the section now simply presents the offerings. **Software Development** was added as a
+third offering with its own page.
+
 **Deliberately not done — needs real material, not invention:**
+- The Software Development page has no source material in the brief. Its copy is grounded only in
+  the founder's stated experience areas and claims no clients, metrics, or capabilities beyond
+  those. It should be reviewed and rewritten by someone who knows the actual service.
 - No testimonials, logos, ratings, or customer names anywhere. There are no real ones yet.
 - No product screenshots on the platform pages; they are diagrammatic until real UI is supplied.
 - Footer social links removed rather than pointed at `#`. Supply real URLs to restore them.

@@ -158,6 +158,230 @@ def flow():
     return raw("".join(out))
 
 
+def home_hero():
+    """Cinematic, code-native homepage hero. Decorative motion is CSS-only."""
+    return raw(
+        '<div class="ale-home-hero">'
+        '<div class="ale-home-hero__copy">'
+        '<div class="ale-system-state"><span aria-hidden="true"></span>'
+        'Governed intelligence layer online</div>'
+        '<p class="ale-eyebrow">Aletheon Labs &middot; Enterprise AI Systems</p>'
+        '<h1 class="ale-display">Build a Trusted and '
+        '<span class="ale-grad">Governed AI Enterprise</span></h1>'
+        '<p class="ale-lede">Aletheon Labs develops AI software for business intelligence and '
+        'software engineering&mdash;connecting people, context, memory, knowledge, and models '
+        'through one secure, explainable layer.</p>'
+        '<div class="ale-hero-actions">'
+        '<a class="ale-hero-btn is-primary" href="/contact/">Request a Demo '
+        '<span aria-hidden="true">&rarr;</span></a>'
+        '<a class="ale-hero-btn is-secondary" href="/governed-ai/">Explore the Architecture</a>'
+        '</div>'
+        '<div class="ale-hero-proof" aria-label="Platform qualities">'
+        '<span>Identity-aware</span><span>Policy-enforced</span><span>Fully traceable</span>'
+        '</div>'
+        '</div>'
+        '<div class="ale-core-visual" role="img" '
+        'aria-label="A governed AI core routes identity, context, memory, and policy between users and approved AI models.">'
+        '<div class="ale-core-visual__frame" aria-hidden="true"></div>'
+        '<svg class="ale-core-orbits" viewBox="0 0 620 620" aria-hidden="true" focusable="false" '
+        'xmlns="http://www.w3.org/2000/svg">'
+        '<defs>'
+        '<linearGradient id="ale-orbit-gradient" x1="0" y1="0" x2="1" y2="1">'
+        '<stop offset="0" stop-color="#C084FC"/><stop offset="0.52" stop-color="#A855F7"/>'
+        '<stop offset="1" stop-color="#3B1BC4"/></linearGradient>'
+        '<radialGradient id="ale-core-gradient"><stop offset="0" stop-color="#A855F7" stop-opacity=".8"/>'
+        '<stop offset=".55" stop-color="#6D28D9" stop-opacity=".34"/>'
+        '<stop offset="1" stop-color="#0A0810" stop-opacity="0"/></radialGradient>'
+        '<filter id="ale-soft-glow" x="-80%" y="-80%" width="260%" height="260%">'
+        '<feGaussianBlur stdDeviation="7" result="blur"/><feMerge><feMergeNode in="blur"/>'
+        '<feMergeNode in="SourceGraphic"/></feMerge></filter>'
+        '</defs>'
+        '<circle class="hv-halo" cx="310" cy="310" r="178" fill="url(#ale-core-gradient)"/>'
+        '<g class="hv-grid">'
+        '<path d="M74 310H546M310 74V546"/><path d="M144 144L476 476M476 144L144 476"/>'
+        '<circle cx="310" cy="310" r="92"/><circle cx="310" cy="310" r="156"/>'
+        '<circle cx="310" cy="310" r="224"/>'
+        '</g>'
+        '<g class="hv-orbit is-outer"><ellipse cx="310" cy="310" rx="246" ry="106"/>'
+        '<circle class="hv-node" cx="64" cy="310" r="5"/><circle class="hv-node" cx="556" cy="310" r="5"/></g>'
+        '<g class="hv-orbit is-mid"><ellipse cx="310" cy="310" rx="206" ry="92" '
+        'transform="rotate(58 310 310)"/><circle class="hv-node" cx="188" cy="144" r="5"/></g>'
+        '<g class="hv-orbit is-inner"><ellipse cx="310" cy="310" rx="170" ry="74" '
+        'transform="rotate(-54 310 310)"/><circle class="hv-node" cx="410" cy="172" r="4"/></g>'
+        '<g class="hv-core" filter="url(#ale-soft-glow)">'
+        '<path d="M310 207L398 258V360L310 411L222 360V258Z"/>'
+        '<path class="hv-core-inner" d="M310 235L374 272V346L310 383L246 346V272Z"/>'
+        '</g>'
+        '<path class="hv-signal" d="M115 310C168 310 202 275 244 268"/>'
+        '<path class="hv-signal is-reverse" d="M376 350C430 362 468 338 514 310"/>'
+        '</svg>'
+        '<div class="ale-core-center" aria-hidden="true">'
+        '<small>Governed AI</small><strong>ALETHEON</strong><span>Trust layer</span>'
+        '</div>'
+        '<span class="ale-orbit-label is-identity" aria-hidden="true">Identity</span>'
+        '<span class="ale-orbit-label is-context" aria-hidden="true">Context</span>'
+        '<span class="ale-orbit-label is-memory" aria-hidden="true">Memory</span>'
+        '<span class="ale-orbit-label is-policy" aria-hidden="true">Policy</span>'
+        '<div class="ale-telemetry is-top" aria-hidden="true"><b>01</b><span>Request authenticated</span></div>'
+        '<div class="ale-telemetry is-bottom" aria-hidden="true"><b>07</b><span>Action trace recorded</span></div>'
+        '</div>'
+        '<div class="ale-signal-rail" role="list" aria-label="Governance system status">'
+        '<div role="listitem"><span class="ale-status-dot" aria-hidden="true"></span><b>Identity</b><small>Authenticated</small></div>'
+        '<div role="listitem"><span class="ale-status-dot" aria-hidden="true"></span><b>Context</b><small>Role-routed</small></div>'
+        '<div role="listitem"><span class="ale-status-dot" aria-hidden="true"></span><b>Policy</b><small>Enforced</small></div>'
+        '<div role="listitem"><span class="ale-status-dot" aria-hidden="true"></span><b>Audit</b><small>Recording</small></div>'
+        '</div>'
+        '</div>'
+    )
+
+
+def research_hero():
+    """Research landing hero with a code-native architecture field."""
+    return raw(
+        '<div class="ale-research-hero">'
+        '<div class="ale-research-hero__copy">'
+        '<div class="ale-research-state"><span aria-hidden="true"></span>'
+        'Research vector 01 &middot; Systems before models</div>'
+        '<p class="ale-eyebrow">Research &amp; Foundations</p>'
+        '<h1 class="ale-display">Architecting the conditions for '
+        '<span class="ale-grad">trusted enterprise AI.</span></h1>'
+        '<p class="ale-lede">Aletheon&rsquo;s platform design begins with a simple position: '
+        'successful enterprise AI requires more than model accuracy. Trust must be designed '
+        'into the system around the model.</p>'
+        '<div class="ale-research-principles" aria-label="Research principles">'
+        '<span>Architecture-led</span><span>Governance-native</span><span>Human-accountable</span>'
+        '</div>'
+        '</div>'
+        '<div class="ale-research-field" role="img" '
+        'aria-label="A systems architecture connects organizational context, governed memory, '
+        'explainability, and governance around an AI model.">'
+        '<div class="ale-research-field__grid" aria-hidden="true"></div>'
+        '<svg viewBox="0 0 620 620" aria-hidden="true" focusable="false" '
+        'xmlns="http://www.w3.org/2000/svg">'
+        '<defs><linearGradient id="ale-research-line" x1="0" y1="0" x2="1" y2="1">'
+        '<stop offset="0" stop-color="#C084FC"/><stop offset=".55" stop-color="#A855F7"/>'
+        '<stop offset="1" stop-color="#3B1BC4"/></linearGradient>'
+        '<radialGradient id="ale-research-core"><stop offset="0" stop-color="#A855F7" stop-opacity=".38"/>'
+        '<stop offset="1" stop-color="#0A0810" stop-opacity="0"/></radialGradient></defs>'
+        '<circle class="rf-glow" cx="310" cy="310" r="178" fill="url(#ale-research-core)"/>'
+        '<circle class="rf-ring is-outer" cx="310" cy="310" r="236"/>'
+        '<circle class="rf-ring is-inner" cx="310" cy="310" r="142"/>'
+        '<path class="rf-axis" d="M310 74V546M74 310H546M143 143L477 477M477 143L143 477"/>'
+        '<path class="rf-path" d="M310 74L477 143L546 310L477 477L310 546L143 477L74 310L143 143Z"/>'
+        '<g class="rf-core"><path d="M310 216L391 263V357L310 404L229 357V263Z"/>'
+        '<path class="rf-core__inner" d="M310 247L364 278V342L310 373L256 342V278Z"/></g>'
+        '<g class="rf-node"><circle cx="310" cy="74" r="8"/><circle cx="546" cy="310" r="8"/>'
+        '<circle cx="310" cy="546" r="8"/><circle cx="74" cy="310" r="8"/></g>'
+        '</svg>'
+        '<div class="ale-research-field__center" aria-hidden="true">'
+        '<span>System layer</span><strong>TRUST</strong><small>Designed, not assumed</small></div>'
+        '<span class="ale-research-node is-context" aria-hidden="true"><b>01</b>Context</span>'
+        '<span class="ale-research-node is-memory" aria-hidden="true"><b>02</b>Memory</span>'
+        '<span class="ale-research-node is-governance" aria-hidden="true"><b>03</b>Governance</span>'
+        '<span class="ale-research-node is-explainability" aria-hidden="true"><b>04</b>Explainability</span>'
+        '<div class="ale-research-field__caption" aria-hidden="true">'
+        '<span>Architecture status</span><b>Properties aligned</b></div>'
+        '</div>'
+        '</div>'
+    )
+
+
+def founder_dossier():
+    credentials = [
+        (
+            "01",
+            "Engineering",
+            "Former Microsoft engineer",
+            "Software built and operated at platform scale, where correctness, security, and operational discipline are not optional.",
+        ),
+        (
+            "02",
+            "Architecture",
+            "Software architecture",
+            "Designing systems that stay coherent as they grow&mdash;the same problem governed AI faces once it spreads across an enterprise.",
+        ),
+        (
+            "03",
+            "Distributed systems",
+            "Microservice expertise",
+            "Decomposing systems so each part remains independently deployable, observable, and governable at scale.",
+        ),
+        (
+            "04",
+            "Transformation",
+            "$100B to mid-cap",
+            "Business transformation delivered across the full range of enterprise scale, where the constraints differ sharply at each end.",
+        ),
+        (
+            "05",
+            "Publication",
+            "Published author",
+            "Written work in the field, predating and informing the architecture Aletheon is built on.",
+        ),
+        (
+            "06",
+            "Research",
+            "Doctoral research, Purdue",
+            "Doctoral research initiated at Purdue, from which the governed AI layer&rsquo;s design principles are drawn.",
+        ),
+    ]
+    items = []
+    for number, label, title, body in credentials:
+        items.append(
+            f'<article class="ale-credential"><div class="ale-credential__meta">'
+            f'<span>{number}</span><em>{label}</em></div>'
+            f'<h3>{title}</h3><p>{body}</p></article>'
+        )
+
+    return raw(
+        '<div class="ale-founder-dossier">'
+        '<div class="ale-founder-profile">'
+        '<div class="ale-founder-profile__top"><div class="ale-founder-portrait">'
+        '<img src="/wp-content/uploads/2026/08/andrew-ganje-portrait.jpg" '
+        'width="200" height="200" alt="Portrait of Dr. Andrew Ganje" loading="lazy" decoding="async">'
+        '<span aria-hidden="true">AG</span></div><div><p class="ale-eyebrow">Founder / Research lead</p>'
+        '<p class="ale-founder-index">Dossier &middot; 001</p></div></div>'
+        '<h2 class="ale-h2">Dr. Andrew Ganje</h2>'
+        '<p class="ale-founder-intro">Aletheon Labs was founded by Dr. Andrew Ganje&mdash;a '
+        'former Microsoft engineer, software architect, and published author, whose doctoral '
+        'research, initiated at Purdue, underpins the platform&rsquo;s design.</p>'
+        '<p class="ale-founder-body">The work behind Aletheon draws on business transformations '
+        'delivered across the full range of enterprise scale, from $100 billion organizations '
+        'to mid-cap companies, alongside deep practice in enterprise architecture, microservice '
+        'design, business applications, data platforms, integrations, and artificial intelligence.</p>'
+        '<div class="ale-founder-tags" aria-label="Areas of experience">'
+        '<span>Engineering</span><span>Architecture</span><span>Research</span></div>'
+        '</div>'
+        '<div class="ale-credential-matrix" aria-label="Founder credentials">'
+        + ''.join(items)
+        + '</div></div>'
+    )
+
+
+def research_thesis():
+    return raw(
+        '<div class="ale-research-thesis">'
+        '<div class="ale-research-thesis__copy">'
+        '<p class="ale-eyebrow">Why it matters here</p>'
+        '<h2 class="ale-h2">Enterprise AI is an <span class="ale-grad">architecture problem.</span></h2>'
+        '<p class="ale-lede">Governance, traceability, memory, and role-relevance are not '
+        'features a model provides. They are properties a system has to be designed to hold. '
+        'That is why Aletheon is built by people whose background is distributed systems and '
+        'enterprise architecture&mdash;and why the research came before the product.</p>'
+        '</div>'
+        '<div class="ale-thesis-path" role="list" aria-label="Path from information to accountable action">'
+        '<div role="listitem"><span>01</span><b>Source</b><small>Trusted information</small></div>'
+        '<i aria-hidden="true">&rarr;</i>'
+        '<div role="listitem"><span>02</span><b>Context</b><small>Role and responsibility</small></div>'
+        '<i aria-hidden="true">&rarr;</i>'
+        '<div role="listitem"><span>03</span><b>Policy</b><small>Governance applied</small></div>'
+        '<i aria-hidden="true">&rarr;</i>'
+        '<div role="listitem"><span>04</span><b>Action</b><small>Traceable decision</small></div>'
+        '</div>'
+        '</div>'
+    )
+
+
 def mission_block():
     return raw(
         '<div class="ale-mission">'
@@ -261,30 +485,44 @@ def diagram():
 DEMO = "/contact/"
 PAGES = {}
 
+# The three offerings. Intelligence and Forge are separate products, each built for its
+# own job — they are deliberately not described as sharing an architecture.
+OFFERINGS_GRID = (
+    '<div class="ale-grid is-3">'
+    '<div class="ale-card is-platform">'
+    '<span class="ale-card-num">Product</span>'
+    '<h3 class="ale-h3">Aletheon Intelligence</h3>'
+    "<p>A personalized and governed AI business intelligence platform. It helps organizations "
+    "understand what is happening, why it is happening, and what actions should be considered — "
+    "adding business context, organizational memory, AI reasoning, and governed recommendations "
+    "to the data they already have.</p>"
+    '<p style="margin-top:1.1rem"><a class="ale-btn" href="/aletheon-intelligence/">Explore Intelligence</a></p>'
+    "</div>"
+    '<div class="ale-card is-platform">'
+    '<span class="ale-card-num">Product</span>'
+    '<h3 class="ale-h3">Aletheon Forge</h3>'
+    "<p>A governed AI software development and engineering platform. It coordinates AI agents, "
+    "repositories, technical knowledge, engineering memory, and human leadership so engineering "
+    "organizations can apply AI to their own software work consistently and under oversight.</p>"
+    '<p style="margin-top:1.1rem"><a class="ale-btn" href="/aletheon-forge/">Explore Forge</a></p>'
+    "</div>"
+    '<div class="ale-card is-platform">'
+    '<span class="ale-card-num">Services</span>'
+    '<h3 class="ale-h3">Software Development</h3>'
+    "<p>Custom software engineering for organizations that need systems built, integrated, or "
+    "modernized — spanning enterprise architecture, business applications, data platforms, "
+    "integrations, and applied AI.</p>"
+    '<p style="margin-top:1.1rem"><a class="ale-btn" href="/software-development/">Explore Software Development</a></p>'
+    "</div>"
+    "</div>"
+)
+
 # ------------------------------ HOME --------------------------------------
 
 PAGES["home"] = "\n\n".join(
     [
         # 1. hero
-        section(
-            "\n\n".join(
-                [
-                    eyebrow("Aletheon Labs — Governed AI for the Enterprise", centered=True),
-                    h1("Build a Trusted and Governed AI Enterprise"),
-                    lede(
-                        "Aletheon Labs develops AI software platforms for business intelligence and "
-                        "software engineering, providing secure, personalized, and consistent AI "
-                        "experiences across the enterprise.",
-                        centered=True,
-                    ),
-                    spacer(12),
-                    buttons([("Request a Demo", DEMO, "solid"), ("Explore Our Platforms", "/governed-ai/", "ghost")]),
-                    spacer(48),
-                    flow(),
-                ]
-            ),
-            "is-hero",
-        ),
+        section(home_hero(), "is-home-hero"),
         # 2. company introduction
         section(
             "\n\n".join(
@@ -298,7 +536,8 @@ PAGES["home"] = "\n\n".join(
                         "data, and AI models to deliver secure, explainable, and role-relevant intelligence."
                     ),
                 ]
-            )
+            ),
+            "is-home-intro",
         ),
         # 3. the problem
         section(
@@ -327,7 +566,8 @@ PAGES["home"] = "\n\n".join(
                         cols=3,
                     ),
                 ]
-            )
+            ),
+            "is-home-problem",
         ),
         # 4. the solution + diagram
         section(
@@ -344,39 +584,24 @@ PAGES["home"] = "\n\n".join(
                     spacer(40),
                     diagram(),
                 ]
-            )
+            ),
+            "is-home-layer",
         ),
-        # 5. the two platforms
+        # 5. the offerings
         section(
             "\n\n".join(
                 [
-                    eyebrow("Two Platforms, One Governed Foundation"),
-                    heading("Built on the same architecture"),
-                    spacer(28),
-                    raw(
-                        '<div class="ale-grid is-2">'
-                        '<div class="ale-card is-platform">'
-                        '<span class="ale-card-num">Platform 01</span>'
-                        '<h3 class="ale-h3">Aletheon Intelligence</h3>'
-                        "<p>A personalized and governed AI business intelligence platform. It helps "
-                        "organizations understand what is happening, why it is happening, and what actions "
-                        "should be considered — adding business context, organizational memory, AI reasoning, "
-                        "and governed recommendations to the data they already have.</p>"
-                        '<p style="margin-top:1.1rem"><a class="ale-btn" href="/aletheon-intelligence/">Explore Intelligence</a></p>'
-                        "</div>"
-                        '<div class="ale-card is-platform">'
-                        '<span class="ale-card-num">Platform 02</span>'
-                        '<h3 class="ale-h3">Aletheon Forge</h3>'
-                        "<p>A governed AI software development and engineering platform. It coordinates AI "
-                        "agents, repositories, technical knowledge, engineering memory, and human leadership "
-                        "so organizations can use AI coding tools consistently and securely rather than "
-                        "agent by agent.</p>"
-                        '<p style="margin-top:1.1rem"><a class="ale-btn" href="/aletheon-forge/">Explore Forge</a></p>'
-                        "</div>"
-                        "</div>"
+                    eyebrow("What We Offer"),
+                    heading("Three ways we help organizations apply AI"),
+                    lede(
+                        "Two products, each purpose-built for what it does, and an engineering team that "
+                        "builds alongside you."
                     ),
+                    spacer(28),
+                    raw(OFFERINGS_GRID),
                 ]
-            )
+            ),
+            "is-home-platforms",
         ),
         # 6. personalized by role
         section(
@@ -407,7 +632,8 @@ PAGES["home"] = "\n\n".join(
                         cls="ale-muted",
                     ),
                 ]
-            )
+            ),
+            "is-home-roles",
         ),
         # 7. governed across the enterprise
         section(
@@ -431,7 +657,8 @@ PAGES["home"] = "\n\n".join(
                         ]
                     ),
                 ]
-            )
+            ),
+            "is-home-governance",
         ),
         # 8. consistent AI experiences
         section(
@@ -446,7 +673,8 @@ PAGES["home"] = "\n\n".join(
                         "change or combine while governance, memory, and user experience stay intact."
                     ),
                 ]
-            )
+            ),
+            "is-home-consistency",
         ),
         # 9. business outcomes
         section(
@@ -469,10 +697,11 @@ PAGES["home"] = "\n\n".join(
                         ]
                     ),
                 ]
-            )
+            ),
+            "is-home-outcomes",
         ),
         # 9.5 mission
-        section(mission_block(), "is-tight"),
+        section(mission_block(), "is-tight is-home-mission"),
         # 10. research and founder credibility
         section(
             "\n\n".join(
@@ -480,10 +709,15 @@ PAGES["home"] = "\n\n".join(
                     eyebrow("Research and Founder Credibility"),
                     heading("Grounded in research, built from practice"),
                     lede(
-                        "Aletheon Labs was founded by Dr. Andrew Ganje, combining doctoral research "
-                        "initiated at Purdue with extensive experience in enterprise architecture, software "
-                        "engineering, business applications, data platforms, integrations, and artificial "
-                        "intelligence."
+                        "Aletheon Labs was founded by Dr. Andrew Ganje — a former Microsoft engineer, "
+                        "software architect, microservice specialist, and published author, whose doctoral "
+                        "research was initiated at Purdue."
+                    ),
+                    para(
+                        "That work spans business transformations from $100 billion organizations to "
+                        "mid-cap companies, across enterprise architecture, business applications, data "
+                        "platforms, integrations, and artificial intelligence.",
+                        cls="ale-muted",
                     ),
                     para(
                         "The company's research and platform design are grounded in the belief that "
@@ -495,7 +729,8 @@ PAGES["home"] = "\n\n".join(
                     spacer(20),
                     buttons([("Read the Research", "/research/", "ghost")], centered=False),
                 ]
-            )
+            ),
+            "is-home-research",
         ),
         # 11. final CTA
         section(
@@ -513,7 +748,7 @@ PAGES["home"] = "\n\n".join(
                     buttons([("Request a Demonstration", DEMO, "solid"), ("Discuss a Partnership", DEMO, "ghost")]),
                 ]
             ),
-            "is-hero",
+            "is-hero is-home-cta",
         ),
     ]
 )
@@ -853,32 +1088,16 @@ PAGES["governed-ai"] = "\n\n".join(
 PAGES["research"] = "\n\n".join(
     [
         section(
-            "\n\n".join(
-                [
-                    eyebrow("Research", centered=True),
-                    h1("Research and Foundations"),
-                    lede(
-                        "Aletheon's platform design is grounded in the belief that successful enterprise AI "
-                        "requires more than model accuracy.",
-                        centered=True,
-                    ),
-                ]
-            ),
-            "is-hero",
+            research_hero(),
+            "is-research-hero",
         ),
         section(
-            "\n\n".join(
-                [
-                    eyebrow("Founder"),
-                    heading("Dr. Andrew Ganje"),
-                    lede(
-                        "Aletheon Labs was founded by Dr. Andrew Ganje, combining doctoral research "
-                        "initiated at Purdue with extensive experience in enterprise architecture, software "
-                        "engineering, business applications, data platforms, integrations, and artificial "
-                        "intelligence."
-                    ),
-                ]
-            )
+            founder_dossier(),
+            "is-research-founder",
+        ),
+        section(
+            research_thesis(),
+            "is-research-thesis",
         ),
         section(
             "\n\n".join(
@@ -899,10 +1118,12 @@ PAGES["research"] = "\n\n".join(
                             ("Area 03", "Governed memory", "How systems retain what matters across interactions without exceeding what a user is authorized to know."),
                             ("Area 04", "Explainability in practice", "What traceability has to look like for a decision-maker, rather than for a model evaluator."),
                         ],
+                        variant="is-research-area",
                         cols=2,
                     ),
                 ]
-            )
+            ),
+            "is-research-areas",
         ),
         section(
             "\n\n".join(
@@ -917,7 +1138,7 @@ PAGES["research"] = "\n\n".join(
                     buttons([("Start a Conversation", DEMO, "solid")]),
                 ]
             ),
-            "is-hero",
+            "is-research-cta",
         ),
     ]
 )
@@ -1025,21 +1246,14 @@ PAGES["about"] = "\n\n".join(
             "\n\n".join(
                 [
                     eyebrow("What We Build"),
-                    heading("Two platforms on a shared architecture"),
+                    heading("Two products and an engineering team"),
                     lede(
-                        "Aletheon Labs develops AI software platforms that connect people, business context, "
-                        "organizational memory, enterprise data, and AI models. The governed AI layer is the "
-                        "foundation both platforms share — one place where identity, context, memory, "
-                        "knowledge, policy, and audit are held for the whole enterprise."
+                        "Aletheon Labs develops AI software that connects people, business context, "
+                        "organizational memory, enterprise data, and AI models — and builds custom systems "
+                        "for organizations that need engineering alongside the products."
                     ),
                     spacer(28),
-                    cards(
-                        [
-                            ("Platform 01", "Aletheon Intelligence", "An AI business intelligence platform that helps organizations understand what is happening, why, and what to consider doing about it."),
-                            ("Platform 02", "Aletheon Forge", "An AI software development and engineering platform that coordinates agents, repositories, knowledge, and human oversight."),
-                        ],
-                        cols=2,
-                    ),
+                    raw(OFFERINGS_GRID),
                 ]
             )
         ),
@@ -1074,10 +1288,14 @@ PAGES["about"] = "\n\n".join(
                     eyebrow("Founder"),
                     heading("Founded on research and enterprise practice"),
                     lede(
-                        "Aletheon Labs was founded by Dr. Andrew Ganje, combining doctoral research "
-                        "initiated at Purdue with extensive experience in enterprise architecture, software "
-                        "engineering, business applications, data platforms, integrations, and artificial "
-                        "intelligence."
+                        "Aletheon Labs was founded by Dr. Andrew Ganje — a former Microsoft engineer, "
+                        "software architect, microservice specialist, and published author, whose doctoral "
+                        "research was initiated at Purdue."
+                    ),
+                    para(
+                        "That background spans business transformations from $100 billion organizations to "
+                        "mid-cap companies, and the architectural practice the platforms are built on.",
+                        cls="ale-muted",
                     ),
                     spacer(20),
                     buttons([("Read the Research", "/research/", "ghost")], centered=False),
@@ -1090,6 +1308,92 @@ PAGES["about"] = "\n\n".join(
                     heading("Build AI Your Organization Can Trust", centered=True),
                     spacer(12),
                     buttons([("Request a Demo", DEMO, "solid"), ("Discuss a Partnership", DEMO, "ghost")]),
+                ]
+            ),
+            "is-hero",
+        ),
+    ]
+)
+
+# ------------------------ SOFTWARE DEVELOPMENT ----------------------------
+# NOTE: WebsiteImprovements contains no material on this offering. Copy below is
+# grounded only in the founder's stated experience areas (enterprise architecture,
+# software engineering, business applications, data platforms, integrations, AI).
+# It claims no clients, no metrics, and no capabilities beyond those. Review and replace.
+
+PAGES["software-development"] = "\n\n".join(
+    [
+        section(
+            "\n\n".join(
+                [
+                    eyebrow("Services", centered=True),
+                    h1("Software Development"),
+                    lede(
+                        "Custom software engineering for organizations that need systems built, "
+                        "integrated, or modernized — delivered by the team that builds our platforms.",
+                        centered=True,
+                    ),
+                    spacer(12),
+                    buttons([("Discuss a Project", DEMO, "solid"), ("See Our Products", "/governed-ai/", "ghost")]),
+                ]
+            ),
+            "is-hero",
+        ),
+        section(
+            "\n\n".join(
+                [
+                    eyebrow("What We Build"),
+                    heading("Engineering across the enterprise stack"),
+                    spacer(28),
+                    cards(
+                        [
+                            ("01", "Enterprise architecture", "System design, integration strategy, and technical direction for organizations modernizing how their software fits together."),
+                            ("02", "Business applications", "Applications built around how the organization actually operates, rather than around what a package assumes."),
+                            ("03", "Data platforms", "Data foundations, pipelines, and models that make enterprise information usable and trustworthy."),
+                            ("04", "Integrations", "Connecting systems, services, and data so information moves reliably between them."),
+                            ("05", "Applied AI", "AI capability built into software with the same governance, traceability, and oversight our platforms are designed around."),
+                            ("06", "Modernization", "Bringing existing systems forward without discarding the business logic already proven in them."),
+                        ],
+                        cols=3,
+                    ),
+                ]
+            )
+        ),
+        section(
+            "\n\n".join(
+                [
+                    eyebrow("How We Work"),
+                    heading("Governance is not bolted on afterwards"),
+                    lede(
+                        "The same principles behind our products shape the software we build for others: "
+                        "decisions are traceable, context is retained, AI operates inside defined boundaries, "
+                        "and a person remains accountable for what ships."
+                    ),
+                    spacer(24),
+                    checklist(
+                        [
+                            "Architecture decisions captured and retained",
+                            "AI-assisted engineering under human oversight",
+                            "Standards applied consistently across the codebase",
+                            "Traceability from requirement to implementation",
+                            "Security and access considered from the start",
+                            "Knowledge that stays with your organization",
+                        ]
+                    ),
+                ]
+            )
+        ),
+        section(
+            "\n\n".join(
+                [
+                    heading("Tell us what you need built", centered=True),
+                    lede(
+                        "Share the problem, the systems involved, and the outcome you need. We will tell you "
+                        "honestly whether we are the right team for it.",
+                        centered=True,
+                    ),
+                    spacer(12),
+                    buttons([("Discuss a Project", DEMO, "solid")]),
                 ]
             ),
             "is-hero",
