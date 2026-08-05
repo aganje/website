@@ -1266,7 +1266,17 @@ a.ale-btn:hover { transform: translateY(-2px); box-shadow: 0 0 0 1px var(--ale-v
   padding: 0.35rem;
   box-shadow: 0 24px 48px -24px rgba(0, 0, 0, 0.9);
 }
-.wp-block-navigation__submenu-container a:hover { background: rgba(168, 85, 247, 0.14); border-radius: 6px; }
+.ale-header .wp-block-navigation__submenu-container .wp-block-navigation-item__content {
+  color: var(--ale-ink) !important;
+  text-decoration: none !important;
+}
+.ale-header .wp-block-navigation__submenu-container .wp-block-navigation-item__label { color: inherit !important; }
+.ale-header .wp-block-navigation__submenu-container .wp-block-navigation-item__content:hover,
+.ale-header .wp-block-navigation__submenu-container .wp-block-navigation-item__content:focus-visible {
+  color: var(--ale-ink) !important;
+  background: rgba(168, 85, 247, 0.2) !important;
+  border-radius: 6px;
+}
 
 /* Mobile navigation is a full-screen product surface, not the theme's default
    white modal. These selectors intentionally key off WordPress' live menu
