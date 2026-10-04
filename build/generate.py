@@ -2,13 +2,16 @@
 """
 Generate WordPress block markup for every aletheonlabs.com page.
 
-Copy is drawn strictly from WebsiteImprovements. Nothing here invents customers,
-testimonials, metrics, or capabilities that the brief does not state.
+Current offerings are Aletheon Forge and Software Development. The Business
+Intelligence IP was sold and is no longer offered by Aletheon Labs. Forge copy
+is grounded in its current user guides and implementation, reviewed 2026-10-04.
+Nothing here invents customers, testimonials, metrics, or release availability.
 
 Run:  python generate.py     ->  writes build/pages/*.html
 """
 
 import html
+import json
 import os
 import re
 
@@ -148,8 +151,8 @@ def roles(items):
 
 
 def flow():
-    steps = ["Identity", "Context", "Memory", "Knowledge", "AI", "Governance", "Action"]
-    out = ['<div class="ale-flow" role="list" aria-label="How a request flows through Aletheon">']
+    steps = ["Product", "Repository", "Mission", "Context", "Agent", "Review", "Evidence"]
+    out = ['<div class="ale-flow" role="list" aria-label="A conceptual Forge engineering workflow">']
     for i, s in enumerate(steps):
         out.append(
             f'<div class="ale-flow-step" role="listitem" style="--i:{i}"><span>{esc(s)}</span></div>'
@@ -164,24 +167,24 @@ def home_hero():
         '<div class="ale-home-hero">'
         '<div class="ale-home-hero__copy">'
         '<div class="ale-system-state"><span aria-hidden="true"></span>'
-        'Governed intelligence layer online</div>'
-        '<p class="ale-eyebrow">Aletheon Labs &middot; Enterprise AI Systems</p>'
-        '<h1 class="ale-display">Build a Trusted and '
-        '<span class="ale-grad">Governed AI Enterprise</span></h1>'
-        '<p class="ale-lede">Aletheon Labs develops AI software for business intelligence and '
-        'software engineering&mdash;connecting people, context, memory, knowledge, and models '
-        'through one secure, explainable layer.</p>'
+        'AI engineering with human direction</div>'
+        '<p class="ale-eyebrow">Aletheon Labs &middot; Software Engineering</p>'
+        '<h1 class="ale-display">Coordinate AI Engineering '
+        '<span class="ale-grad">with Human Control</span></h1>'
+        '<p class="ale-lede">Aletheon Forge brings your AI coding assistants, repositories, '
+        'context, and review gates into one engineering workflow. Our Software Development '
+        'team builds, integrates, and modernizes the systems your organization needs.</p>'
         '<div class="ale-hero-actions">'
-        '<a class="ale-hero-btn is-primary" href="/contact/">Request a Demo '
+        '<a class="ale-hero-btn is-primary" href="/aletheon-forge/">Explore Aletheon Forge '
         '<span aria-hidden="true">&rarr;</span></a>'
-        '<a class="ale-hero-btn is-secondary" href="/governed-ai/">Explore the Architecture</a>'
+        '<a class="ale-hero-btn is-secondary" href="/software-development/">Software Development</a>'
         '</div>'
         '<div class="ale-hero-proof" aria-label="Platform qualities">'
-        '<span>Identity-aware</span><span>Policy-enforced</span><span>Fully traceable</span>'
+        '<span>Shared context</span><span>Review gates</span><span>Verification evidence</span>'
         '</div>'
         '</div>'
         '<div class="ale-core-visual" role="img" '
-        'aria-label="A governed AI core routes identity, context, memory, and policy between users and approved AI models.">'
+        'aria-label="A conceptual engineering workflow connects repositories, context, memory, and human review around AI coding agents.">'
         '<div class="ale-core-visual__frame" aria-hidden="true"></div>'
         '<svg class="ale-core-orbits" viewBox="0 0 620 620" aria-hidden="true" focusable="false" '
         'xmlns="http://www.w3.org/2000/svg">'
@@ -216,20 +219,20 @@ def home_hero():
         '<path class="hv-signal is-reverse" d="M376 350C430 362 468 338 514 310"/>'
         '</svg>'
         '<div class="ale-core-center" aria-hidden="true">'
-        '<small>Governed AI</small><strong>ALETHEON</strong><span>Trust layer</span>'
+        '<small>AI Engineering</small><strong>ALETHEON</strong><span>Human direction</span>'
         '</div>'
-        '<span class="ale-orbit-label is-identity" aria-hidden="true">Identity</span>'
+        '<span class="ale-orbit-label is-identity" aria-hidden="true">Repository</span>'
         '<span class="ale-orbit-label is-context" aria-hidden="true">Context</span>'
         '<span class="ale-orbit-label is-memory" aria-hidden="true">Memory</span>'
-        '<span class="ale-orbit-label is-policy" aria-hidden="true">Policy</span>'
-        '<div class="ale-telemetry is-top" aria-hidden="true"><b>01</b><span>Request authenticated</span></div>'
-        '<div class="ale-telemetry is-bottom" aria-hidden="true"><b>07</b><span>Action trace recorded</span></div>'
+        '<span class="ale-orbit-label is-policy" aria-hidden="true">Review</span>'
+        '<div class="ale-telemetry is-top" aria-hidden="true"><b>01</b><span>Define the mission</span></div>'
+        '<div class="ale-telemetry is-bottom" aria-hidden="true"><b>07</b><span>Review the evidence</span></div>'
         '</div>'
-        '<div class="ale-signal-rail" role="list" aria-label="Governance system status">'
-        '<div role="listitem"><span class="ale-status-dot" aria-hidden="true"></span><b>Identity</b><small>Authenticated</small></div>'
-        '<div role="listitem"><span class="ale-status-dot" aria-hidden="true"></span><b>Context</b><small>Role-routed</small></div>'
-        '<div role="listitem"><span class="ale-status-dot" aria-hidden="true"></span><b>Policy</b><small>Enforced</small></div>'
-        '<div role="listitem"><span class="ale-status-dot" aria-hidden="true"></span><b>Audit</b><small>Recording</small></div>'
+        '<div class="ale-signal-rail" role="list" aria-label="Engineering workflow stages">'
+        '<div role="listitem"><span class="ale-status-dot" aria-hidden="true"></span><b>Repository</b><small>Project context</small></div>'
+        '<div role="listitem"><span class="ale-status-dot" aria-hidden="true"></span><b>Mission</b><small>Defined scope</small></div>'
+        '<div role="listitem"><span class="ale-status-dot" aria-hidden="true"></span><b>Review</b><small>Human decisions</small></div>'
+        '<div role="listitem"><span class="ale-status-dot" aria-hidden="true"></span><b>Checks</b><small>Recorded evidence</small></div>'
         '</div>'
         '</div>'
     )
@@ -245,7 +248,7 @@ def research_hero():
         '<p class="ale-eyebrow">Research &amp; Foundations</p>'
         '<h1 class="ale-display">Architecting the conditions for '
         '<span class="ale-grad">trusted enterprise AI.</span></h1>'
-        '<p class="ale-lede">Aletheon&rsquo;s platform design begins with a simple position: '
+        '<p class="ale-lede">Aletheon&rsquo;s engineering tools begin with a simple position: '
         'successful enterprise AI requires more than model accuracy. Trust must be designed '
         'into the system around the model.</p>'
         '<div class="ale-research-principles" aria-label="Research principles">'
@@ -387,8 +390,8 @@ def mission_block():
         '<div class="ale-mission">'
         '<p class="ale-eyebrow is-centered">Our Mission</p>'
         "<blockquote>Aletheon Labs exists to make enterprise AI trustworthy. "
-        "We build the governed intelligence layer that ensures every AI interaction is "
-        "secure, explainable, consistent, and relevant to the person using it.</blockquote>"
+        "We build AI engineering tools and custom software that connect technical work "
+        "to its context, standards, evidence, and the people responsible for delivery.</blockquote>"
         "</div>"
     )
 
@@ -398,28 +401,28 @@ def mission_block():
 # --------------------------------------------------------------------------
 
 TOP_NODES = [
-    ("Executives", 60),
-    ("Business Leaders", 205),
-    ("Analysts", 350),
-    ("Engineers", 470),
-    ("Enterprise Apps", 600),
-    ("Aletheon Platforms", 762),
+    ("Product Leads", 60),
+    ("Engineering Leads", 205),
+    ("Developers", 350),
+    ("Architects", 470),
+    ("Repositories", 600),
+    ("Delivery Teams", 762),
 ]
 BOTTOM_NODES = [
-    ("OpenAI", 70),
-    ("Anthropic", 210),
-    ("Microsoft", 350),
-    ("Google", 490),
-    ("Local Models", 620),
-    ("Approved Models", 780),
+    ("Claude Code", 70),
+    ("Codex", 210),
+    ("Gemini CLI", 350),
+    ("Grok", 490),
+    ("GitHub Copilot", 620),
+    ("AI Coding Tools", 780),
 ]
 LAYER_CHIPS = [
-    ("Identity", 62),
+    ("Product", 62),
     ("Context", 180),
     ("Memory", 296),
-    ("Knowledge", 412),
-    ("Policy", 540),
-    ("Audit", 648),
+    ("Skills", 412),
+    ("Review", 540),
+    ("Evidence", 648),
     ("Evaluation", 754),
 ]
 
@@ -429,16 +432,15 @@ def diagram():
     p.append(
         '<svg class="ale-diagram" viewBox="0 0 940 520" role="img" '
         'xmlns="http://www.w3.org/2000/svg" '
-        'aria-label="The governed AI layer sits between users and applications above, and AI '
-        'models and providers below. Every request passes through identity, context, memory, '
-        'knowledge, policy, audit and evaluation before reaching a model, and every response '
-        'returns through the same layer.">'
+        'aria-label="Conceptual Forge workflow: engineering teams and repositories define '
+        'work above; AI coding tools execute it below. Product context, memory, skills, '
+        'human review, evidence, and evaluation support the engineering workflow.">'
     )
 
     # band labels
-    p.append('<text x="18" y="26" class="d-accent" font-size="11" letter-spacing="2.2">USERS &amp; APPLICATIONS</text>')
-    p.append('<text x="18" y="288" class="d-accent" font-size="11" letter-spacing="2.2">THE GOVERNED AI LAYER</text>')
-    p.append('<text x="18" y="452" class="d-accent" font-size="11" letter-spacing="2.2">AI MODELS &amp; PROVIDERS</text>')
+    p.append('<text x="18" y="26" class="d-accent" font-size="11" letter-spacing="2.2">ENGINEERING TEAMS &amp; REPOSITORIES</text>')
+    p.append('<text x="18" y="288" class="d-accent" font-size="11" letter-spacing="2.2">FORGE ENGINEERING WORKFLOW</text>')
+    p.append('<text x="18" y="452" class="d-accent" font-size="11" letter-spacing="2.2">AI CODING ASSISTANTS</text>')
 
     # top row
     for label, x in TOP_NODES:
@@ -485,603 +487,246 @@ def diagram():
 DEMO = "/contact/"
 PAGES = {}
 
-# The three offerings. Intelligence and Forge are separate products, each built for its
-# own job — they are deliberately not described as sharing an architecture.
+# The two current offerings: Aletheon Forge and Software Development.
 OFFERINGS_GRID = (
-    '<div class="ale-grid is-3">'
-    '<div class="ale-card is-platform">'
-    '<span class="ale-card-num">Product</span>'
-    '<h3 class="ale-h3">Aletheon Intelligence</h3>'
-    "<p>A personalized and governed AI business intelligence platform. It helps organizations "
-    "understand what is happening, why it is happening, and what actions should be considered — "
-    "adding business context, organizational memory, AI reasoning, and governed recommendations "
-    "to the data they already have.</p>"
-    '<p style="margin-top:1.1rem"><a class="ale-btn" href="/aletheon-intelligence/">Explore Intelligence</a></p>'
-    "</div>"
-    '<div class="ale-card is-platform">'
-    '<span class="ale-card-num">Product</span>'
+    '<div class="ale-grid is-2">'
+    '<div class="ale-card is-platform"><span class="ale-card-num">Product</span>'
     '<h3 class="ale-h3">Aletheon Forge</h3>'
-    "<p>A governed AI software development and engineering platform. It coordinates AI agents, "
-    "repositories, technical knowledge, engineering memory, and human leadership so engineering "
-    "organizations can apply AI to their own software work consistently and under oversight.</p>"
-    '<p style="margin-top:1.1rem"><a class="ale-btn" href="/aletheon-forge/">Explore Forge</a></p>'
-    "</div>"
-    '<div class="ale-card is-platform">'
-    '<span class="ale-card-num">Services</span>'
+    '<p>Bring your AI coding agents into one engineering workflow. Define missions, '
+    'connect repositories, supply shared skills and project knowledge, and follow '
+    'execution, review, verification, and lessons in a local-first Windows application.</p>'
+    '<p style="margin-top:1.1rem"><a class="ale-btn" href="/aletheon-forge/">Explore Forge</a></p></div>'
+    '<div class="ale-card is-platform"><span class="ale-card-num">Services</span>'
     '<h3 class="ale-h3">Software Development</h3>'
-    "<p>Custom software engineering for organizations that need systems built, integrated, or "
-    "modernized — spanning enterprise architecture, business applications, data platforms, "
-    "integrations, and applied AI.</p>"
-    '<p style="margin-top:1.1rem"><a class="ale-btn" href="/software-development/">Explore Software Development</a></p>'
-    "</div>"
-    "</div>"
+    '<p>Custom software engineering for systems that need to be built, integrated, '
+    'or modernized. Our work spans enterprise architecture, business applications, '
+    'data platforms, integrations, and applied AI.</p>'
+    '<p style="margin-top:1.1rem"><a class="ale-btn" href="/software-development/">Explore Software Development</a></p></div>'
+    '</div>'
 )
 
 # ------------------------------ HOME --------------------------------------
 
-PAGES["home"] = "\n\n".join(
-    [
-        # 1. hero
-        section(home_hero(), "is-home-hero"),
-        # 2. company introduction
-        section(
-            "\n\n".join(
-                [
-                    eyebrow("Who We Are"),
-                    heading("We build the software layer for enterprise AI"),
-                    lede(
-                        "Aletheon Labs builds platforms that help organizations apply artificial "
-                        "intelligence across business operations and software engineering. Our governed "
-                        "AI layer connects people, organizational memory, business context, enterprise "
-                        "data, and AI models to deliver secure, explainable, and role-relevant intelligence."
-                    ),
-                ]
-            ),
-            "is-home-intro",
-        ),
-        # 3. the problem
-        section(
-            "\n\n".join(
-                [
-                    eyebrow("The Enterprise AI Problem"),
-                    heading("Adoption is fast. Coordination is not."),
-                    lede(
-                        "Organizations are rapidly adopting AI, but adoption is often fragmented. "
-                        "Employees use different models, prompts, tools, and information sources."
-                    ),
-                    spacer(28),
-                    cards(
-                        [
-                            ("01", "Inconsistent answers", "The same question produces different answers depending on who asked, which tool they used, and how they phrased it."),
-                            ("02", "Security concerns", "Sensitive business information moves through tools with no shared policy, isolation, or access model."),
-                            ("03", "Limited organizational context", "Models answer without knowing the business, its terminology, its rules, or the person asking."),
-                            ("04", "Duplicate effort", "Teams solve the same problems repeatedly because nothing retains what was already learned."),
-                            ("05", "Unmanaged AI usage", "No visibility into which models are used, for what, by whom, or at what cost."),
-                            ("06", "Poor traceability", "Recommendations cannot be traced back to the data and reasoning that produced them."),
-                            ("07", "Loss of organizational knowledge", "Insight lives in individual chat histories rather than in the organization."),
-                            ("08", "Role-blind recommendations", "Output ignores what the user is actually responsible for and authorized to see."),
-                            ("09", "Dependence on prompting skill", "Quality varies with individual prompt-writing ability rather than organizational standards."),
-                        ],
-                        variant="is-problem",
-                        cols=3,
-                    ),
-                ]
-            ),
-            "is-home-problem",
-        ),
-        # 4. the solution + diagram
-        section(
-            "\n\n".join(
-                [
-                    eyebrow("The Aletheon Solution", centered=True),
-                    heading("A governed intelligence layer between people, systems, and models", centered=True),
-                    lede(
-                        "Every request carries identity, context, and memory into the layer, is governed "
-                        "against policy on the way to a model, and returns through the same path with its "
-                        "reasoning traceable.",
-                        centered=True,
-                    ),
-                    spacer(40),
-                    diagram(),
-                ]
-            ),
-            "is-home-layer",
-        ),
-        # 5. the offerings
-        section(
-            "\n\n".join(
-                [
-                    eyebrow("What We Offer"),
-                    heading("Three ways we help organizations apply AI"),
-                    lede(
-                        "Two products, each purpose-built for what it does, and an engineering team that "
-                        "builds alongside you."
-                    ),
-                    spacer(28),
-                    raw(OFFERINGS_GRID),
-                ]
-            ),
-            "is-home-platforms",
-        ),
-        # 6. personalized by role
-        section(
-            "\n\n".join(
-                [
-                    eyebrow("Personalized by Role"),
-                    heading("The Right Intelligence for the Right Person"),
-                    lede(
-                        "Aletheon understands that an executive, analyst, architect, and engineer require "
-                        "different information. Person-based login, memory, and context ensure each user "
-                        "receives intelligence relevant to their responsibilities."
-                    ),
-                    spacer(28),
-                    roles(
-                        [
-                            ("Executive", "Direction, exposure, and the decisions that need to be made."),
-                            ("Finance Leader", "Drivers, variance, and financial consequence."),
-                            ("Operations Manager", "What changed, what it affects, and what to do now."),
-                            ("Supply Chain Analyst", "Demand signals, inventory movement, and emerging risk."),
-                            ("Enterprise Architect", "Systems, integration, and structural implication."),
-                            ("Software Engineer", "Repositories, standards, context, and the work itself."),
-                        ]
-                    ),
-                    spacer(20),
-                    para(
-                        "Personalization operates inside your security model. Every AI interaction stays "
-                        "subject to permissions, governance, and organizational policy.",
-                        cls="ale-muted",
-                    ),
-                ]
-            ),
-            "is-home-roles",
-        ),
-        # 7. governed across the enterprise
-        section(
-            "\n\n".join(
-                [
-                    eyebrow("Governed Across the Enterprise"),
-                    heading("One Governed AI Layer Across Every Model and Application"),
-                    spacer(24),
-                    checklist(
-                        [
-                            "User identity and role-based access",
-                            "Organizational memory and retention rules",
-                            "Data access, security, and isolation",
-                            "Approved knowledge and knowledge retrieval",
-                            "Prompt standards and context governance",
-                            "Approved models and providers",
-                            "Recommendations and decision traceability",
-                            "Agent activity and observability",
-                            "Human approval where required",
-                            "Audit history and evaluation",
-                        ]
-                    ),
-                ]
-            ),
-            "is-home-governance",
-        ),
-        # 8. consistent AI experiences
-        section(
-            "\n\n".join(
-                [
-                    eyebrow("Consistency"),
-                    heading("Consistent Intelligence, Regardless of the AI Model"),
-                    lede(
-                        "Aletheon holds terminology, business rules, instructions, role context, and "
-                        "security policy constant across every model. The same question returns the same "
-                        "grounded answer whichever tool or provider an employee uses — so providers can "
-                        "change or combine while governance, memory, and user experience stay intact."
-                    ),
-                ]
-            ),
-            "is-home-consistency",
-        ),
-        # 9. business outcomes
-        section(
-            "\n\n".join(
-                [
-                    eyebrow("Business Outcomes"),
-                    heading("What changes when AI is governed"),
-                    spacer(28),
-                    stats(
-                        [
-                            ("Relevance", "More relevant information for every user, based on role and responsibility."),
-                            ("Decision speed", "Faster and better-supported decisions across the business."),
-                            ("Consistency", "Consistent use of AI across teams, tools, and providers."),
-                            ("Risk", "Reduced risk from unmanaged and unmonitored AI tools."),
-                            ("Engineering", "Improved software engineering productivity and coordination."),
-                            ("Knowledge", "Greater retention of organizational knowledge over time."),
-                            ("Flexibility", "Secure adoption of multiple AI models without re-architecture."),
-                            ("Visibility", "Clear visibility into how AI is actually being used."),
-                            ("Trust", "Improved trust in AI-generated recommendations."),
-                        ]
-                    ),
-                ]
-            ),
-            "is-home-outcomes",
-        ),
-        # 9.5 mission
-        section(mission_block(), "is-tight is-home-mission"),
-        # 10. research and founder credibility
-        section(
-            "\n\n".join(
-                [
-                    eyebrow("Research and Founder Credibility"),
-                    heading("Grounded in research, built from practice"),
-                    lede(
-                        "Aletheon Labs was founded by Dr. Andrew Ganje — a former Microsoft engineer, "
-                        "software architect, microservice specialist, and published author, whose doctoral "
-                        "research was initiated at Purdue."
-                    ),
-                    para(
-                        "That work spans business transformations from $100 billion organizations to "
-                        "mid-cap companies, across enterprise architecture, business applications, data "
-                        "platforms, integrations, and artificial intelligence.",
-                        cls="ale-muted",
-                    ),
-                    para(
-                        "The company's research and platform design are grounded in the belief that "
-                        "successful enterprise AI requires more than model accuracy. It also requires trusted "
-                        "information, governance, explainability, organizational context, memory, and "
-                        "alignment with business outcomes.",
-                        cls="ale-muted",
-                    ),
-                    spacer(20),
-                    buttons([("Read the Research", "/research/", "ghost")], centered=False),
-                ]
-            ),
-            "is-home-research",
-        ),
-        # 11. final CTA
-        section(
-            "\n\n".join(
-                [
-                    eyebrow("Get Started", centered=True),
-                    heading("Build AI Your Organization Can Trust", centered=True),
-                    lede(
-                        "Explore how Aletheon Labs can help your organization use artificial intelligence "
-                        "securely, consistently, and effectively across business intelligence and software "
-                        "development.",
-                        centered=True,
-                    ),
-                    spacer(12),
-                    buttons([("Request a Demonstration", DEMO, "solid"), ("Discuss a Partnership", DEMO, "ghost")]),
-                ]
-            ),
-            "is-hero is-home-cta",
-        ),
-    ]
-)
+PAGES["home"] = "\n\n".join([
+    section(home_hero(), "is-home-hero"),
+    section("\n\n".join([
+        eyebrow("Who We Are"),
+        heading("AI engineering tools and the team to build with you"),
+        lede("Aletheon Labs develops Aletheon Forge and delivers custom Software Development. "
+             "Forge helps developers and engineering leads coordinate AI coding agents. "
+             "Our engineering services turn requirements into applications, integrations, "
+             "and modernized systems."),
+    ]), "is-home-intro"),
+    section("\n\n".join([
+        eyebrow("The Engineering Challenge"),
+        heading("Give AI-assisted work a shared structure"),
+        lede("Coding assistants work best with a clear task, relevant project context, "
+             "and a way to review what they produce. Those foundations need to carry "
+             "across agents, repositories, and the people directing the work."),
+        spacer(28),
+        cards([
+            ("01", "Defined missions", "Describe the work, its constraints, and the evidence needed to accept it."),
+            ("02", "Repository context", "Keep each agent connected to the codebase and instructions in scope."),
+            ("03", "Shared skills", "Give coding agents reusable engineering instructions suited to the task."),
+            ("04", "Retained decisions", "Keep architectural choices and lessons available for future work."),
+            ("05", "Coordinated execution", "Follow agent runs within a common product and mission structure."),
+            ("06", "Human review", "Record questions and approval decisions as work progresses."),
+            ("07", "Verification evidence", "Review configured checks and acceptance evidence alongside the implementation."),
+            ("08", "Connected knowledge", "Explore relationships between repositories, work, and retained project knowledge."),
+            ("09", "Reviewable delivery", "Connect the resulting changes to source control and pull request workflows."),
+        ], variant="is-problem", cols=3),
+    ]), "is-home-problem"),
+    section("\n\n".join([
+        eyebrow("The Forge Workflow", centered=True),
+        heading("Connect the work, the context, and the people responsible", centered=True),
+        lede("A conceptual view of how Forge brings engineering teams, repositories, "
+             "shared knowledge, and installed AI coding tools into one workflow.", centered=True),
+        spacer(40), diagram(),
+    ]), "is-home-layer"),
+    section("\n\n".join([
+        eyebrow("What We Offer"),
+        heading("Two ways to move your software work forward"),
+        lede("Aletheon Forge for AI-assisted engineering, and Software Development "
+             "for the systems your organization needs built."),
+        spacer(28), raw(OFFERINGS_GRID),
+    ]), "is-home-platforms"),
+    section("\n\n".join([
+        eyebrow("Skills and Project Knowledge"),
+        heading("Give agents context they can use"),
+        lede("Forge routes repository instructions, focused skills, and approved memories "
+             "into agent work. Decisions and lessons can be assessed and retained for "
+             "the next mission, while the knowledge map helps teams explore what is connected."),
+        spacer(28),
+        roles([
+            ("Product lead", "Define the intended outcome and the scope of the work."),
+            ("Engineering lead", "Guide technical direction, review decisions, and acceptance."),
+            ("Developer", "Work with coding agents, repositories, changes, and checks."),
+            ("Architect", "Connect implementation work to system design and retained decisions."),
+        ]),
+    ]), "is-home-roles"),
+    section("\n\n".join([
+        eyebrow("Human Direction"),
+        heading("Review the work with its evidence"),
+        lede("Keep mission history, agent questions, approval decisions, and configured "
+             "verification results together. Forge gives teams a place to follow the "
+             "work and decide what is ready to move forward."),
+        spacer(24), checklist([
+            "Mission scope and acceptance criteria", "Agent run history",
+            "Questions and approval decisions", "Configured checks and acceptance evidence",
+            "Repository changes and pull request preparation", "Assessed memories and retained lessons",
+        ]),
+    ]), "is-home-governance"),
+    section("\n\n".join([
+        eyebrow("Engineering Outcomes"), heading("Build a workflow your team can follow"),
+        spacer(28), stats([
+            ("Context", "Give agent runs the repository instructions and knowledge relevant to their work."),
+            ("Continuity", "Retain decisions and lessons across missions."),
+            ("Coordination", "Connect products, repositories, missions, and runs."),
+            ("Review", "Bring human decisions and acceptance evidence into the workflow."),
+            ("Delivery", "Prepare changes for existing source control and review practices."),
+            ("Engineering", "Work with our team on custom applications, integrations, and modernization."),
+        ]),
+    ]), "is-home-outcomes"),
+    section(mission_block(), "is-tight is-home-mission"),
+    section("\n\n".join([
+        eyebrow("Research and Founder Credibility"), heading("Grounded in research, built from practice"),
+        lede("Aletheon Labs was founded by Dr. Andrew Ganje — a former Microsoft engineer, "
+             "software architect, microservice specialist, and published author, whose "
+             "doctoral research was initiated at Purdue."),
+        para("That work spans business transformations from $100 billion organizations "
+             "to mid-cap companies, across enterprise architecture, business applications, "
+             "data platforms, integrations, and artificial intelligence.", cls="ale-muted"),
+        spacer(20), buttons([("Read the Research", "/research/", "ghost")], centered=False),
+    ]), "is-home-research"),
+    section("\n\n".join([
+        heading("Start with Forge or a software project", centered=True),
+        lede("Explore Forge with your engineering team, or discuss a system you need "
+             "built, integrated, or modernized.", centered=True),
+        spacer(12), buttons([
+            ("Request a Forge Demo", "/contact/", "solid"),
+            ("Discuss a Project", "/contact/", "ghost"),
+        ]),
+    ]), "is-hero is-home-cta"),
+])
 
 # ------------------------ ALETHEON INTELLIGENCE ---------------------------
 
-PAGES["aletheon-intelligence"] = "\n\n".join(
-    [
-        section(
-            "\n\n".join(
-                [
-                    eyebrow("Platform 01", centered=True),
-                    h1("Aletheon Intelligence"),
-                    lede(
-                        "A personalized and governed AI business intelligence platform. Business "
-                        "intelligence that understands your organization and the person using it.",
-                        centered=True,
-                    ),
-                    spacer(12),
-                    buttons([("Request a Demo", DEMO, "solid"), ("See the Governed Layer", "/governed-ai/", "ghost")]),
-                ]
-            ),
-            "is-hero",
-        ),
-        section(
-            "\n\n".join(
-                [
-                    eyebrow("Positioning"),
-                    heading("Reports tell you what. Aletheon tells you why, and what to do"),
-                    lede(
-                        "Aletheon Intelligence helps organizations understand what is happening, why it is "
-                        "happening, and what actions should be considered. It brings business context, "
-                        "organizational memory, AI reasoning, and governed recommendations to the data you "
-                        "already have."
-                    ),
-                ]
-            )
-        ),
-        section(
-            "\n\n".join(
-                [
-                    eyebrow("Core Capabilities"),
-                    heading("What the platform does"),
-                    spacer(24),
-                    checklist(
-                        [
-                            "Connect enterprise and external data",
-                            "Interpret business performance",
-                            "Identify trends, risks, and anomalies",
-                            "Explain contributing factors",
-                            "Generate role-specific recommendations",
-                            "Present information based on the user's responsibilities",
-                            "Maintain memory of prior decisions and interactions",
-                            "Preserve traceability between source data and recommendations",
-                            "Support human review and approval",
-                            "Learn from organizational outcomes",
-                        ]
-                    ),
-                ]
-            )
-        ),
-        section(
-            "\n\n".join(
-                [
-                    eyebrow("How It Works"),
-                    heading("Every insight carries its provenance"),
-                    lede(
-                        "A recommendation is only useful if the person receiving it can see where it came "
-                        "from. Each request travels through the governed layer, and the path it took remains "
-                        "attached to the answer."
-                    ),
-                    spacer(32),
-                    flow(),
-                ]
-            )
-        ),
-        section(
-            "\n\n".join(
-                [
-                    eyebrow("Business Value"),
-                    heading("What it changes"),
-                    spacer(28),
-                    stats(
-                        [
-                            ("Analysis time", "Reduce time spent analyzing reports."),
-                            ("Early warning", "Identify issues earlier, before they compound."),
-                            ("Executive visibility", "Improve visibility at the leadership level."),
-                            ("Role relevance", "Deliver more relevant information to each role."),
-                            ("Consistency", "Create consistency across business decisions."),
-                            ("Interpretation", "Reduce dependence on manual interpretation."),
-                            ("Security", "Apply AI securely to enterprise data."),
-                            ("Knowledge", "Preserve organizational knowledge over time."),
-                            ("Posture", "Move from reactive reporting to proactive intelligence."),
-                        ]
-                    ),
-                ]
-            )
-        ),
-        section(
-            "\n\n".join(
-                [
-                    heading("See Aletheon Intelligence in context", centered=True),
-                    lede("Explore how governed business intelligence would apply to your organization.", centered=True),
-                    spacer(12),
-                    buttons([("Request a Demo", DEMO, "solid"), ("Explore Aletheon Forge", "/aletheon-forge/", "ghost")]),
-                ]
-            ),
-            "is-hero",
-        ),
-    ]
-)
 
 # --------------------------- ALETHEON FORGE -------------------------------
 
-PAGES["aletheon-forge"] = "\n\n".join(
-    [
-        section(
-            "\n\n".join(
-                [
-                    eyebrow("Platform 02", centered=True),
-                    h1("Aletheon Forge"),
-                    lede(
-                        "A governed AI software development and engineering platform. AI software "
-                        "development with context, memory, governance, and human control.",
-                        centered=True,
-                    ),
-                    spacer(12),
-                    buttons([("Request a Demo", DEMO, "solid"), ("See the Governed Layer", "/governed-ai/", "ghost")]),
-                ]
-            ),
-            "is-hero",
-        ),
-        section(
-            "\n\n".join(
-                [
-                    eyebrow("Positioning"),
-                    heading("One coordinated engineering system"),
-                    lede(
-                        "Aletheon Forge helps engineering organizations coordinate AI agents, software "
-                        "repositories, technical knowledge, engineering memory, and human leadership. Every "
-                        "agent works from shared standards, shared context, and shared memory, under human "
-                        "technical oversight."
-                    ),
-                ]
-            )
-        ),
-        section(
-            "\n\n".join(
-                [
-                    eyebrow("Core Capabilities"),
-                    heading("What the platform does"),
-                    spacer(24),
-                    checklist(
-                        [
-                            "Coordinate AI engineering agents",
-                            "Organize work by product, repository, mission, and run",
-                            "Route relevant context to each agent",
-                            "Maintain engineering memory",
-                            "Capture lessons learned",
-                            "Build knowledge across repositories and systems",
-                            "Apply coding and architecture standards",
-                            "Connect software work to business objectives",
-                            "Govern AI-generated code and recommendations",
-                            "Maintain human technical oversight",
-                            "Integrate with source control and development workflows",
-                            "Evaluate agent performance and outcomes",
-                        ]
-                    ),
-                ]
-            )
-        ),
-        section(
-            "\n\n".join(
-                [
-                    eyebrow("Structure"),
-                    heading("Work organized the way engineering actually runs"),
-                    spacer(28),
-                    cards(
-                        [
-                            ("01", "Product", "The business outcome the work serves, so engineering effort stays connected to why it matters."),
-                            ("02", "Repository", "The codebase in scope, with its standards, architecture, and accumulated context."),
-                            ("03", "Mission", "A defined unit of engineering work with requirements, constraints, and success criteria."),
-                            ("04", "Run", "A single governed agent execution, observable and evaluated against the mission."),
-                        ],
-                        cols=4,
-                    ),
-                ]
-            )
-        ),
-        section(
-            "\n\n".join(
-                [
-                    eyebrow("Business Value"),
-                    heading("What it changes"),
-                    spacer(28),
-                    stats(
-                        [
-                            ("Productivity", "Improve engineering productivity across teams."),
-                            ("Code consistency", "Reduce inconsistent AI-generated code."),
-                            ("Architecture", "Preserve architectural decisions over time."),
-                            ("Retention", "Retain technical knowledge as people and agents change."),
-                            ("Coordination", "Improve coordination across engineering teams."),
-                            ("Repetition", "Reduce repetitive engineering work."),
-                            ("Standards", "Apply organizational standards to AI agents."),
-                            ("Visibility", "Increase visibility into agent activity."),
-                            ("Risk", "Reduce risk from unmanaged coding assistants."),
-                        ]
-                    ),
-                ]
-            )
-        ),
-        section(
-            "\n\n".join(
-                [
-                    heading("Scale AI-assisted development responsibly", centered=True),
-                    lede("Explore how governed AI engineering would apply to your teams.", centered=True),
-                    spacer(12),
-                    buttons([("Request a Demo", DEMO, "solid"), ("Explore Aletheon Intelligence", "/aletheon-intelligence/", "ghost")]),
-                ]
-            ),
-            "is-hero",
-        ),
-    ]
-)
+PAGES["aletheon-forge"] = "\n\n".join([
+    section("\n\n".join([
+        eyebrow("AI Engineering Orchestration", centered=True), h1("Aletheon Forge"),
+        lede("Bring your AI coding agents into one engineering workflow. Define the work, "
+             "connect repositories, supply shared skills and project knowledge, and follow "
+             "execution, review, verification, and lessons in a local-first Windows application.", centered=True),
+        spacer(12), buttons([
+            ("Request a Forge Demo", "/contact/", "solid"),
+            ("Discuss Software Development", "/contact/", "ghost"),
+        ]),
+    ]), "is-hero"),
+    section("\n\n".join([
+        eyebrow("Connected Coding Tools"), heading("Coordinate the assistants your team uses"),
+        lede("Forge connects installed Claude Code, Codex, Gemini CLI, Grok, and GitHub "
+             "Copilot command-line tools. Their adapters bring agent work into a common "
+             "mission and run workflow while using each tool's supported capabilities."),
+        para("Forge runs locally on Windows. Connected coding tools require their own "
+             "installation and provider access, and their available capabilities vary.", cls="ale-muted"),
+    ])),
+    section("\n\n".join([
+        eyebrow("Core Capabilities"), heading("From a scoped task to reviewable results"), spacer(24),
+        checklist([
+            "Connect installed AI coding assistants", "Organize products, repositories, missions, and runs",
+            "Plan features, fixes, refactoring, and new applications", "Define mission acceptance criteria",
+            "Route repository instructions, skills, and approved memories",
+            "Coordinate mission execution with Autopilot", "Follow agent questions and approval decisions",
+            "Review configured checks and independent acceptance evidence",
+            "Explore connected engineering knowledge", "Assess and retain memories and lessons",
+            "Work with Git repositories", "Prepare GitHub and Azure Repos pull requests when configured",
+        ]),
+    ])),
+    section("\n\n".join([
+        eyebrow("Structure"), heading("Keep work connected from product to run"),
+        lede("Plans break larger goals into missions. Each mission stays connected to the "
+             "product, repository, acceptance criteria, and the agent runs carrying it out."),
+        spacer(28), cards([
+            ("01", "Product", "The system or product being built, with its goals and shared knowledge."),
+            ("02", "Repository", "The codebase, repository instructions, and technical context in scope."),
+            ("03", "Mission", "A defined unit of engineering work with constraints and acceptance criteria."),
+            ("04", "Run", "An agent execution with recorded activity, questions, and available verification evidence."),
+        ], cols=4),
+    ])),
+    section("\n\n".join([
+        eyebrow("AI Enablers"), heading("Keep useful engineering knowledge in the workflow"),
+        spacer(28), cards([
+            ("01", "Skills", "Focused, reusable instructions that guide agents through particular kinds of engineering work."),
+            ("02", "Context", "Repository instructions and selected knowledge routed into the mission and agent run."),
+            ("03", "Memories", "Assessed engineering decisions and lessons retained for later work."),
+            ("04", "Knowledge map", "A connected view of engineering knowledge that helps teams explore relationships and context."),
+        ], cols=2),
+    ])),
+    section("\n\n".join([
+        eyebrow("Review and Delivery"), heading("Follow the decisions as well as the code"),
+        lede("Review run history, agent questions, approval decisions, and configured checks "
+             "alongside repository changes. Prepare pull requests for GitHub or Azure Repos "
+             "when those integrations are configured, and retain lessons from the work."),
+        spacer(24), flow(),
+    ])),
+    section("\n\n".join([
+        heading("See Forge with your engineering workflow", centered=True),
+        lede("Discuss your repositories, coding tools, and review process with our team.", centered=True),
+        spacer(12), buttons([
+            ("Request a Forge Demo", "/contact/", "solid"),
+            ("Explore Software Development", "/software-development/", "ghost"),
+        ]),
+    ]), "is-hero"),
+])
 
 # ---------------------------- GOVERNED AI ---------------------------------
 
-PAGES["governed-ai"] = "\n\n".join(
-    [
-        section(
-            "\n\n".join(
-                [
-                    eyebrow("The Architecture", centered=True),
-                    h1("The Governed AI Layer"),
-                    lede(
-                        "The foundation connecting users, organizational knowledge, business systems, and "
-                        "AI providers — so organizations can adopt new models without rebuilding their "
-                        "business rules, user context, memory, or governance architecture each time.",
-                        centered=True,
-                    ),
-                ]
-            ),
-            "is-hero",
-        ),
-        section("\n\n".join([diagram()]), "is-tight"),
-        section(
-            "\n\n".join(
-                [
-                    eyebrow("What the Layer Manages"),
-                    heading("Fourteen responsibilities, one place"),
-                    spacer(24),
-                    checklist(
-                        [
-                            "Authentication",
-                            "User identity",
-                            "Role and permissions",
-                            "Context routing",
-                            "Organizational memory",
-                            "Prompt standards",
-                            "Model selection",
-                            "Knowledge retrieval",
-                            "Data security",
-                            "AI policies",
-                            "Observability",
-                            "Evaluation",
-                            "Explainability",
-                            "Audit history",
-                        ]
-                    ),
-                ]
-            )
-        ),
-        section(
-            "\n\n".join(
-                [
-                    eyebrow("Core Principles"),
-                    heading("What governance has to deliver"),
-                    spacer(28),
-                    cards(
-                        [
-                            ("Principle 01", "Trust", "Users must be able to trust the information, recommendations, and actions produced by AI — through explainable recommendations, traceable sources, transparent interactions, human review, secure access controls, and consistent organizational knowledge."),
-                            ("Principle 02", "Governance", "AI should operate within defined organizational, security, and business boundaries — role-based access, data isolation, usage policies, approved models, prompt and context governance, decision traceability, human approval, and monitoring."),
-                            ("Principle 03", "Consistency", "Terminology, business rules, instructions, role context, approved knowledge, and security policy stay constant across every model, so the same question returns the same grounded answer whichever tool an employee reaches for."),
-                            ("Principle 04", "Innovative Use of AI", "Moving beyond basic chatbots and isolated automation into decision support, organizational memory, knowledge discovery, agent orchestration, risk identification, and continuous organizational learning."),
-                        ],
-                        cols=2,
-                    ),
-                ]
-            )
-        ),
-        section(
-            "\n\n".join(
-                [
-                    eyebrow("Person-Based Memory"),
-                    heading("Memory that stays governed"),
-                    lede(
-                        "Aletheon maintains governed memory to help AI understand the user over time — "
-                        "previous questions, relevant decisions, accepted or rejected recommendations, "
-                        "preferred reporting detail, current objectives, role-specific priorities, and "
-                        "lessons learned. This reduces repetitive prompting and makes AI increasingly relevant."
-                    ),
-                    spacer(24),
-                    checklist(
-                        [
-                            "User-level access controls",
-                            "Organizational policies",
-                            "Clear retention rules",
-                            "Auditability",
-                            "User visibility",
-                            "Administrative controls",
-                        ]
-                    ),
-                    spacer(20),
-                    para(
-                        "Personalization operates inside your security model. Every AI interaction stays "
-                        "subject to permissions, governance, and organizational policy.",
-                        cls="ale-muted",
-                    ),
-                ]
-            )
-        ),
-        section(
-            "\n\n".join(
-                [
-                    heading("See the layer applied to your organization", centered=True),
-                    spacer(12),
-                    buttons([("Request a Demo", DEMO, "solid")]),
-                ]
-            ),
-            "is-hero",
-        ),
-    ]
-)
+PAGES["governed-ai"] = "\n\n".join([
+    section("\n\n".join([
+        eyebrow("Engineering Principles", centered=True), h1("Governed AI Engineering"),
+        lede("Give AI-assisted software work clear scope, relevant context, human review, "
+             "and verification evidence. These principles shape Aletheon Forge and the "
+             "custom systems our Software Development team builds.", centered=True),
+    ]), "is-hero"),
+    section("\n\n".join([diagram()]), "is-tight"),
+    section("\n\n".join([
+        eyebrow("In the Workflow"), heading("Make engineering work reviewable"),
+        spacer(24), checklist([
+            "Product and repository context", "Defined missions and acceptance criteria",
+            "Repository instructions and reusable skills", "Selected context for agent runs",
+            "Approved memories and retained decisions", "Agent questions and approval decisions",
+            "Run history and configured verification checks", "Independent acceptance evidence",
+            "Source control and pull request preparation", "Lessons assessed for future use",
+        ]),
+    ])),
+    section("\n\n".join([
+        eyebrow("Core Principles"), heading("Keep people accountable for delivery"),
+        spacer(28), cards([
+            ("01", "Clear intent", "Define what needs to change, the constraints, and what acceptance requires before an agent starts work."),
+            ("02", "Relevant context", "Give agents repository instructions, focused skills, and selected knowledge connected to the task."),
+            ("03", "Human decisions", "Bring questions, approval decisions, and technical review into the engineering workflow."),
+            ("04", "Evidence", "Review configured checks, acceptance results, and source changes when deciding whether work is ready."),
+        ], cols=2),
+    ])),
+    section("\n\n".join([
+        eyebrow("Engineering Memory"), heading("Retain decisions teams can reuse"),
+        lede("Forge retains engineering knowledge and assesses proposed memory revisions "
+             "for reuse. Skills, approved memories, and repository context can inform later "
+             "missions, while the knowledge map helps teams explore their connections."),
+        spacer(24), checklist([
+            "Architectural decisions and project context", "Focused instructions and reusable skills",
+            "Assessed memories and lessons", "Connections across engineering knowledge",
+        ]),
+    ])),
+    section("\n\n".join([
+        heading("Put these principles to work", centered=True), spacer(12),
+        buttons([("Explore Aletheon Forge", "/aletheon-forge/", "solid"),
+                 ("Explore Software Development", "/software-development/", "ghost")]),
+    ]), "is-hero"),
+])
 
 # ------------------------------ RESEARCH ----------------------------------
 
@@ -1114,7 +759,7 @@ PAGES["research"] = "\n\n".join(
                     cards(
                         [
                             ("Area 01", "Trusted information", "What has to be true about a source, and about the path from source to recommendation, before a person should act on it."),
-                            ("Area 02", "Organizational context", "How role, responsibility, permission, and business meaning change what the correct answer actually is."),
+                            ("Area 02", "Organizational context", "How repository instructions, architectural decisions, and project requirements shape engineering work."),
                             ("Area 03", "Governed memory", "How systems retain what matters across interactions without exceeding what a user is authorized to know."),
                             ("Area 04", "Explainability in practice", "What traceability has to look like for a decision-maker, rather than for a model evaluator."),
                         ],
@@ -1151,13 +796,14 @@ PAGES["solutions"] = "\n\n".join(
             "\n\n".join(
                 [
                     eyebrow("Solutions", centered=True),
-                    h1("Where Governed AI Applies"),
+                    h1("Put AI to Work in Software Engineering"),
                     lede(
-                        "Aletheon's platforms apply AI across business decision-making and software "
-                        "engineering, while maintaining security, governance, organizational context, and "
-                        "human oversight.",
+                        "Organize AI-assisted coding with Aletheon Forge, or work with Aletheon Labs "
+                        "to build, integrate, and modernize the software your organization needs.",
                         centered=True,
                     ),
+                    spacer(12),
+                    buttons([("Request a Forge Demo", DEMO, "solid"), ("Discuss a Project", DEMO, "ghost")]),
                 ]
             ),
             "is-hero",
@@ -1165,20 +811,17 @@ PAGES["solutions"] = "\n\n".join(
         section(
             "\n\n".join(
                 [
-                    eyebrow("By Application"),
-                    heading("What the platforms are used for"),
+                    eyebrow("Engineering Use Cases"),
+                    heading("Connect the work, the context, and the people responsible"),
                     spacer(28),
                     cards(
                         [
-                            ("01", "Business intelligence", "Interpret performance, identify trends and anomalies, and explain contributing factors with traceable sources."),
-                            ("02", "Decision support", "Role-specific recommendations that reflect what a person is responsible for and authorized to see."),
-                            ("03", "Organizational memory", "Retain decisions, rationale, and lessons learned so knowledge stays with the organization."),
-                            ("04", "Knowledge discovery", "Surface relevant organizational knowledge at the moment it applies to the work."),
-                            ("05", "Software engineering", "Coordinate AI agents across products, repositories, missions, and runs under human oversight."),
-                            ("06", "Agent orchestration", "Route context, apply standards, and evaluate agent performance and outcomes."),
-                            ("07", "Process improvement", "Identify where work is repetitive, inconsistent, or disconnected across systems."),
-                            ("08", "Risk identification", "Detect exceptions, emerging risk, and conditions that warrant human attention."),
-                            ("09", "Continuous learning", "Improve relevance over time by learning from organizational outcomes."),
+                            ("01", "Coordinate coding work", "Use Forge to organize products, repositories, missions, and runs with the AI coding assistants installed on your machine."),
+                            ("02", "Prepare repository context", "Give coding assistants the relevant repository context, skills, and approved memories for each mission."),
+                            ("03", "Review changes and results", "Use approvals and verification to keep people involved in the coding workflow and evaluate the work produced."),
+                            ("04", "Retain engineering knowledge", "Capture useful lessons and approved memories so future missions can draw on what the team has learned."),
+                            ("05", "Build business software", "Develop applications and data platforms around your organization's requirements, existing systems, and operating needs."),
+                            ("06", "Integrate and modernize", "Connect services and data, plan architecture changes, and update existing software with attention to its business logic."),
                         ],
                         cols=3,
                     ),
@@ -1188,34 +831,24 @@ PAGES["solutions"] = "\n\n".join(
         section(
             "\n\n".join(
                 [
-                    eyebrow("By Role"),
-                    heading("The same condition, presented differently"),
+                    eyebrow("Two Offerings"),
+                    heading("Choose the right starting point"),
                     lede(
-                        "The same business condition may need to reach an executive, a finance leader, and "
-                        "an engineer in three different forms. Each person receives the information, level of "
-                        "detail, recommendations, and actions most relevant to their role."
+                        "Forge brings structure to work with AI coding assistants. Software Development "
+                        "provides custom engineering for the applications, integrations, and architecture you need."
                     ),
                     spacer(28),
-                    roles(
-                        [
-                            ("Executive", "Direction, exposure, and the decisions that need to be made."),
-                            ("Finance Leader", "Drivers, variance, and financial consequence."),
-                            ("Operations Manager", "What changed, what it affects, and what to do now."),
-                            ("Supply Chain Analyst", "Demand signals, inventory movement, and emerging risk."),
-                            ("Enterprise Architect", "Systems, integration, and structural implication."),
-                            ("Software Engineer", "Repositories, standards, context, and the work itself."),
-                        ]
-                    ),
+                    raw(OFFERINGS_GRID),
                 ]
             )
         ),
         section(
             "\n\n".join(
                 [
-                    heading("Find the right starting point", centered=True),
-                    lede("Tell us what you are trying to solve and we will map it to the platform that fits.", centered=True),
+                    heading("Start with your engineering goals", centered=True),
+                    lede("Tell us about your workflow or the software you need built.", centered=True),
                     spacer(12),
-                    buttons([("Request a Demo", DEMO, "solid")]),
+                    buttons([("Request a Forge Demo", DEMO, "solid"), ("Discuss a Project", DEMO, "ghost")]),
                 ]
             ),
             "is-hero",
@@ -1231,26 +864,29 @@ PAGES["about"] = "\n\n".join(
             "\n\n".join(
                 [
                     eyebrow("About Aletheon Labs", centered=True),
-                    h1("The Governed Intelligence Layer"),
+                    h1("AI Software and Engineering, Built on Research"),
                     lede(
-                        "Aletheon Labs is an AI software development company building governed platforms "
-                        "for business intelligence and software engineering.",
+                        "Aletheon Labs develops Aletheon Forge for AI-assisted software engineering "
+                        "and provides custom software development for organizations.",
                         centered=True,
                     ),
                 ]
             ),
             "is-hero",
         ),
-        section(mission_block(), "is-tight"),
+        section(
+            mission_block(),
+            "is-tight",
+        ),
         section(
             "\n\n".join(
                 [
                     eyebrow("What We Build"),
-                    heading("Two products and an engineering team"),
+                    heading("Aletheon Forge and Software Development"),
                     lede(
-                        "Aletheon Labs develops AI software that connects people, business context, "
-                        "organizational memory, enterprise data, and AI models — and builds custom systems "
-                        "for organizations that need engineering alongside the products."
+                        "Forge organizes work with installed AI coding assistants. Our software development "
+                        "services bring enterprise architecture and engineering experience to custom applications, "
+                        "data platforms, integrations, applied AI, and modernization."
                     ),
                     spacer(28),
                     raw(OFFERINGS_GRID),
@@ -1261,22 +897,20 @@ PAGES["about"] = "\n\n".join(
             "\n\n".join(
                 [
                     eyebrow("What We Believe"),
-                    heading("Enterprise AI should be intelligent, trusted, governed, and consistent"),
+                    heading("Good software begins with context and accountable decisions"),
                     lede(
-                        "This enables organizations to deliver AI experiences that are relevant to each "
-                        "user, consistent across teams, secure and governed, explainable and traceable, "
-                        "informed by organizational context, and continuously improved through memory and "
-                        "learning."
+                        "AI-assisted engineering needs the same discipline as the systems it helps build: "
+                        "clear requirements, relevant context, reviewable work, and people responsible for the outcome."
                     ),
                     spacer(24),
                     checklist(
                         [
-                            "Relevant to each user",
-                            "Consistent across teams",
-                            "Secure and governed",
-                            "Explainable and traceable",
-                            "Informed by organizational context",
-                            "Continuously improved through memory and learning",
+                            "Understand the organization and its systems",
+                            "Give AI assistants relevant context and skills",
+                            "Keep people involved in approvals and review",
+                            "Verify the work against its requirements",
+                            "Capture architecture decisions and useful lessons",
+                            "Carry approved knowledge into future work",
                         ]
                     ),
                 ]
@@ -1294,7 +928,8 @@ PAGES["about"] = "\n\n".join(
                     ),
                     para(
                         "That background spans business transformations from $100 billion organizations to "
-                        "mid-cap companies, and the architectural practice the platforms are built on.",
+                        "mid-cap companies, alongside enterprise architecture, microservice design, "
+                        "business applications, data platforms, integrations, and artificial intelligence.",
                         cls="ale-muted",
                     ),
                     spacer(20),
@@ -1305,9 +940,9 @@ PAGES["about"] = "\n\n".join(
         section(
             "\n\n".join(
                 [
-                    heading("Build AI Your Organization Can Trust", centered=True),
+                    heading("Build Your Next Step with Aletheon", centered=True),
                     spacer(12),
-                    buttons([("Request a Demo", DEMO, "solid"), ("Discuss a Partnership", DEMO, "ghost")]),
+                    buttons([("Request a Forge Demo", DEMO, "solid"), ("Discuss a Project", DEMO, "ghost")]),
                 ]
             ),
             "is-hero",
@@ -1330,11 +965,11 @@ PAGES["software-development"] = "\n\n".join(
                     h1("Software Development"),
                     lede(
                         "Custom software engineering for organizations that need systems built, "
-                        "integrated, or modernized — delivered by the team that builds our platforms.",
+                        "integrated, or modernized, from the team behind Aletheon Forge.",
                         centered=True,
                     ),
                     spacer(12),
-                    buttons([("Discuss a Project", DEMO, "solid"), ("See Our Products", "/governed-ai/", "ghost")]),
+                    buttons([("Discuss a Project", DEMO, "solid"), ("Explore Aletheon Forge", "/aletheon-forge/", "ghost")]),
                 ]
             ),
             "is-hero",
@@ -1348,11 +983,11 @@ PAGES["software-development"] = "\n\n".join(
                     cards(
                         [
                             ("01", "Enterprise architecture", "System design, integration strategy, and technical direction for organizations modernizing how their software fits together."),
-                            ("02", "Business applications", "Applications built around how the organization actually operates, rather than around what a package assumes."),
-                            ("03", "Data platforms", "Data foundations, pipelines, and models that make enterprise information usable and trustworthy."),
-                            ("04", "Integrations", "Connecting systems, services, and data so information moves reliably between them."),
-                            ("05", "Applied AI", "AI capability built into software with the same governance, traceability, and oversight our platforms are designed around."),
-                            ("06", "Modernization", "Bringing existing systems forward without discarding the business logic already proven in them."),
+                            ("02", "Business applications", "Applications built around the organization's processes, requirements, and people."),
+                            ("03", "Data platforms", "Data foundations, pipelines, and models that make enterprise information usable."),
+                            ("04", "Integrations", "Connecting systems, services, and data so information can move between them."),
+                            ("05", "Applied AI", "AI capabilities designed around the task, with attention to context, review, and human oversight."),
+                            ("06", "Modernization", "Updating existing software with attention to the business logic and operational needs it already supports."),
                         ],
                         cols=3,
                     ),
@@ -1363,21 +998,20 @@ PAGES["software-development"] = "\n\n".join(
             "\n\n".join(
                 [
                     eyebrow("How We Work"),
-                    heading("Governance is not bolted on afterwards"),
+                    heading("Make decisions clear and the work reviewable"),
                     lede(
-                        "The same principles behind our products shape the software we build for others: "
-                        "decisions are traceable, context is retained, AI operates inside defined boundaries, "
-                        "and a person remains accountable for what ships."
+                        "Our approach starts with your requirements, system constraints, and intended outcome. "
+                        "We use that context to guide architecture, implementation, review, and verification."
                     ),
                     spacer(24),
                     checklist(
                         [
-                            "Architecture decisions captured and retained",
-                            "AI-assisted engineering under human oversight",
-                            "Standards applied consistently across the codebase",
-                            "Traceability from requirement to implementation",
-                            "Security and access considered from the start",
-                            "Knowledge that stays with your organization",
+                            "Capture requirements and architecture decisions",
+                            "Use AI-assisted engineering under human oversight",
+                            "Apply the codebase's engineering standards",
+                            "Review implementation against the requirements",
+                            "Consider security and access in the design",
+                            "Document useful knowledge for future work",
                         ]
                     ),
                 ]
@@ -1388,12 +1022,12 @@ PAGES["software-development"] = "\n\n".join(
                 [
                     heading("Tell us what you need built", centered=True),
                     lede(
-                        "Share the problem, the systems involved, and the outcome you need. We will tell you "
-                        "honestly whether we are the right team for it.",
+                        "Share the problem, the systems involved, and the outcome you need. "
+                        "We will discuss the engineering work and the right starting point.",
                         centered=True,
                     ),
                     spacer(12),
-                    buttons([("Discuss a Project", DEMO, "solid")]),
+                    buttons([("Discuss a Project", DEMO, "solid"), ("Request a Forge Demo", DEMO, "ghost")]),
                 ]
             ),
             "is-hero",
@@ -1409,15 +1043,19 @@ PAGES["contact"] = "\n\n".join(
             "\n\n".join(
                 [
                     eyebrow("Contact", centered=True),
-                    h1("Request a Demonstration"),
+                    h1("See Forge or Discuss a Software Project"),
                     lede(
-                        "Explore how Aletheon Labs can help your organization use artificial intelligence "
-                        "securely, consistently, and effectively across business intelligence and software "
-                        "development.",
+                        "Explore Aletheon Forge for your AI-assisted coding workflow, or talk with us "
+                        "about custom software development.",
                         centered=True,
                     ),
                     spacer(12),
-                    buttons([("Email contact@aletheonlabs.com", "mailto:contact@aletheonlabs.com", "solid")]),
+                    buttons(
+                        [
+                            ("Request a Forge Demo", "mailto:contact@aletheonlabs.com?subject=Forge%20demo", "solid"),
+                            ("Discuss a Project", "mailto:contact@aletheonlabs.com?subject=Software%20development%20project", "ghost"),
+                        ]
+                    ),
                 ]
             ),
             "is-hero",
@@ -1430,10 +1068,10 @@ PAGES["contact"] = "\n\n".join(
                     spacer(28),
                     cards(
                         [
-                            ("01", "Platform Demonstration", "See Aletheon Intelligence or Aletheon Forge applied to a scenario that resembles your organization."),
-                            ("02", "Governed AI Discussion", "Talk through the governed AI layer, how it would sit in your architecture, and what it would govern."),
-                            ("03", "Partnership Inquiry", "Discuss partnership opportunities, strategic collaboration, or technology-enabled business innovation."),
-                            ("04", "Research Collaboration", "Academic partnership or technical discussion of the research behind the platform."),
+                            ("01", "Aletheon Forge Demo", "See how Forge organizes products, repositories, missions, and runs with installed AI coding assistants."),
+                            ("02", "Custom Software Development", "Discuss an application, data platform, integration, applied AI capability, or modernization project."),
+                            ("03", "Engineering Workflow", "Talk through repository context, skills, approvals, verification, and retained learning in your AI-assisted coding process."),
+                            ("04", "Research Collaboration", "Explore academic collaboration or discuss the research informing Aletheon's approach to AI systems and software engineering."),
                         ],
                         cols=2,
                     ),
@@ -1448,9 +1086,9 @@ PAGES["contact"] = "\n\n".join(
                     spacer(28),
                     cards(
                         [
-                            ("Step 01", "Share your goals", "Tell us what you are trying to solve, improve, or explore."),
-                            ("Step 02", "Discuss opportunities", "We identify where governed AI creates meaningful value for your organization."),
-                            ("Step 03", "Define the path forward", "We outline the right next steps based on your needs, data, systems, and desired outcomes."),
+                            ("Step 01", "Share your goals", "Tell us about your engineering workflow or the software you need built."),
+                            ("Step 02", "Discuss the fit", "We review the systems involved and discuss a Forge demonstration or custom engineering engagement."),
+                            ("Step 03", "Define the next step", "We agree on the scope and information needed to move the conversation forward."),
                         ],
                         cols=3,
                     ),
@@ -1461,7 +1099,7 @@ PAGES["contact"] = "\n\n".join(
             "\n\n".join(
                 [
                     heading("Start the conversation", centered=True),
-                    lede("We would be glad to learn more about your goals.", centered=True),
+                    lede("Email us with your goals and the systems or workflow involved.", centered=True),
                     spacer(12),
                     buttons([("Email contact@aletheonlabs.com", "mailto:contact@aletheonlabs.com", "solid")]),
                 ]
@@ -1474,22 +1112,38 @@ PAGES["contact"] = "\n\n".join(
 
 # --------------------------------------------------------------------------
 
+def validate_blocks(slug, markup):
+    """Reject mismatched block tags and invalid attributes before writing pages."""
+    stack = []
+    for match in re.finditer(r"<!--\s+(/?)wp:([a-z0-9/-]+)(.*?)-->", markup, re.S):
+        closing, name, attrs = match.groups()
+        attrs = attrs.strip()
+        if closing:
+            if not stack or stack[-1] != name:
+                raise ValueError(f"{slug}: unexpected closing block {name}")
+            stack.pop()
+            continue
+        self_closing = attrs.endswith("/")
+        if self_closing:
+            attrs = attrs[:-1].strip()
+        if attrs:
+            json.loads(attrs)
+        if not self_closing:
+            stack.append(name)
+    if stack:
+        raise ValueError(f"{slug}: unclosed blocks {stack}")
+
+
 def main():
+    # Validate every page first so a failure cannot partially replace the site.
+    for slug, markup in PAGES.items():
+        validate_blocks(slug, markup)
     os.makedirs(OUT, exist_ok=True)
     for slug, markup in PAGES.items():
         path = os.path.join(OUT, f"{slug}.html")
         with open(path, "w", encoding="utf-8", newline="\n") as fh:
             fh.write(markup + "\n")
-
-        # block balance check — an unbalanced page breaks the editor
-        depth = 0
-        for m in re.finditer(r"<!--\s+(/?)wp:([a-z0-9/-]+)(.*?)-->", markup, re.S):
-            if m.group(1) == "/":
-                depth -= 1
-            elif not m.group(3).rstrip().endswith("/"):
-                depth += 1
-        flag = "OK " if depth == 0 else "BAD"
-        print(f"{flag} {slug:24s} {len(markup):6d} bytes  depth={depth}")
+        print(f"OK  {slug:24s} {len(markup.encode('utf-8')):6d} bytes")
 
 
 if __name__ == "__main__":

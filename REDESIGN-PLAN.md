@@ -6,6 +6,15 @@
 
 ---
 
+## Current offering scope - 2026-10-04
+
+The current website presents two offerings: **Aletheon Forge** and **Software Development**.
+The Business Intelligence IP was sold, so Aletheon Intelligence is retired from current
+page copy, navigation, and footer links. Its former `/aletheon-intelligence/` and
+`/experience/` URLs redirect to `/solutions/`. Governed AI and Research describe the
+company's approach. The deployment record and original plan below are historical and may
+refer to the retired product. Current page copy is maintained in `build/generate.py`.
+
 ## Deployment record
 
 ### Logo refresh — 2026-08-02

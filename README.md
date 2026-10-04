@@ -3,6 +3,23 @@
 Source of truth for the [aletheonlabs.com](https://aletheonlabs.com/) website — a WordPress
 site on Bluehost running the `bluehost-blueprint` block theme.
 
+## Current positioning
+
+Aletheon Labs offers **Aletheon Forge** and **Software Development**: governed AI software
+engineering and custom software development. Governed AI and Research explain the company's
+approach; they are not additional offerings.
+
+The Business Intelligence IP was sold. Aletheon Intelligence is retired from the current
+website, and its former `/aletheon-intelligence/` and `/experience/` URLs redirect to
+`/solutions/`. Historical records in `live/`, `WebsiteImprovements`, and `REDESIGN-PLAN.md`
+remain reference material. Current page copy and structure come from `build/generate.py`.
+
+Forge's description was verified against the current `AletheonForge` repository on
+2026-10-04: its user guides for AI enablers and missions, registered provider adapters,
+context routing, memory assessment, knowledge maps, acceptance checks, and pull request
+publishers. Copy describes the implemented local-first Windows workflow and avoids
+unverified release availability, performance guarantees, or provider parity.
+
 ## Layout
 
 ```

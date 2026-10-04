@@ -70,7 +70,7 @@ add_filter(
 	'render_block',
 	function ( $content, $block ) {
 		if ( isset( $block['blockName'] ) && 'core/shortcode' === $block['blockName'] ) {
-			return do_shortcode( $content );
+			return do_shortcode( shortcode_unautop( $content ) );
 		}
 		return $content;
 	},
@@ -81,8 +81,8 @@ add_filter(
 /**
  * Legacy URL redirects.
  *
- * /experience/ was the old slug for what is now the Aletheon Intelligence platform page.
- * Kept as a 301 so existing links and any indexed results do not 404.
+ * The Business Intelligence IP was sold; redirect its former page and older
+ * experience URL to the current offerings. Keep existing links usable.
  */
 add_action(
 	'template_redirect',
@@ -92,8 +92,9 @@ add_action(
 		}
 
 		$map = array(
-			'experience' => 'aletheon-intelligence',
-			'services'   => 'solutions',
+			'experience'            => 'solutions',
+			'aletheon-intelligence' => 'solutions',
+			'services'              => 'solutions',
 		);
 
 		$path = trim( (string) wp_parse_url( add_query_arg( array() ), PHP_URL_PATH ), '/' );
@@ -102,5 +103,7 @@ add_action(
 			wp_safe_redirect( home_url( '/' . $map[ $path ] . '/' ), 301 );
 			exit;
 		}
-	}
+	},
+	// Handle retired URLs before WordPress's canonical and old-slug redirects.
+	1
 );

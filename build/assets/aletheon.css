@@ -210,6 +210,7 @@ body::before {
   margin-top: 1.8rem;
 }
 .ale-hero-btn {
+  box-sizing: border-box;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -906,6 +907,7 @@ body::before {
 
 .ale-section.is-research-thesis { overflow: clip; }
 .ale-research-thesis {
+  box-sizing: border-box;
   width: min(calc(100% - 2.5rem), 1240px);
   margin-inline: auto;
   position: relative;
@@ -1375,7 +1377,7 @@ a.ale-btn:hover { transform: translateY(-2px); box-shadow: 0 0 0 1px var(--ale-v
     letter-spacing: 0.16em;
   }
   .ale-header .is-menu-open .wp-block-navigation__responsive-container-content::after {
-    content: "GOVERNED INTELLIGENCE SYSTEMS";
+    content: "AI SOFTWARE ENGINEERING";
     display: block;
     margin-top: auto;
     padding-top: 2rem;
@@ -1427,39 +1429,19 @@ a.ale-btn:hover { transform: translateY(-2px); box-shadow: 0 0 0 1px var(--ale-v
   }
   .ale-header .is-menu-open .wp-block-navigation__container.wp-block-navigation > .wp-block-navigation-submenu {
     display: grid !important;
-    grid-template-columns: minmax(0, 1fr) 48px;
+    grid-template-columns: minmax(0, 1fr);
     align-items: center;
   }
   .ale-header .is-menu-open .wp-block-navigation-submenu > .wp-block-navigation-item__content { grid-column: 1; }
+  /* WordPress keeps submenu destinations expanded in the mobile overlay. */
   .ale-header .is-menu-open .wp-block-navigation-submenu > .wp-block-navigation-submenu__toggle {
-    grid-column: 2;
-    grid-row: 1;
-    width: 44px;
-    height: 44px;
-    display: grid;
-    place-items: center;
-    margin: 0 0 0 auto;
-    padding: 0;
-    border: 1px solid var(--ale-line);
-    border-radius: 9px;
-    background: rgba(28, 22, 48, 0.72);
-    color: var(--ale-violet-lt);
-    cursor: pointer;
-    -webkit-tap-highlight-color: rgba(168, 85, 247, 0.18);
+    display: none !important;
   }
-  .ale-header .is-menu-open .wp-block-navigation-submenu > .wp-block-navigation-submenu__toggle svg {
-    width: 15px;
-    height: 15px;
-    stroke: currentColor;
-    transition: transform 0.22s ease;
-  }
-  .ale-header .is-menu-open .wp-block-navigation-submenu > .wp-block-navigation-submenu__toggle[aria-expanded="true"] {
-    background: rgba(109, 40, 217, 0.28);
-    border-color: var(--ale-line-strong);
-    box-shadow: 0 0 22px -12px rgba(168, 85, 247, 0.9);
-  }
-  .ale-header .is-menu-open .wp-block-navigation-submenu > .wp-block-navigation-submenu__toggle[aria-expanded="true"] svg { transform: rotate(180deg); }
   .ale-header .is-menu-open .wp-block-navigation-submenu > .wp-block-navigation__submenu-container {
+    box-sizing: border-box;
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
     grid-column: 1 / -1;
     width: 100% !important;
     min-width: 0 !important;
@@ -1473,12 +1455,14 @@ a.ale-btn:hover { transform: translateY(-2px); box-shadow: 0 0 0 1px var(--ale-v
     color: var(--ale-body) !important;
     box-shadow: none !important;
     position: relative !important;
+    inset: auto !important;
     flex-direction: column !important;
     align-items: stretch !important;
     gap: 0 !important;
   }
   .ale-header .is-menu-open .wp-block-navigation__submenu-container .wp-block-navigation-item { width: 100%; }
   .ale-header .is-menu-open .wp-block-navigation__submenu-container .wp-block-navigation-item__content {
+    box-sizing: border-box;
     width: 100%;
     display: block;
     padding: 0.7rem 0.8rem !important;
@@ -1494,20 +1478,6 @@ a.ale-btn:hover { transform: translateY(-2px); box-shadow: 0 0 0 1px var(--ale-v
     background: rgba(168, 85, 247, 0.12) !important;
   }
 
-  /* Modern mobile browsers get a true accordion. Older browsers retain
-     WordPress' expanded submenu fallback, so every destination stays usable. */
-  @supports selector(.wp-block-navigation-submenu:has(> button[aria-expanded="true"])) {
-    .ale-header .is-menu-open .wp-block-navigation-submenu > .wp-block-navigation__submenu-container {
-      display: none !important;
-      visibility: hidden !important;
-      opacity: 0 !important;
-    }
-    .ale-header .is-menu-open .wp-block-navigation-submenu:has(> .wp-block-navigation-submenu__toggle[aria-expanded="true"]) > .wp-block-navigation__submenu-container {
-      display: flex !important;
-      visibility: visible !important;
-      opacity: 1 !important;
-    }
-  }
 }
 
 .wp-block-site-title a { font-weight: 680; letter-spacing: -0.015em; text-decoration: none; }
