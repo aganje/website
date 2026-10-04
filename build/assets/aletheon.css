@@ -113,6 +113,22 @@ body::before {
 
 .ale-section { padding-block: clamp(3.5rem, 2rem + 7vw, 7.5rem); position: relative; }
 .ale-section.is-tight { padding-block: clamp(2.5rem, 1.5rem + 4vw, 4.5rem); }
+
+/* Opening heroes and closing CTAs. The generator has always emitted `is-hero`
+   on these; until now nothing styled it, so they sat at ordinary section
+   rhythm. They carry the page, so they get the room and a centred measure. */
+.ale-section.is-hero { padding-block: clamp(4.25rem, 2.25rem + 8.5vw, 9rem); }
+.ale-section.is-hero .ale-btns { justify-content: center; }
+.ale-section.is-hero .ale-display { max-width: 22ch; margin-inline: auto; }
+
+/* A closing CTA follows content rather than the header, so it needs a boundary
+   above it. Flagged explicitly by the generator rather than inferred with
+   :first-child, because the theme's wrapper nesting around page content is not
+   something this stylesheet can rely on. */
+.ale-section.is-closing {
+  border-top: 1px solid var(--ale-line);
+  background: radial-gradient(ellipse 760px 340px at 50% 100%, rgba(109, 40, 217, 0.16), transparent 72%);
+}
 .ale-rule {
   border: 0;
   height: 1px;
@@ -164,9 +180,86 @@ body::before {
 .ale-card.is-problem:hover { border-color: rgba(59, 27, 196, 0.8); box-shadow: 0 18px 44px -22px rgba(59, 27, 196, 0.5); }
 .ale-card.is-problem .ale-card-num { color: var(--ale-muted); }
 
-/* Platform cards — the two products, given more presence. */
-.ale-card.is-platform { padding: clamp(1.7rem, 1.2rem + 1.4vw, 2.6rem); }
-.ale-card.is-platform .ale-h3 { font-size: clamp(1.45rem, 1.2rem + 1vw, 2rem); }
+/* ---------- platform spotlight ----------
+   Forge is the only platform now, so it gets a single wide block rather than
+   one of a pair of cards: copy on the left, what's inside on the right. */
+
+.ale-feature {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  gap: clamp(1.4rem, 1rem + 1.6vw, 3rem);
+  border: 1px solid var(--ale-line-strong);
+  border-radius: var(--ale-r-lg);
+  background:
+    radial-gradient(ellipse 680px 320px at 20% 0%, rgba(168, 85, 247, 0.16), transparent 70%),
+    linear-gradient(168deg, var(--ale-surface-2), var(--ale-surface));
+  padding: clamp(1.6rem, 1.2rem + 1.6vw, 3rem);
+  position: relative;
+  overflow: hidden;
+}
+.ale-feature::after {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--ale-line-strong) 42%, transparent);
+}
+.ale-feature-main .ale-h3 {
+  font-size: clamp(1.5rem, 1.2rem + 1.5vw, 2.3rem);
+  line-height: 1.16;
+  letter-spacing: -0.018em;
+  margin: 0 0 0.9rem;
+}
+.ale-feature-main p { color: var(--ale-muted); line-height: 1.62; margin: 0 0 0.9rem; }
+.ale-feature-main p:last-child { margin-bottom: 0; }
+.ale-feature-cta { margin-top: 1.4rem !important; }
+
+.ale-feature-side {
+  border-left: 1px solid var(--ale-line);
+  padding-left: clamp(1.2rem, 0.8rem + 1.4vw, 2.4rem);
+}
+.ale-feature-side b {
+  display: block;
+  font-family: var(--ale-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ale-violet-lt);
+  margin-bottom: 1.1rem;
+}
+
+@media (max-width: 860px) {
+  .ale-feature { grid-template-columns: 1fr; }
+  .ale-feature-side {
+    border-left: 0;
+    border-top: 1px solid var(--ale-line);
+    padding-left: 0;
+    padding-top: 1.6rem;
+  }
+}
+
+/* ---------- tag row ---------- */
+
+.ale-tags { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.9rem 1.4rem; }
+.ale-tags b {
+  font-family: var(--ale-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ale-violet-lt);
+  flex: none;
+}
+.ale-tag-row { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.ale-tag {
+  font-family: var(--ale-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
+  color: var(--ale-body);
+  border: 1px solid var(--ale-line);
+  border-radius: 999px;
+  background: var(--ale-surface);
+  padding: 0.4em 0.95em;
+}
 
 .ale-grid { display: grid; gap: clamp(1rem, 0.8rem + 0.6vw, 1.5rem); }
 .ale-grid.is-2 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); }
@@ -393,6 +486,19 @@ a.ale-btn:hover { transform: translateY(-2px); box-shadow: 0 0 0 1px var(--ale-v
 
 /* Compact variant for the persistent header CTA. */
 .wp-block-button.ale-btn-sm .wp-block-button__link { padding: 0.6em 1.3em; font-size: 0.9rem; }
+
+/* Seven top-level items — one of them "Software Development" — plus a persistent
+   CTA is a wide menu. Tighten type and gaps between the theme's mobile breakpoint
+   and a comfortable desktop width so the header never wraps to two rows. */
+@media (min-width: 601px) and (max-width: 1200px) {
+  .ale-header .wp-block-navigation { --wp--style--block-gap: 0.8rem; }
+  .ale-header .wp-block-navigation a,
+  .ale-header .wp-block-navigation .wp-block-navigation-submenu__toggle { font-size: 0.85rem; }
+  .ale-header .wp-block-button.ale-btn-sm .wp-block-button__link {
+    padding: 0.55em 1.05em;
+    font-size: 0.82rem;
+  }
+}
 
 /* ---------- footer ---------- */
 

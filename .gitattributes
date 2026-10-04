@@ -1,0 +1,14 @@
+# Generated WordPress block markup and the design layer are deployed verbatim to
+# the server, so they are stored and checked out with LF regardless of platform.
+# Without this, a Windows checkout rewrites every generated file to CRLF and each
+# `python generate.py` shows the whole tree as modified.
+*.html  text eol=lf
+*.css   text eol=lf
+*.php   text eol=lf
+*.py    text eol=lf
+*.json  text eol=lf
+*.md    text eol=lf
+*.txt   text eol=lf
+*.csv   text eol=lf
+
+*.png   binary

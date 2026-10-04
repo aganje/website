@@ -3,6 +3,58 @@
 > **STATUS: IMPLEMENTED ON PRODUCTION 2026-08-02.** Deployed directly to live at the owner's
 > direction (low traffic, staging skipped). See "Deployment record" below for what shipped,
 > what was deliberately left out, and how to roll back.
+>
+> **AMENDED 2026-10-04 — Aletheon Intelligence was sold.** The site now sells Aletheon Forge and
+> software development only. See "2026-10-04 overhaul" immediately below. Everything further down
+> this document describes the August rebuild and is kept as the historical record; where the two
+> conflict, this section wins.
+
+---
+
+## 2026-10-04 overhaul — one platform, plus software development
+
+**Why:** the Aletheon Intelligence platform was sold. A site whose central claim is trust cannot
+keep marketing a product the company no longer owns, and the two-platform structure was load-bearing
+across the whole information architecture — so this is another repositioning, not a copy edit.
+
+**Built in this repo, not yet deployed.** No credentials in this environment; `DEPLOY.md` has the
+ordered runbook, including the page-10 slug change that must land before the redirects.
+
+| Item | Detail |
+|---|---|
+| Positioning | From "two platforms, one governed foundation" to **one platform plus a build practice**: Aletheon Forge, and software development on the same governed foundation |
+| Page removed | Aletheon Intelligence (WP 13) — deleted from the build, trashed rather than purged on the server |
+| Page replaced | Solutions → **Software Development** (reuses WP 10, slug changes to `software-development`) |
+| Pages rewritten | Home (restructured to 13 sections), Aletheon Forge (expanded to the flagship page), Governed AI, About, Contact, Research |
+| Navigation | Platforms dropdown removed — with one platform it was a submenu containing a single item. Flat 7-item menu, persistent Request a Demo retained |
+| Footer | Intelligence link removed; "Platforms" column became "What We Build" (Forge, Governed AI, Software Development); tagline no longer says "governed intelligence layer" |
+| Diagram | Top band re-labelled from business roles to engineering ones (Engineers, Tech Leads, Architects, Product Owners, Source Control, Aletheon Forge). Node positions are now **computed** from label length instead of hardcoded, and the build raises if a row cannot fit |
+| Request flow | Two variants: `Identity → Context → Memory → Standards → Agent → Review → Merge` on Home and Forge, generic `…→ AI → Governance → Action` on Governed AI |
+| Redirects | `/aletheon-intelligence/` and `/experience/` → `/aletheon-forge/`; `/services/` and `/solutions/` → `/software-development/`. All 301 |
+| Copyright | Now **fixed at 2025** via the `ALE_COPYRIGHT_YEAR` constant, rendered as "Copyright 2025. All rights reserved." — see the note below, which supersedes the August row in the table further down |
+| Build guard | `generate.py` grew a `FORBIDDEN` tuple and now **fails the build** if `Aletheon Intelligence`, `aletheon-intelligence`, `business intelligence`, or the old consulting disclaimers reappear. It also warns about orphaned page files |
+| New CSS | `.ale-feature` platform spotlight (replaces the two-up platform cards), `.ale-tag` row, and a header media query so a 7-item menu does not wrap |
+| Repo hygiene | `.gitattributes` pins generated markup to LF, so a Windows checkout stops showing the whole tree as modified after every build |
+
+**On the copyright year.** The August build deliberately made this dynamic, because the footer had
+been stuck at 2025 into August 2026. It is now deliberately static at 2025 at the owner's request,
+which means it will read 2025 while the current year is 2026. That is the instruction and it is a
+one-constant change either way; flagging it only so the next person does not "fix" it as a bug.
+To go back to the live year, replace `ALE_COPYRIGHT_YEAR` with `wp_date( 'Y' )`.
+
+**Deliberately not done:**
+
+- No testimonials, logos, ratings, or customer names. Still none that are real and attributable.
+- No product screenshots. Forge is still presented diagrammatically; real UI would be the single
+  biggest improvement available to the platform page.
+- The Software Development page describes capability domains drawn from the founder's stated
+  expertise in the brief. It does not describe any delivered engagement, because none is documented
+  in this repo. If there are real projects that can be named, that page is where they belong.
+- `live/` was not re-pulled. It remains a pre-August-2026 snapshot.
+
+**Not verified:** the rendered result. No browser or screenshot tool in this environment, and no
+PHP binary to lint the mu-plugin — structure, block balance, copy, and diagram geometry are checked
+by the build; appearance is not. `DEPLOY.md` step 1 covers the server-side `php -l`.
 
 ---
 
@@ -29,7 +81,7 @@ Theme archive alongside it at `~/aletheon-backups/themes-20260802-215847.tar.gz`
 | Pages rewritten | Home (18), About (11), Contact (12), Solutions (10), Aletheon Intelligence (13) |
 | Pages created | Aletheon Forge (77), Governed AI (78), Research (79) |
 | Navigation | Rebuilt with Platforms dropdown + persistent Request a Demo |
-| Header/footer | Sticky glass header; footer rebuilt — placeholder `#` social links removed, copyright now rendered dynamically via `[ale_copyright]` so it cannot go stale again |
+| Header/footer | Sticky glass header; footer rebuilt — placeholder `#` social links removed, copyright rendered via `[ale_copyright]`. *(The shortcode remains, but as of 2026-10-04 it returns a fixed year rather than the current one — see the amendment at the top.)* |
 | Site identity | Title → "Aletheon Labs"; description → the governed-layer one-liner |
 | Cleanup | "Hello world!" deleted; privacy policy published |
 | Redirects | `/experience/` → `/aletheon-intelligence/`, `/services/` → `/solutions/`, both 301 |

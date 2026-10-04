@@ -37,17 +37,28 @@ add_action(
 );
 
 /**
+ * The copyright year shown in the footer.
+ *
+ * Set explicitly at the owner's direction rather than derived from the current
+ * date, so it does not move on its own. Bump this one constant to change it.
+ */
+if ( ! defined( 'ALE_COPYRIGHT_YEAR' ) ) {
+	define( 'ALE_COPYRIGHT_YEAR', '2025' );
+}
+
+/**
  * [ale_copyright] — footer copyright line.
  *
- * Rendered rather than hardcoded so the year cannot go stale the way the
- * previous footer did (it was still showing 2025 in August 2026).
+ * Still a shortcode rather than literal text in the footer template part, so the
+ * line lives in exactly one place and the footer markup never has to be edited
+ * to change it.
  */
 add_shortcode(
 	'ale_copyright',
 	function () {
 		return sprintf(
-			'<p class="ale-muted">&copy; %s Aletheon Labs &middot; San Diego, CA</p>',
-			esc_html( wp_date( 'Y' ) )
+			'<p class="ale-muted">Copyright %s. All rights reserved.</p>',
+			esc_html( ALE_COPYRIGHT_YEAR )
 		);
 	}
 );
@@ -72,10 +83,11 @@ add_filter(
 );
 
 /**
- * Legacy URL redirects.
+ * Legacy URL redirects, all 301, so existing links and indexed results do not 404.
  *
- * /experience/ was the old slug for what is now the Aletheon Intelligence platform page.
- * Kept as a 301 so existing links and any indexed results do not 404.
+ * /experience/ and /services/ were consulting-era slugs. /aletheon-intelligence/ was the
+ * Intelligence platform page; that platform was sold in 2026, so the page is gone and its
+ * traffic now lands on Forge. /solutions/ was replaced by the Software Development page.
  */
 add_action(
 	'template_redirect',
@@ -85,8 +97,10 @@ add_action(
 		}
 
 		$map = array(
-			'experience' => 'aletheon-intelligence',
-			'services'   => 'solutions',
+			'experience'             => 'aletheon-forge',
+			'aletheon-intelligence'  => 'aletheon-forge',
+			'services'               => 'software-development',
+			'solutions'              => 'software-development',
 		);
 
 		$path = trim( (string) wp_parse_url( add_query_arg( array() ), PHP_URL_PATH ), '/' );
