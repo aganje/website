@@ -50,16 +50,12 @@ add_action(
 /**
  * [ale_copyright] — footer copyright line.
  *
- * Rendered rather than hardcoded so the year cannot go stale the way the
- * previous footer did (it was still showing 2025 in August 2026).
+ * Keep the copyright year fixed at 2025, as requested by the site owner.
  */
 add_shortcode(
 	'ale_copyright',
 	function () {
-		return sprintf(
-			'<p class="ale-muted">&copy; %s Aletheon Labs &middot; San Diego, CA</p>',
-			esc_html( wp_date( 'Y' ) )
-		);
+		return '<p class="ale-muted">&copy; 2025 Aletheon Labs. All rights reserved. &middot; San Diego, CA</p>';
 	}
 );
 

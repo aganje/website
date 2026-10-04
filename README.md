@@ -42,6 +42,7 @@ credentials.
   are real and attributable. The Services page previously shipped fabricated testimonials and a
   fake review count; that is what this rule exists to prevent.
 - Custom CSS classes are namespaced `ale-` to avoid colliding with the theme's `nfd-` system.
+- Footer copyright stays at **2025** and includes **All rights reserved.**, as requested by the owner.
 
 ## Note on the snapshot
 

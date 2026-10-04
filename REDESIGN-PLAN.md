@@ -39,7 +39,7 @@ Theme archive alongside it at `~/aletheon-backups/themes-20260802-215847.tar.gz`
 | Pages rewritten | Home (18), About (11), Contact (12), Solutions (10), Aletheon Intelligence (13) |
 | Pages created | Aletheon Forge (77), Governed AI (78), Research (79), Software Development (97) |
 | Navigation | "Offerings" dropdown (Intelligence, Forge, Software Development) + persistent Request a Demo |
-| Header/footer | Sticky glass header; footer rebuilt — placeholder `#` social links removed, copyright now rendered dynamically via `[ale_copyright]` so it cannot go stale again |
+| Header/footer | Sticky glass header; footer rebuilt — placeholder `#` social links removed; `[ale_copyright]` renders © 2025 Aletheon Labs. All rights reserved., fixed to 2025 at the owner's request on 2026-10-04 |
 | Site identity | Title → "Aletheon Labs"; description → the governed-layer one-liner |
 | Cleanup | "Hello world!" deleted; privacy policy published |
 | Redirects | `/experience/` → `/aletheon-intelligence/`, `/services/` → `/solutions/`, both 301 |
