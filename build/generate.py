@@ -11,6 +11,7 @@ Run:  python generate.py     ->  writes build/pages/*.html
 import html
 import os
 import re
+import sys
 
 OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "pages")
 
@@ -1170,7 +1171,34 @@ PAGES["contact"] = "\n\n".join(
 
 # --------------------------------------------------------------------------
 
+STALE_WARNING = """
+REFUSING TO RUN -- this generator is stale and would destroy live content.
+
+It reproduces the site as it stood on 2026-08-02. Production has moved on, and
+pages/ now holds the real, current site pulled down from the server on
+2026-10-04. Specifically, this script does NOT know about:
+
+  * software-development.html   -- a published page (WP 97) it has no copy of
+  * research.html               -- the founder dossier: Microsoft, published
+                                   author, microservice design, $100B to mid-cap
+  * home.html / about.html      -- hand-written Software Development sections
+  * the "Offerings" navigation submenu
+
+Running it would overwrite all of the above with the August text.
+
+Those pages were authored by hand in WordPress, not generated, so they cannot
+be round-tripped back into this script. Edit the HTML in pages/ directly, or
+rebuild this generator from the current pages first.
+
+If you genuinely want the August output anyway, pass --force.
+"""
+
+
 def main():
+    if "--force" not in sys.argv:
+        print(STALE_WARNING.strip())
+        raise SystemExit(1)
+
     os.makedirs(OUT, exist_ok=True)
     for slug, markup in PAGES.items():
         path = os.path.join(OUT, f"{slug}.html")

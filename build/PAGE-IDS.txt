@@ -1,0 +1,28 @@
+WordPress post IDs for deploys. Verified against production 2026-10-04.
+Deploy with:  wp post update <id> <file>
+
+  build/pages/home.html                  -> 18   (front page, show_on_front=page)
+  build/pages/aletheon-forge.html        -> 77
+  build/pages/governed-ai.html           -> 78
+  build/pages/software-development.html  -> 97
+  build/pages/research.html              -> 79
+  build/pages/about.html                 -> 11
+  build/pages/contact.html               -> 12
+  build/pages/solutions.html             -> 10
+  build/pages/aletheon-intelligence.html -> 13   (platform sold; page still published)
+  build/pages/privacy-policy.html        ->  3
+
+  build/parts/nav.html            -> 7    (wp_navigation; the menu header.html references)
+  build/parts/nav-legacy-6.html   -> 6    (wp_navigation; consulting-era, unused)
+  build/parts/header.html         -> 19   (wp_template_part)
+  build/parts/footer.html         -> 20   (wp_template_part)
+  build/templates/
+    wp_template-page-no-title.html -> 43  (wp_template)
+  build/global-styles.json         -> 4   (wp_global_styles)
+
+Files, not database:
+  build/assets/aletheon.css        -> wp-content/mu-plugins/aletheon/aletheon.css
+  build/assets/aletheon-design.php -> wp-content/mu-plugins/aletheon-design.php
+
+Server: ejd.dmu.mybluehost.me:22 as ejddmumy, docroot ~/public_html
+  (siteurl verified = https://aletheonlabs.com)

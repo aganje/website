@@ -1,0 +1,13 @@
+# Block markup and the design layer are deployed to the server verbatim, so they
+# are stored and checked out with LF on every platform. Without this, a Windows
+# checkout rewrites them to CRLF and that CRLF gets pushed into WordPress.
+*.html  text eol=lf
+*.css   text eol=lf
+*.php   text eol=lf
+*.py    text eol=lf
+*.json  text eol=lf
+*.md    text eol=lf
+*.txt   text eol=lf
+*.csv   text eol=lf
+
+*.png   binary

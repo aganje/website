@@ -9,3 +9,7 @@ bluehost_rsa*
 
 # scratch / image generation working dir
 tmp/
+
+# Python bytecode from running the generator
+__pycache__/
+*.pyc
