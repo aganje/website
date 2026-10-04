@@ -1,0 +1,9 @@
+blogname=Aletheon Labs
+blogdescription=The governed intelligence layer for AI-powered business and software development.
+siteurl=https://aletheonlabs.com
+home=https://aletheonlabs.com
+page_on_front=18
+show_on_front=page
+permalink_structure=/%postname%/
+template=bluehost-blueprint
+stylesheet=bluehost-blueprint
