@@ -58,14 +58,26 @@ Deploy is over SSH/WP-CLI (`wp post update <id> <file>`), with CSS and the mu-pl
 are the SSH keys and the WordPress application password. Nothing in this repo contains
 credentials.
 
-### Publishing the Forge Demo
+### Publishing the Forge videos
 
-The video is included in Git at `build/media/forge-demo.mp4`. Upload it to
-`wp-content/uploads/2026/10/forge-demo.mp4` before publishing the updated Forge page.
-Create the destination directory if needed. Publish `build/pages/aletheon-forge.html`
-to the Forge WordPress page and `build/assets/forge.css` to
-`wp-content/mu-plugins/aletheon/forge.css`, then purge the site's page cache.
-The embed is titled **Forge Demo**, has native playback controls, and does not autoplay.
+The Forge page embeds two videos, both included in Git under `build/media/`:
+
+| Title | File | Length |
+| --- | --- | --- |
+| **Forge Demo** | `forge-demo.mp4` | 7:18 |
+| **AI Enabler Deep Dive** | `forge-ai-enabler-deep-dive.mp4` | 5:41 |
+
+Upload each to `wp-content/uploads/2026/10/` under the same file name before publishing
+the updated Forge page. Create the destination directory if needed. Publish
+`build/pages/aletheon-forge.html` to the Forge WordPress page and `build/assets/forge.css`
+to `wp-content/mu-plugins/aletheon/forge.css`, then purge the site's page cache.
+Both embeds have native playback controls and do not autoplay. Titles, lengths, and
+descriptions live in `FORGE_VIDEOS` in `build/generate.py`.
+
+AI Enabler Deep Dive copy was checked against the `AletheonForge` user guides
+(`docs/user-guide/12-token-usage-and-efficiency.md`, `13-ai-enablers.md`) at commit
+`7f85cf55ea0eefd23b58d14578faeb520a0fa4cf`, including shipped skills, knowledge on demand,
+and local context selection.
 
 ## Conventions
 

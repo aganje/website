@@ -77,7 +77,14 @@
   margin-bottom: clamp(2rem, 1.5rem + 1.8vw, 3.5rem);
 }
 
+.ale-forge-videos {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1.75rem, 1rem + 2vw, 2.75rem);
+}
+
 .ale-forge-demo {
+  min-width: 0;
   margin: 0;
 }
 
@@ -85,13 +92,32 @@
   display: block;
   width: 100%;
   height: auto;
+  aspect-ratio: 16 / 9;
   background: #000;
   border: 1px solid var(--ale-line);
   border-radius: 8px;
 }
 
 .ale-forge-demo figcaption {
-  margin-top: 0.75rem;
+  margin-top: 1rem;
+}
+
+.ale-forge-demo h3 {
+  font-size: clamp(1.1rem, 1rem + 0.25vw, 1.25rem);
+  font-weight: 650;
+  line-height: 1.35;
+  letter-spacing: -0.018em;
+}
+
+.ale-forge-demo figcaption p {
+  margin-top: 0.5rem !important;
+  font-size: 0.95rem;
+  color: var(--ale-muted);
+}
+
+.ale-forge-demo .ale-forge-caption {
+  display: block;
+  margin-top: 0.7rem;
 }
 
 .ale-forge-demo a {
@@ -672,6 +698,7 @@
   .ale-forge-receipt { width: 100%; max-width: 680px; }
   .ale-forge-outcomes,
   .ale-forge-knowledge-list { gap: 1.3rem; }
+  .ale-forge-videos,
   .ale-forge-usecases { grid-template-columns: minmax(0, 1fr); }
   .ale-forge-usecases > article { display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 0 1.1rem; }
   .ale-forge-case-number { grid-row: 1 / 4; margin-bottom: 0; padding-top: 0.3rem; }
