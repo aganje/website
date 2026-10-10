@@ -431,6 +431,21 @@ def forge_hero():
     )
 
 
+def forge_demo():
+    return raw(
+        '<div class="ale-forge-wrap" id="forge-demo">'
+        '<div class="ale-forge-section-head"><p class="ale-forge-kicker">Forge in action</p>'
+        '<h2 class="ale-forge-heading" id="forge-demo-title">Forge Demo</h2></div>'
+        '<figure class="ale-forge-demo">'
+        '<video controls playsinline preload="metadata" aria-labelledby="forge-demo-title">'
+        '<source src="/wp-content/uploads/2026/10/forge-demo.mp4" type="video/mp4">'
+        '<a href="/wp-content/uploads/2026/10/forge-demo.mp4">Watch the Forge Demo</a></video>'
+        '<figcaption class="ale-forge-caption">'
+        '<a href="/wp-content/uploads/2026/10/forge-demo.mp4">Open video</a>'
+        '</figcaption></figure></div>'
+    )
+
+
 def forge_outcomes():
     return raw(
         '<div class="ale-forge-wrap">'
@@ -827,6 +842,7 @@ PAGES["home"] = "\n\n".join([
 
 PAGES["aletheon-forge"] = "\n\n".join([
     section(forge_hero(), "ale-forge-section is-forge-hero"),
+    section(forge_demo(), "ale-forge-section is-forge-section"),
     section(forge_outcomes(), "ale-forge-section is-forge-section"),
     section(forge_workflow(), "ale-forge-section is-forge-section"),
     section(forge_brain(), "ale-forge-section is-forge-section"),

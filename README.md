@@ -58,6 +58,15 @@ Deploy is over SSH/WP-CLI (`wp post update <id> <file>`), with CSS and the mu-pl
 are the SSH keys and the WordPress application password. Nothing in this repo contains
 credentials.
 
+### Publishing the Forge Demo
+
+The video is included in Git at `build/media/forge-demo.mp4`. Upload it to
+`wp-content/uploads/2026/10/forge-demo.mp4` before publishing the updated Forge page.
+Create the destination directory if needed. Publish `build/pages/aletheon-forge.html`
+to the Forge WordPress page and `build/assets/forge.css` to
+`wp-content/mu-plugins/aletheon/forge.css`, then purge the site's page cache.
+The embed is titled **Forge Demo**, has native playback controls, and does not autoplay.
+
 ## Conventions
 
 - **Brand is purple, black, and white.** Values in `build/assets/aletheon.css` `:root`. No cyan,
