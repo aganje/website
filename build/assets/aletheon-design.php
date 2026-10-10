@@ -42,6 +42,19 @@ add_action(
 		wp_register_style( 'aletheon-design', false, array(), null );
 		wp_enqueue_style( 'aletheon-design' );
 		wp_add_inline_style( 'aletheon-design', $css );
+
+		// The Forge product page has its own layout, scoped to ale-forge classes.
+		if ( is_page( 'aletheon-forge' ) ) {
+			$forge_path = WPMU_PLUGIN_DIR . '/aletheon/forge.css';
+			if ( is_readable( $forge_path ) ) {
+				$forge_css = file_get_contents( $forge_path );
+				if ( false !== $forge_css ) {
+					wp_register_style( 'aletheon-forge-design', false, array( 'aletheon-design' ), null );
+					wp_enqueue_style( 'aletheon-forge-design' );
+					wp_add_inline_style( 'aletheon-forge-design', $forge_css );
+				}
+			}
+		}
 	},
 	// Late priority so this wins over the theme's own stylesheets.
 	99

@@ -15,10 +15,19 @@ website, and its former `/aletheon-intelligence/` and `/experience/` URLs redire
 remain reference material. Current page copy and structure come from `build/generate.py`.
 
 Forge's description was verified against the current `AletheonForge` repository on
-2026-10-04: its user guides for AI enablers and missions, registered provider adapters,
+2026-10-09 at commit `a13e24f4294d1a9ea6cbbf73fea4216ad8bdf908`: its user guides for AI enablers and missions, registered provider adapters,
 context routing, memory assessment, knowledge maps, acceptance checks, and pull request
 publishers. Copy describes the implemented local-first Windows workflow and avoids
 unverified release availability, performance guarantees, or provider parity.
+
+The Forge product page uses dedicated styles in `build/assets/forge.css`, loaded only
+on `/aletheon-forge/`, and the repository's official transparent fire-and-anvil mark
+in `build/assets/forge-mark.png`. Workflow and evidence visuals are labeled illustrations.
+Publish these assets to `wp-content/mu-plugins/aletheon/` together with the page and plugin.
+`build/templates/forge-product.html` is the dedicated WordPress template for the Forge
+page. Register it as `forge-product` for the active `bluehost-blueprint` theme and set
+the Forge page's `_wp_page_template` to `forge-product`. It supplies a sticky header,
+one main landmark, and the page content without adding a second title above the hero.
 
 ## Layout
 

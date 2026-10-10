@@ -6,6 +6,25 @@
 
 ---
 
+## Forge product page refresh - 2026-10-09
+
+Deployed a dedicated Forge page based on AletheonForge commit
+`a13e24f4294d1a9ea6cbbf73fea4216ad8bdf908`. The page now explains requirement-first
+missions, Captain and Autopilot coordination, One Brain, acceptance evidence, and
+retained learning. It uses the official transparent fire-and-anvil mark and labeled
+workflow illustrations, with product styles loaded only on the Forge page.
+
+WordPress page 77 now uses the `forge-product` block template: a sticky header, one
+main landmark, and the content without a duplicate post title. Forge mentions on
+Home, About, Solutions, and Contact were refreshed. Copyright remains fixed at 2025.
+
+Validation covered five Forge viewport widths (320 to 1440 pixels), keyboard focus,
+native FAQ controls, anchor navigation, related page regressions, live page/asset
+hashes, search metadata, and retired-offering redirects. The pre-deploy database and
+plugin backup is `~/aletheon-backups/forge-20261009-ee8bca10/`; the previous Forge
+template selection was the default. Source lives in `build/generate.py`,
+`build/assets/forge.css`, and `build/templates/forge-product.html`.
+
 ## Current offering scope - 2026-10-04
 
 The current website presents two offerings: **Aletheon Forge** and **Software Development**.

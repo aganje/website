@@ -4,7 +4,8 @@ Generate WordPress block markup for every aletheonlabs.com page.
 
 Current offerings are Aletheon Forge and Software Development. The Business
 Intelligence IP was sold and is no longer offered by Aletheon Labs. Forge copy
-is grounded in its current user guides and implementation, reviewed 2026-10-04.
+is grounded in its current user guides and implementation, reviewed 2026-10-09
+at AletheonForge commit a13e24f4294d1a9ea6cbbf73fea4216ad8bdf908.
 Nothing here invents customers, testimonials, metrics, or release availability.
 
 Run:  python generate.py     ->  writes build/pages/*.html
@@ -385,6 +386,216 @@ def research_thesis():
     )
 
 
+def forge_hero():
+    return raw(
+        '<div class="ale-forge-wrap">'
+        '<div class="ale-forge-hero">'
+        '<div class="ale-forge-hero__copy">'
+        '<div class="ale-forge-brand"><img src="/wp-content/mu-plugins/aletheon/forge-mark.png" '
+        'width="72" height="76" alt="" decoding="async"><span>Aletheon Forge</span></div>'
+        '<p class="ale-forge-kicker">Engineering intelligence &amp; orchestration</p>'
+        '<h1 class="ale-forge-title">Give your AI agents '
+        '<span class="ale-grad">an engineering organization.</span></h1>'
+        '<p class="ale-forge-intro">Turn coding agents into a coordinated engineering team. '
+        'Forge connects the plan, project knowledge, execution, and acceptance evidence&mdash;'
+        'while you set the objective and direct the work.</p>'
+        '<div class="ale-forge-actions">'
+        '<a class="ale-forge-button" href="/contact/">Request a Forge demo <span aria-hidden="true">&rarr;</span></a>'
+        '<a class="ale-forge-button is-secondary" href="#forge-workflow">See how it works</a></div>'
+        '<p class="ale-forge-platform">Local-first on Windows. Connect the coding tools you already use.</p>'
+        '</div>'
+        '<figure class="ale-forge-console" aria-labelledby="forge-console-title">'
+        '<div class="ale-forge-console__header"><span id="forge-console-title">Mission control</span>'
+        '<span class="ale-forge-caption">Illustrative workflow</span></div>'
+        '<div class="ale-forge-console__brief"><small>Start with an outcome</small>'
+        '<strong>Add appointment rescheduling</strong>'
+        '<p>Keep availability accurate. Preserve confirmation. Define the checks before work starts.</p></div>'
+        '<div class="ale-forge-context-line" aria-label="Engineering work structure">'
+        '<span>Product</span><span>Repository</span><span>Mission</span><span>Run</span></div>'
+        '<div class="ale-forge-captain"><small>Coordination</small><strong>The Captain</strong>'
+        '<p>Assign the work. Make the stages and exit gates visible.</p></div>'
+        '<div class="ale-forge-workers">'
+        '<div><span>01 / Build</span><strong>Implement</strong></div>'
+        '<div><span>02 / Inspect</span><strong>Review</strong></div>'
+        '<div><span>03 / Check</span><strong>Verify</strong></div></div>'
+        '<figcaption class="ale-forge-console__footer">'
+        'Requirements <span aria-hidden="true">&rarr;</span> Context '
+        '<span aria-hidden="true">&rarr;</span> Evidence '
+        '<span aria-hidden="true">&rarr;</span> Reusable knowledge</figcaption></figure>'
+        '</div>'
+        '<div class="ale-forge-integrations"><div><p class="ale-forge-kicker">Your tools. A shared workflow.</p>'
+        '<p>Connect installed coding assistants.</p></div>'
+        '<div class="ale-forge-provider-list" aria-label="Supported coding tool integrations">'
+        '<span>Claude Code</span><span>Codex</span><span>Gemini CLI</span><span>Grok</span><span>GitHub Copilot</span>'
+        '</div></div></div>'
+    )
+
+
+def forge_outcomes():
+    return raw(
+        '<div class="ale-forge-wrap">'
+        '<div class="ale-forge-section-head"><p class="ale-forge-kicker">Built for developers and engineering leads</p>'
+        '<h2 class="ale-forge-heading">Bring the whole engineering job into view.</h2>'
+        '<p class="ale-forge-description">Move from the desired outcome to reviewable changes, '
+        'with the methods, decisions, and learning connected to the work.</p></div>'
+        '<div class="ale-forge-outcomes">'
+        '<article><span class="ale-forge-case-number">01 / Direction</span><h3>A clear definition of done</h3>'
+        '<p>Plan a product outcome, turn it into scoped missions, and agree on acceptance criteria before execution.</p></article>'
+        '<article><span class="ale-forge-case-number">02 / Continuity</span><h3>A shared engineering brain</h3>'
+        '<p>Give different agents the relevant skills, repository knowledge, and approved memories for the task.</p></article>'
+        '<article><span class="ale-forge-case-number">03 / Evidence</span><h3>Work you can inspect</h3>'
+        '<p>Follow questions, review decisions, source changes, and verification results when deciding what is ready.</p></article>'
+        '</div></div>'
+    )
+
+
+def forge_workflow():
+    steps = [
+        ("01", "Define the outcome", "Describe what should change and what acceptance requires. "
+         "Use AI-assisted product planning or derive proposed requirements from reference documents.", "You choose the scope and criteria."),
+        ("02", "Brief the agents", "Forge prepares a task briefing from repository instructions, "
+         "relevant skills, and approved knowledge within the product or repository scope.", "The prepared context is recorded with the run."),
+        ("03", "Coordinate the work", "Use Captain for visible stages and exit gates, or Autopilot "
+         "to coordinate implementation, verification, and remediation of review findings.", "Questions and supported approval requests stay visible."),
+        ("04", "Review, deliver, learn", "Inspect changes and acceptance evidence. Prepare a pull request "
+         "when configured, then assess lessons that can inform the next mission.", "Human decisions and retained evidence stay connected to the work."),
+    ]
+    items = ''.join(
+        f'<li><span class="ale-forge-step-number">{number}</span><h3>{esc(title)}</h3>'
+        f'<p>{esc(body)}</p><span class="ale-forge-step-detail">{esc(detail)}</span></li>'
+        for number, title, body, detail in steps
+    )
+    return raw(
+        '<div class="ale-forge-wrap" id="forge-workflow">'
+        '<div class="ale-forge-section-head"><p class="ale-forge-kicker">From intent to delivery</p>'
+        '<h2 class="ale-forge-heading">One mission. A connected workflow.</h2>'
+        '<p class="ale-forge-description">Set the destination. Give agents a useful briefing. '
+        'Keep execution and review connected to the outcome you asked for.</p></div>'
+        f'<ol class="ale-forge-workflow" role="list">{items}</ol>'
+        '<p class="ale-forge-brain-caption">Captain stages: Discovery &rarr; Architecture &rarr; Context '
+        '&rarr; Implementation &rarr; Validation &rarr; Governance &rarr; Learning &rarr; Delivery.</p>'
+        '</div>'
+    )
+
+
+def forge_brain():
+    return raw(
+        '<div class="ale-forge-wrap ale-forge-brain" id="forge-knowledge">'
+        '<div><p class="ale-forge-kicker">One Brain</p>'
+        '<h2 class="ale-forge-heading">Give the next agent the benefit of the last mission.</h2>'
+        '<p class="ale-forge-description">Your engineering knowledge belongs with the product. '
+        'Forge brings methods, approved experience, repository context, and recorded decisions '
+        'together so relevant guidance can carry across missions and coding providers.</p>'
+        '<div class="ale-forge-knowledge-list">'
+        '<article><h3>Skills provide the method</h3><p>Reusable instructions guide planning, implementation, review, and testing.</p></article>'
+        '<article><h3>Memory carries experience</h3><p>AI assesses proposed lessons and approves eligible exact revisions. '
+        'Items needing attention retain their sources and assessment reasons for review.</p></article>'
+        '<article><h3>Grounding connects the code</h3><p>Repository instructions and selected code context '
+        'keep the briefing tied to the system being changed.</p></article>'
+        '</div></div>'
+        '<figure class="ale-forge-brain-map" aria-labelledby="forge-brain-title">'
+        '<div class="ale-forge-brain-core"><span>Shared engineering knowledge</span><strong id="forge-brain-title">One Brain</strong></div>'
+        '<div class="ale-forge-brain-node"><strong>Skills</strong><p>Methods &amp; guidance</p></div>'
+        '<div class="ale-forge-brain-node"><strong>Memory</strong><p>Approved experience</p></div>'
+        '<div class="ale-forge-brain-node"><strong>Repository</strong><p>Code &amp; context</p></div>'
+        '<div class="ale-forge-brain-node"><strong>Decisions</strong><p>Reasoning &amp; sources</p></div>'
+        '<figcaption class="ale-forge-brain-caption">Explore their connections in the 2D or 3D knowledge map. '
+        'Follow a node to inspect its sources, related work, and recorded history.</figcaption></figure>'
+        '</div>'
+    )
+
+
+def forge_evidence():
+    return raw(
+        '<div class="ale-forge-wrap ale-forge-evidence" id="forge-verification">'
+        '<div class="ale-forge-evidence-copy"><p class="ale-forge-kicker">Verification &amp; evaluation</p>'
+        '<h2 class="ale-forge-heading">See what was checked. Decide what is ready.</h2>'
+        '<p class="ale-forge-description">Forge keeps verification results and supporting records '
+        'attached to the work. Eligible independent acceptance checks are approved before execution '
+        'and evaluated against a captured source tree.</p>'
+        '<ul class="ale-forge-evidence-points" role="list">'
+        '<li><strong>Acceptance tied to requirements.</strong> Inspect the check definitions, tested source, and retained results.</li>'
+        '<li><strong>Decisions with a record.</strong> Follow review findings, approval decisions, and recorded exceptions.</li>'
+        '<li><strong>Compare with evidence.</strong> Use Evaluation to examine recorded outcomes, available token usage, and reported human effort.</li>'
+        '</ul><p class="ale-forge-brain-caption">Inspect recorded outcomes and available usage in Evaluation. '
+        'The supporting records show what was measured.</p></div>'
+        '<figure class="ale-forge-receipt" aria-labelledby="forge-receipt-title">'
+        '<div class="ale-forge-receipt-head"><span class="ale-forge-caption">Illustrative evidence record</span>'
+        '<h3 id="forge-receipt-title">A result with its supporting record</h3></div>'
+        '<div class="ale-forge-receipt-row"><span>Requirement</span><strong>The outcome being checked</strong></div>'
+        '<div class="ale-forge-receipt-row"><span>Check definition</span><strong>Approved before execution</strong></div>'
+        '<div class="ale-forge-receipt-row"><span>Source</span><strong>The captured checkout</strong></div>'
+        '<div class="ale-forge-receipt-row"><span>Result</span><strong>Checks and evidence retained</strong></div>'
+        '<figcaption class="ale-forge-receipt-note">Independent verification applies to supported checks '
+        'approved for the mission before the run. Results describe the source that was tested.</figcaption>'
+        '</figure></div>'
+    )
+
+
+def forge_use_cases():
+    return raw(
+        '<div class="ale-forge-wrap"><div class="ale-forge-section-head">'
+        '<p class="ale-forge-kicker">Where Forge fits</p><h2 class="ale-forge-heading">Build. Improve. Carry the learning forward.</h2>'
+        '<p class="ale-forge-description">For developers and engineering leads using AI coding tools '
+        'to deliver product work across existing and new repositories.</p></div>'
+        '<div class="ale-forge-usecases">'
+        '<article><span class="ale-forge-case-number">01</span><h3>Plan an application or feature</h3>'
+        '<p>Turn an outcome into requirements and scoped missions that agents can work from.</p>'
+        '<ul role="list"><li>AI-assisted product planning</li><li>Requirements from reference documents</li><li>Mission acceptance criteria</li></ul></article>'
+        '<article><span class="ale-forge-case-number">02</span><h3>Fix, refactor, and review</h3>'
+        '<p>Give agents repository context and keep implementation connected to review and verification.</p>'
+        '<ul role="list"><li>Skills and code grounding</li><li>Implementation and remediation</li><li>GitHub or Azure Repos delivery when configured</li></ul></article>'
+        '<article><span class="ale-forge-case-number">03</span><h3>Reuse assessed experience</h3>'
+        '<p>Keep useful decisions and approved lessons available as people, agents, and tasks change.</p>'
+        '<ul role="list"><li>Scoped and versioned memories</li><li>Connected engineering knowledge</li><li>Evidence-backed evaluation</li></ul></article>'
+        '</div></div>'
+    )
+
+
+def forge_faq():
+    answers = [
+        ("Who is Forge built for?", "Developers, engineering leads, and architects who use AI coding tools "
+         "and want planning, shared context, execution, review, and retained knowledge in a common workflow."),
+        ("Which coding tools can I connect?", "Forge has adapters for Claude Code, Codex, Gemini CLI, Grok, "
+         "and GitHub Copilot. Install and sign in to the tools you intend to use. Each requires its own "
+         "provider access; supported approvals, features, and telemetry vary by adapter."),
+        ("How do Captain and Autopilot differ?", "Captain organizes worker assignments into visible delivery "
+         "stages with exit gates. Autopilot coordinates mission implementation, verification, and remediation. "
+         "They are different ways to direct engineering work, with the mission's requirements and review decisions in view."),
+        ("What is One Brain?", "Forge's shared engineering knowledge: skills provide methods, approved "
+         "memories retain experience, repository grounding supplies code context, and the knowledge map "
+         "makes their connections visible. The context router selects relevant guidance for each run."),
+        ("What does independent acceptance verify?", "It evaluates eligible checks approved before the "
+         "run against captured source, retaining the definitions and results. Agent-generated checks and "
+         "independent checks are distinct. A recorded exception or forced completion is separate from verified acceptance."),
+        ("Where does Forge run?", "Forge is a local-first Windows application. Connected coding tools "
+         "use their own provider services. Contact us to discuss setup, prerequisites, and a demonstration for your engineering workflow."),
+    ]
+    details = ''.join(
+        f'<details><summary>{esc(question)}</summary><p>{esc(answer)}</p></details>'
+        for question, answer in answers
+    )
+    return raw(
+        '<div class="ale-forge-wrap"><div class="ale-forge-section-head">'
+        '<p class="ale-forge-kicker">A few practical questions</p>'
+        '<h2 class="ale-forge-heading">Start with the workflow you have.</h2></div>'
+        f'<div class="ale-forge-faq">{details}</div></div>'
+    )
+
+
+def forge_final():
+    return raw(
+        '<div class="ale-forge-wrap ale-forge-final"><p class="ale-forge-kicker">Bring your engineering goals</p>'
+        '<h2 class="ale-forge-heading">See how your team could work with Forge.</h2>'
+        '<p class="ale-forge-description">Show us your repositories, coding tools, and review process. '
+        'We will walk through a Forge workflow that fits the conversation.</p>'
+        '<div class="ale-forge-actions"><a class="ale-forge-button" href="/contact/">Request a Forge demo '
+        '<span aria-hidden="true">&rarr;</span></a>'
+        '<a class="ale-forge-button is-secondary" href="/software-development/">Discuss custom development</a></div>'
+        '</div>'
+    )
+
+
 def mission_block():
     return raw(
         '<div class="ale-mission">'
@@ -492,9 +703,9 @@ OFFERINGS_GRID = (
     '<div class="ale-grid is-2">'
     '<div class="ale-card is-platform"><span class="ale-card-num">Product</span>'
     '<h3 class="ale-h3">Aletheon Forge</h3>'
-    '<p>Bring your AI coding agents into one engineering workflow. Define missions, '
-    'connect repositories, supply shared skills and project knowledge, and follow '
-    'execution, review, verification, and lessons in a local-first Windows application.</p>'
+    '<p>Give your AI coding agents an engineering organization. Forge connects mission '
+    'planning, Captain and Autopilot coordination, shared project knowledge, and '
+    'acceptance evidence in a local-first Windows application.</p>'
     '<p style="margin-top:1.1rem"><a class="ale-btn" href="/aletheon-forge/">Explore Forge</a></p></div>'
     '<div class="ale-card is-platform"><span class="ale-card-num">Services</span>'
     '<h3 class="ale-h3">Software Development</h3>'
@@ -553,9 +764,9 @@ PAGES["home"] = "\n\n".join([
     section("\n\n".join([
         eyebrow("Skills and Project Knowledge"),
         heading("Give agents context they can use"),
-        lede("Forge routes repository instructions, focused skills, and approved memories "
-             "into agent work. Decisions and lessons can be assessed and retained for "
-             "the next mission, while the knowledge map helps teams explore what is connected."),
+        lede("Forge's One Brain connects repository instructions, focused skills, approved "
+             "memories, and recorded decisions. Relevant guidance can carry into the next "
+             "mission, while the knowledge map helps teams inspect its sources and connections."),
         spacer(28),
         roles([
             ("Product lead", "Define the intended outcome and the scope of the work."),
@@ -615,71 +826,14 @@ PAGES["home"] = "\n\n".join([
 # --------------------------- ALETHEON FORGE -------------------------------
 
 PAGES["aletheon-forge"] = "\n\n".join([
-    section("\n\n".join([
-        eyebrow("AI Engineering Orchestration", centered=True), h1("Aletheon Forge"),
-        lede("Bring your AI coding agents into one engineering workflow. Define the work, "
-             "connect repositories, supply shared skills and project knowledge, and follow "
-             "execution, review, verification, and lessons in a local-first Windows application.", centered=True),
-        spacer(12), buttons([
-            ("Request a Forge Demo", "/contact/", "solid"),
-            ("Discuss Software Development", "/contact/", "ghost"),
-        ]),
-    ]), "is-hero"),
-    section("\n\n".join([
-        eyebrow("Connected Coding Tools"), heading("Coordinate the assistants your team uses"),
-        lede("Forge connects installed Claude Code, Codex, Gemini CLI, Grok, and GitHub "
-             "Copilot command-line tools. Their adapters bring agent work into a common "
-             "mission and run workflow while using each tool's supported capabilities."),
-        para("Forge runs locally on Windows. Connected coding tools require their own "
-             "installation and provider access, and their available capabilities vary.", cls="ale-muted"),
-    ])),
-    section("\n\n".join([
-        eyebrow("Core Capabilities"), heading("From a scoped task to reviewable results"), spacer(24),
-        checklist([
-            "Connect installed AI coding assistants", "Organize products, repositories, missions, and runs",
-            "Plan features, fixes, refactoring, and new applications", "Define mission acceptance criteria",
-            "Route repository instructions, skills, and approved memories",
-            "Coordinate mission execution with Autopilot", "Follow agent questions and approval decisions",
-            "Review configured checks and independent acceptance evidence",
-            "Explore connected engineering knowledge", "Assess and retain memories and lessons",
-            "Work with Git repositories", "Prepare GitHub and Azure Repos pull requests when configured",
-        ]),
-    ])),
-    section("\n\n".join([
-        eyebrow("Structure"), heading("Keep work connected from product to run"),
-        lede("Plans break larger goals into missions. Each mission stays connected to the "
-             "product, repository, acceptance criteria, and the agent runs carrying it out."),
-        spacer(28), cards([
-            ("01", "Product", "The system or product being built, with its goals and shared knowledge."),
-            ("02", "Repository", "The codebase, repository instructions, and technical context in scope."),
-            ("03", "Mission", "A defined unit of engineering work with constraints and acceptance criteria."),
-            ("04", "Run", "An agent execution with recorded activity, questions, and available verification evidence."),
-        ], cols=4),
-    ])),
-    section("\n\n".join([
-        eyebrow("AI Enablers"), heading("Keep useful engineering knowledge in the workflow"),
-        spacer(28), cards([
-            ("01", "Skills", "Focused, reusable instructions that guide agents through particular kinds of engineering work."),
-            ("02", "Context", "Repository instructions and selected knowledge routed into the mission and agent run."),
-            ("03", "Memories", "Assessed engineering decisions and lessons retained for later work."),
-            ("04", "Knowledge map", "A connected view of engineering knowledge that helps teams explore relationships and context."),
-        ], cols=2),
-    ])),
-    section("\n\n".join([
-        eyebrow("Review and Delivery"), heading("Follow the decisions as well as the code"),
-        lede("Review run history, agent questions, approval decisions, and configured checks "
-             "alongside repository changes. Prepare pull requests for GitHub or Azure Repos "
-             "when those integrations are configured, and retain lessons from the work."),
-        spacer(24), flow(),
-    ])),
-    section("\n\n".join([
-        heading("See Forge with your engineering workflow", centered=True),
-        lede("Discuss your repositories, coding tools, and review process with our team.", centered=True),
-        spacer(12), buttons([
-            ("Request a Forge Demo", "/contact/", "solid"),
-            ("Explore Software Development", "/software-development/", "ghost"),
-        ]),
-    ]), "is-hero"),
+    section(forge_hero(), "ale-forge-section is-forge-hero"),
+    section(forge_outcomes(), "ale-forge-section is-forge-section"),
+    section(forge_workflow(), "ale-forge-section is-forge-section"),
+    section(forge_brain(), "ale-forge-section is-forge-section"),
+    section(forge_evidence(), "ale-forge-section is-forge-section"),
+    section(forge_use_cases(), "ale-forge-section is-forge-section"),
+    section(forge_faq(), "ale-forge-section is-forge-section"),
+    section(forge_final(), "ale-forge-section is-forge-final"),
 ])
 
 # ---------------------------- GOVERNED AI ---------------------------------
@@ -816,9 +970,9 @@ PAGES["solutions"] = "\n\n".join(
                     spacer(28),
                     cards(
                         [
-                            ("01", "Coordinate coding work", "Use Forge to organize products, repositories, missions, and runs with the AI coding assistants installed on your machine."),
-                            ("02", "Prepare repository context", "Give coding assistants the relevant repository context, skills, and approved memories for each mission."),
-                            ("03", "Review changes and results", "Use approvals and verification to keep people involved in the coding workflow and evaluate the work produced."),
+                            ("01", "Coordinate coding work", "Use Forge's Captain stages or Autopilot to connect implementation, review, and verification to a defined mission."),
+                            ("02", "Prepare repository context", "Use One Brain to brief coding agents with relevant skills, approved memories, and repository knowledge."),
+                            ("03", "Review changes and results", "Inspect review decisions, configured checks, and retained acceptance evidence alongside the source changes."),
                             ("04", "Retain engineering knowledge", "Capture useful lessons and approved memories so future missions can draw on what the team has learned."),
                             ("05", "Build business software", "Develop applications and data platforms around your organization's requirements, existing systems, and operating needs."),
                             ("06", "Integrate and modernize", "Connect services and data, plan architecture changes, and update existing software with attention to its business logic."),
@@ -1068,7 +1222,7 @@ PAGES["contact"] = "\n\n".join(
                     spacer(28),
                     cards(
                         [
-                            ("01", "Aletheon Forge Demo", "See how Forge organizes products, repositories, missions, and runs with installed AI coding assistants."),
+                            ("01", "Aletheon Forge Demo", "Explore Captain, Autopilot, One Brain, and verification evidence with your team's coding workflow."),
                             ("02", "Custom Software Development", "Discuss an application, data platform, integration, applied AI capability, or modernization project."),
                             ("03", "Engineering Workflow", "Talk through repository context, skills, approvals, verification, and retained learning in your AI-assisted coding process."),
                             ("04", "Research Collaboration", "Explore academic collaboration or discuss the research informing Aletheon's approach to AI systems and software engineering."),
